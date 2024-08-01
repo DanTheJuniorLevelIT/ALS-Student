@@ -1,1 +1,9 @@
-<p>modules works!</p>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/learningmaterials']"><button class="btn buttons w-100">MODULES</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']"><button class="btn buttons w-100">CLASSWORK</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/progress']"><button class="btn buttons w-100">PROGRESS</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussion']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
+    </div>
+</div>
+<router-outlet></router-outlet>

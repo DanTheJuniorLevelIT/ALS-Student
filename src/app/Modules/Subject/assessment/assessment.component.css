@@ -1,0 +1,33 @@
+.container {
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: larger;
+    margin-bottom: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container .matcard {
+    max-width: 900px;
+    background-color:aliceblue;
+    margin-bottom: 10px;
+}
+
+.container .matcard .matcardheader {
+    font-size: larger;
+    font-weight: 500;
+    color: rgb(0, 0, 248);
+}
+
+.container .matcard .matcardcontent {
+    color: black;
+}

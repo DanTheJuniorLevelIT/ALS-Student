@@ -5,8 +5,10 @@ import { homeRoute } from './Modules/Home/home.routes';
 import { subjectRoute } from './Modules/Subject/subject.routes';
 import { messageRoute } from './Modules/Message/message.routes';
 import { accountRoute } from './Modules/Account/account.routes';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
+    {path: 'signup', component: SignupComponent},
     {path: 'login', component: LoginComponent},
     {path: 'main', component: MainComponent,
         children: [

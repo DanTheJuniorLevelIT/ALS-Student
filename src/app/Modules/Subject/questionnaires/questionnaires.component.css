@@ -1,0 +1,194 @@
+.container {
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: larger;
+    margin-bottom: 25px;
+}
+
+.container .row .col-7 {
+    margin-top: 40px
+}
+
+.container .row .col-7 a {
+    margin: 5px;
+    text-decoration: none;
+}
+
+.container .row .col-7 a button {
+    padding: 5px;
+}
+
+
+/* Submit Button Styles */
+.submitbutton {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.submitbutton:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.submitbutton:hover {
+  background-color: #2c974b;
+}
+
+.submitbutton:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.submitbutton:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.submitbutton:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+/* Next and Prev Button Styles */
+.buttons {
+  display: inline;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.buttons:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+.questioncard {
+    background-color: white;
+}
+
+.essaycard {
+    background-color: white;
+}
+
+.multiplechoicecard {
+    background-color: white;
+}
+
+.matchingtypecard {
+    background-color: white;
+}
+
+.formanswer {
+    width: 100%;
+}
+
+.formanswer mat-form-field {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.formanswer mat-form-field mat-label {
+    color: black;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+    width: 900px;
+    z-index: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: rgb(234, 234, 234);
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color:black;
+}
+
+:host ::ng-deep .mat-mdc-button:not(:disabled) {
+    color: rgb(26, 118, 146);
+}
+
+:host ::ng-deep .mdc-form-field>label {
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 4px;
+    padding-right: 0;
+    order: 0;
+    color: black;
+}
+
+:host ::ng-deep .mdc-radio__native-control {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+    cursor: inherit;
+    z-index: 1;
+}
+
+.matbuttons {
+    display: flex;
+    justify-content: end;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+  
+.example-radio-button {
+    margin: 5px;
+}
+
+.inputmatching {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+.inputmatching:focus {
+    box-shadow: none;
+}

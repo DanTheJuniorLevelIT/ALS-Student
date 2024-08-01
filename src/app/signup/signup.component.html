@@ -1,0 +1,66 @@
+<body>
+    <div class="container">
+        <div class="title">Registration</div>
+        <form action="">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Firstname</span>
+                    <input type="text" placeholder="Enter your firstname" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Middlename</span>
+                    <input type="text" placeholder="Enter your middlename" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Lastname</span>
+                    <input type="text" placeholder="Enter your lastname" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Extensions</span>
+                    <input type="text" placeholder="Enter your extension name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Birthdate</span>
+                    <input type="date" placeholder="Enter your extension name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Place of Birth</span>
+                    <input type="text" placeholder="Enter your place of birth" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Last Education</span>
+                    <input type="text" placeholder="Enter your last attended education" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Civil Status</span>
+                    <select>
+                        <option value="">Select your civil status</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <span class="details">Contact Number</span>
+                    <input type="text" placeholder="Enter your contact number">
+                </div>
+                <div class="input-box">
+                    <span class="details">Email Address</span>
+                    <input type="text" placeholder="Enter your email">
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" placeholder="Enter your password">
+                </div>
+                <div class="input-box">
+                    <span class="details">Confirm Passowrd</span>
+                    <input type="password" placeholder="Enter your password">
+                </div>
+            </div>
+            <div class="button">
+                <button type="submit"><a [routerLink]="['/login']">Register</a></button>
+            </div>
+        </form>
+    </div>
+</body>

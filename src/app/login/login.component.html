@@ -1,1 +1,23 @@
-<p>login works student!</p>
+<body>
+    <div class="container">
+        <div class="title">Student Login</div>
+        <form action="">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Email Address</span>
+                    <input type="text" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" placeholder="Enter your password" required>
+                </div>
+                <div class="signup-link">
+                    Don't have an account? <a routerLink="/signup">Click Here</a>
+                </div>
+            </div>
+            <div class="button">
+                <button type="submit"><a [routerLink]="['/main/Home/']">Log In</a></button>
+            </div>
+        </form>
+    </div>
+</body>

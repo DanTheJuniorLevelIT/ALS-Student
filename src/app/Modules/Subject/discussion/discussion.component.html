@@ -1,1 +1,24 @@
-<p>discussion works!</p>
+<div class="discussion-container">
+    <div class="question-section">
+      <div class="question-header">
+        <div class="question-date">Jun 12, 2024</div>
+        <div class="question-text">
+          What are your thoughts about Nosebleeds, Swallowing Objects, Poisoning and Dog Bites?
+        </div>
+      </div>
+      <div class="answer-list">
+        <div *ngFor="let discussion of discussions" [ngClass]="{'student-answer': discussion.role === 'student', 'teacher-answer': discussion.role === 'teacher'}" class="answer">
+          <div class="answer-user">{{ discussion.user }}</div>
+          <div class="answer-date">{{ discussion.date | date:'medium' }}</div>
+          <div class="answer-text">{{ discussion.answer }}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="answer-form">
+      <form [formGroup]="discussionForm" (ngSubmit)="submitAnswer()">
+        <textarea formControlName="answer" placeholder="Insert text here..."></textarea>
+        <button type="submit">Reply</button>
+      </form>
+    </div>
+  </div>

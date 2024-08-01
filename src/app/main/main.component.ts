@@ -9,5 +9,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-
+  toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      sidebar.classList.toggle('show');
+    }
+  }
 }

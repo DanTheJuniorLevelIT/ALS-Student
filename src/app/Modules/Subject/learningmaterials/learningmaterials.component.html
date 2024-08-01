@@ -1,1 +1,42 @@
-<p>learningmaterials works!</p>
+<div class="container">
+    <h1 class="titles">My Modules</h1>
+    <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
+        <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']">
+        <mat-card class="matcard">
+            <mat-card-header class="matcardheader">Module 1</mat-card-header>
+            <mat-card-content class="matcardcontent">Halika, Sama Ka Kaibigan</mat-card-content>
+        </mat-card>
+        </a>
+        <a [routerLink]="['#']">
+        <mat-card class="matcard">
+            <mat-card-header class="matcardheader">Module 2</mat-card-header>
+            <mat-card-content class="matcardcontent">Hiram na Letra</mat-card-content>
+        </mat-card>
+        </a>
+        <a [routerLink]="['#']">
+        <mat-card class="matcard">
+            <mat-card-header class="matcardheader">Module 3</mat-card-header>
+            <mat-card-content class="matcardcontent">Katinig</mat-card-content>
+        </mat-card>
+        </a>
+        <a [routerLink]="['#']">
+        <mat-card class="matcard">
+            <mat-card-header class="matcardheader">Module 4</mat-card-header>
+            <mat-card-content class="matcardcontent">Kilalanin Sila</mat-card-content>
+        </mat-card>
+        </a>
+        <a [routerLink]="['#']">
+        <mat-card class="matcard">
+            <mat-card-header class="matcardheader">Module 5</mat-card-header>
+            <mat-card-content class="matcardcontent">Oops...Ingat sa Lansangan</mat-card-content>
+        </mat-card>
+        </a>
+        <a [routerLink]="['#']">
+        <mat-card class="matcard">
+            <mat-card-header class="matcardheader">Module 6</mat-card-header>
+            <mat-card-content class="matcardcontent">Patinig</mat-card-content>
+        </mat-card>
+        </a>
+</div>
+
+<router-outlet></router-outlet>

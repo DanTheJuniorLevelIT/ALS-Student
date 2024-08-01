@@ -1,0 +1,16 @@
+h1 {
+    font-weight: 500;
+}
+
+.details {
+    margin-top: 40px;
+}
+
+.details .lessontitle {
+    font-size:  25px;
+    margin-bottom: 10px;
+}
+
+.details .lessons {
+    text-indent: 50px;
+}

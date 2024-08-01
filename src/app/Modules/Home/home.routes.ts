@@ -4,8 +4,12 @@ import { PendingassessmentComponent } from './pendingassessment/pendingassessmen
 import { TodayclassesComponent } from './todayclasses/todayclasses.component';
 
 export const homeRoute: Routes = [
-    {path: "homemain", component: HomemainComponent},
-    {path: "pendingassessment", component: PendingassessmentComponent},
-    {path: "todayclasses", component: TodayclassesComponent},
+    {path: "homemain", component: HomemainComponent,
+        children: [
+            {path: "pendingassessment", component: PendingassessmentComponent},
+            {path: "todayclasses", component: TodayclassesComponent},
+            {path: "", redirectTo: "todayclasses", pathMatch: "full"}
+        ]
+    },
     {path: "", redirectTo: "homemain", pathMatch: "full"}
 ];
