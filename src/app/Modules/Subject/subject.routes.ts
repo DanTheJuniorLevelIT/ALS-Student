@@ -8,8 +8,10 @@ import { AssessmentComponent } from './assessment/assessment.component';
 import { ProgressComponent } from './progress/progress.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { QuestionnairesComponent } from './questionnaires/questionnaires.component';
+import { SubjecthomeComponent } from './subjecthome/subjecthome.component';
 
 export const subjectRoute: Routes = [
+    {path: "subjecthome", component: SubjecthomeComponent},
     {path: "subjectmain", component: SubjectmainComponent, 
         children: [
             {path: "subjects", component: SubjectsComponent},
@@ -26,5 +28,5 @@ export const subjectRoute: Routes = [
             },
         ]
     },
-    {path: "", redirectTo: "subjectmain", pathMatch: "full"}
+    {path: "", redirectTo: "subjecthome", pathMatch: "full"}
 ];
