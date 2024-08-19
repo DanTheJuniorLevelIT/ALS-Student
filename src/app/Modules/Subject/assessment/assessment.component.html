@@ -1,41 +1,116 @@
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussion']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
+    </div>
+</div>
+
 <div class="container">
     <h1 class="titles">My Classworks</h1>
     <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
     <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']">
         <mat-card class="matcard">
-            <mat-card-header class="matcardheader">Module 1 | Assessment 1</mat-card-header>
-            <mat-card-content class="matcardcontent">Mga Teknik sa Epektibong Pakikinig: Pagpapahusay ng Iyong Kakayahan sa Komunikasyon
-            </mat-card-content>
-        </mat-card>
+            <mat-card-header class="matcardheader">
+              <div class="col-10">
+                  Module 1 | Assessment 1
+              </div>
+              <div class="col-2">
+                  <p style="font-weight: 300; font-size: 15px;">March 11, 2025</p>
+              </div>
+              </mat-card-header>
+              <div class="row">
+                  <div class="col-11">
+                      <mat-card-content class="matcardcontent">
+                          Mga Teknik sa Epektibong Pakikinig: Pagpapahusay ng Iyong Kakayahan sa Komunikasyon
+                          <br>
+                      </mat-card-content>
+                  </div>
+                  <div class="col-1">
+                      <input class="form-check-input" type="checkbox" checked>
+                  </div>
+              </div>
+          </mat-card>
         </a>
         <a [routerLink]="['#']">
         <mat-card class="matcard">
             <mat-card-header class="matcardheader">Module 2 | Assessment 2</mat-card-header>
-            <mat-card-content class="matcardcontent">Ang Sining ng Malinaw at Maikling Pagsasalita</mat-card-content>
+            <div class="row">
+                <div class="col-11">
+                    <mat-card-content class="matcardcontent">
+                        Ang Sining ng Malinaw at Maikling Pagsasalita
+                        <br>
+                    </mat-card-content>
+                </div>
+                <div class="col-1">
+                    <input class="form-check-input" type="checkbox" unchecked>
+                </div>
+            </div>
         </mat-card>
         </a>
         <a [routerLink]="['#']">
         <mat-card class="matcard">
             <mat-card-header class="matcardheader">Module 3 | Assessment 3</mat-card-header>
-            <mat-card-content class="matcardcontent">Di-Berbal na Komunikasyon: Pagbasa at Paggamit ng Galaw ng Katawan</mat-card-content>
+            <div class="row">
+                <div class="col-11">
+                    <mat-card-content class="matcardcontent">
+                        Di-Berbal na Komunikasyon: Pagbasa at Paggamit ng Galaw ng Katawan
+                        <br>
+                    </mat-card-content>
+                </div>
+                <div class="col-1">
+                    <input class="form-check-input" type="checkbox" checked>
+                </div>
+            </div>
         </mat-card>
         </a>
         <a [routerLink]="['#']">
         <mat-card class="matcard">
             <mat-card-header class="matcardheader">Module 4 | Assessment 4</mat-card-header>
-            <mat-card-content class="matcardcontent">Konstruktibong Puna: Maayos na Pagbibigay at Pagtanggap Nito</mat-card-content>
+            <div class="row">
+                <div class="col-11">
+                    <mat-card-content class="matcardcontent">
+                        Konstruktibong Puna: Maayos na Pagbibigay at Pagtanggap Nito
+                        <br>
+                    </mat-card-content>  
+                </div>
+                <div class="col-1">
+                    <input class="form-check-input" type="checkbox" checked>
+                </div>
+            </div>
         </mat-card>
         </a>
         <a [routerLink]="['#']">
         <mat-card class="matcard">
             <mat-card-header class="matcardheader">Module 5 | Assessment 5</mat-card-header>
-            <mat-card-content class="matcardcontent">Pagbuo ng Ugnayan: Pagkonekta sa Iba sa Pamamagitan ng Komunikasyon</mat-card-content>
+            <div class="row">
+                <div class="col-11">
+                    <mat-card-content class="matcardcontent">
+                        Pagbuo ng Ugnayan: Pagkonekta sa Iba sa Pamamagitan ng Komunikasyon
+                        <br>
+                    </mat-card-content>
+                </div>
+                <div class="col-1">
+                    <input class="form-check-input" type="checkbox" unchecked>
+                </div>
+            </div>
+            
         </mat-card>
         </a>
         <a [routerLink]="['#']">
         <mat-card class="matcard">
             <mat-card-header class="matcardheader">Module 6 | Assessment 6</mat-card-header>
-            <mat-card-content class="matcardcontent">Pagtatanggal ng Hadlang sa Komunikasyon: Mga Estratehiya para sa Tagumpay</mat-card-content>
+            <div class="row">
+                <div class="col-11">
+                    <mat-card-content class="matcardcontent">
+                        Pagtatanggal ng Hadlang sa Komunikasyon: Mga Estratehiya para sa Tagumpay
+                        <br>
+                    </mat-card-content>
+                </div>
+                <div class="col-1">
+                    <input class="form-check-input" type="checkbox" checked>
+                </div>
+            </div>
         </mat-card>
         </a>
 </div>
