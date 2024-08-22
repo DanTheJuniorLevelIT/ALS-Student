@@ -8,17 +8,18 @@ a  {
 }
 .card {
     width: 300px;
-    height: 500px;
+    height: 350px;
+    margin-bottom: 25px;
 }
 
 .card .card-title {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 500;
     height:75px;
 }
 
 .card .card-body .card-details {
-    margin-top: 50px;
+    font-size: 10px;
 }
 
 img .card-image-top {
@@ -34,3 +35,7 @@ img .card-image-top {
     display: block;
     margin-bottom: 5px;
   }
+
+#pendingassessment {
+    width: 350px;
+}
