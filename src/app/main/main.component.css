@@ -89,11 +89,11 @@
 
 .hamburger a {
     font-size: 28px;
-    color: white;
+    color: #dcdcdc;
 }
 
 .hamburger a:hover {
-    color: #a2ecff;
+    color: #dcdcdc;
 }
 
 /* Media query for responsiveness */

@@ -12,21 +12,26 @@ a  {
 }
 .card {
     width: 300px;
-    height: 500px;
+    height: 350px;
+    margin-bottom: 25px;
 }
 
 .card .card-title {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 500;
-    height:75px;
+    height:50px;
 }
 
 .card .card-body .card-details {
-    margin-top: 50px;
+    font-size: 10px;
 }
 
-img .card-image-top {
+img .card-img-top {
     border-bottom: 1px black;
+}
+
+img {
+    height: 180px;
 }
 
 .card-body-assessment {
@@ -37,4 +42,5 @@ img .card-image-top {
 .card-body-assessment-links a {
     display: block;
     margin-bottom: 5px;
-  }
+}
+

@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="chat-container">
 	<ul class="chat">
 		<li class="message left">
@@ -27,5 +27,144 @@
 		</li>
 	</ul>
 	<input type="text" class="text_input" placeholder="Message..."/>
+</div> -->
+
+<div class="wrapper">
+    <div class="header">
+        <div class="title-and-date">
+            <h1>Message</h1>
+            <p class="current-date">{{ currentDate | date: 'MMMM d, y | h:mm a' }}</p>
+        </div>
+        <!-- <div class="notification-icon" (click)="openModal()">
+            <i class="fa fa-bell-o fa-2x" aria-hidden="true"></i>
+        </div> -->
+    </div>
+    <div class="cards-container">
+        <div class="add-icon" (click)="onAddMessage()">
+            <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+        </div>
+        <table class="message-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th>Sender</th>
+                </tr>
+            </thead>
+            <!-- <tbody>
+                <tr [routerLink]="['/main/Message/main/message/view']">
+                    <td>August 9, 2024</td>
+                    <td>Can you please explain the homework question?</td>
+                    <td>John Doe</td>
+                </tr>
+                <tr>
+                    <td>August 10, 2024</td>
+                    <td>Will the class start at the usual time tomorrow?</td>
+                    <td>Jane Smith</td>
+                </tr>
+                <tr>
+                    <td>August 11, 2024</td>
+                    <td>I have submitted my assignment.</td>
+                    <td>Mark Johnson</td>
+                </tr>
+            </tbody> -->
+            <tbody>
+                <tr *ngFor="let msg of messages" (click)="viewMessage(msg)">
+                    <td>{{ msg.date }}</td>
+                    <td>{{ msg.text }}</td>
+                    <td>{{ msg.sender }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div class="message-view" *ngIf="selectedMessage">
+            <h3>Message from {{ selectedMessage.sender }}</h3>
+            <p>{{ selectedMessage.text }}</p>
+
+            <div class="reply-box">
+                <textarea [(ngModel)]="replyText" placeholder="Type your reply..."></textarea>
+                <button (click)="sendReply()">Send</button>
+            </div>
+        </div> -->
+    </div>
+    <div class="modal" [ngClass]="{'show': isModalOpen3}" (click)="closeModal3()">
+        <div class="modal-content3" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closeModal3()">&times;</span>
+            <h4>Message from <b>{{ selectedMessage?.sender }}</b></h4>
+            <h3>{{ selectedMessage?.text }}</h3>
+    
+            <div class="reply-box">
+                <textarea [(ngModel)]="replyText" placeholder="Type your reply..."></textarea>
+                <button (click)="sendReply()">Send</button>
+            </div>
+        </div>
+    </div>
+    
 </div>
+
+<!-- Notification Modal -->
+<div class="modal" [ngClass]="{'show': isModalOpen}" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Notifications</h2>
+        <p>No new notifications</p>
+    </div>
+</div>
+
+<!-- Compose Message Modal -->
+<div class="modal" [ngClass]="{'show': isModalOpen2}" (click)="closeModal2()">
+    <div class="modal-content2" (click)="$event.stopPropagation()">
+        <span class="close" (click)="closeModal2()">&times;</span>
+        <h2>Compose Message</h2>
+
+        <form>
+            <div class="form-group">
+                <label for="recipient">To:</label>
+                <input type="text" id="recipient" name="recipient" class="form-control" placeholder="Enter recipient's name or email">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" class="form-control" rows="10" placeholder="Compose your message here"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" (click)="sendMessage()">Send</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModal2()">Discard</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- <div class="cards-container">
+        <div class="card">
+            <a [routerLink]="['/main/Subject/main/subject/modulesmain/modules']">
+                <img src="./assets/SCTS.jfif" alt="Class 1">
+                <div class="card-title">Scientific and Critical Thinking Skills</div>
+                <div class="card-footer">
+                    <p class="subjecttime">8:00AM - 9:00AM</p></div>
+            </a>
+        </div>
+        <div class="card">
+            <img src="./assets/math.jfif" alt="Class 2">
+            <div class="card-title">Mathematical and Problem-solving Skills</div>
+            <div class="card-footer">
+                <p class="subjecttime">9:00AM - 10:00AM</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="./assets/understanding.jpg" alt="Class 3">
+            <div class="card-title">Understanding the Self and Society</div>
+            <div class="card-footer">
+                <p class="subjecttime">10:00AM - 11:00AM</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="./assets/life.jpg" alt="Class 4">
+            <div class="card-title">Life and Career Skills</div>
+            <div class="card-footer">
+                <p class="subjecttime">1:00PM - 2:00PM</p>
+            </div>
+        </div>
+    </div> -->
 

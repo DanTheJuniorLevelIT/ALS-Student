@@ -99,3 +99,45 @@ body {
     color: white;
     text-decoration: none;
 } */
+
+
+
+
+
+/* Make the container full-width on small screens */
+@media (max-width: 768px) {
+    .container {
+      width: 100%;
+    }
+  }
+  
+  /* Make the card full-width on small screens */
+  @media (max-width: 768px) {
+    .card-registration {
+      width: 100%;
+    }
+  }
+  
+  /* Hide the image on small screens */
+  @media (max-width: 768px) {
+    .d-none.d-xl-block {
+      display: none;
+    }
+  }
+  
+  /* Make the form inputs and labels full-width on small screens */
+  @media (max-width: 768px) {
+    .form-outline {
+      width: 100%;
+    }
+    .form-label {
+      width: 100%;
+    }
+  }
+  
+  /* Make the login button full-width on small screens */
+  @media (max-width: 768px) {
+    .btn.btn-success.btn-lg.ms-2 {
+      width: 100%;
+    }
+  }
