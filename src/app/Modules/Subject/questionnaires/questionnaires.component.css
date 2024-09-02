@@ -25,6 +25,9 @@ h5 {
     padding: 5px;
 }
 
+div {
+    background-color: #dcdcdc;
+}
 
 /* Submit Button Styles */
 .submitbutton {
@@ -102,19 +105,19 @@ h5 {
 }
 
 .questioncard {
-    background-color: white;
+    background-color: #dcdcdc;
 }
 
 .essaycard {
-    background-color: white;
+    background-color: #dcdcdc;
 }
 
 .multiplechoicecard {
-    background-color: white;
+    background-color: #dcdcdc;
 }
 
 .matchingtypecard {
-    background-color: white;
+    background-color: #dcdcdc;
 }
 
 .formanswer {
@@ -138,7 +141,7 @@ h5 {
 }
 
 :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: rgb(234, 234, 234);
+    background-color: #dcdcdc;
 }
 
 :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {

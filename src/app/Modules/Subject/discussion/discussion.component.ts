@@ -13,8 +13,8 @@ import { RouterModule } from '@angular/router';
 export class DiscussionComponent implements OnInit {
   discussionForm: FormGroup;
   discussions: { user: string, date: Date, answer: string, role: string }[] = [
-    { user: 'Heavenson', date: new Date(), answer: 'Hello ALS Learners this is our topic for discussion today. Share your thoughts about this topic. Lets begin.', role: 'student' },
-    { user: 'Teacher', date: new Date(), answer: 'For me, swallowed blood can irritate your stomach and cause vomiting. And vomiting may make the bleeding worse or cause it to start again. Spit out any blood that gathers in your mouth and throat rather than swallowing it. Use your thumb and forefinger to firmly pinch the soft part of your nose shut.', role: 'teacher' }
+    { user: 'Teacher', date: new Date(), answer: 'Hello ALS Learners this is our topic for discussion today. Share your thoughts about this topic. Lets begin.', role: 'student' },
+    { user: 'Heavenson', date: new Date(), answer: 'For me, swallowed blood can irritate your stomach and cause vomiting. And vomiting may make the bleeding worse or cause it to start again. Spit out any blood that gathers in your mouth and throat rather than swallowing it. Use your thumb and forefinger to firmly pinch the soft part of your nose shut.', role: 'teacher' }
   ];
 
   constructor(private fb: FormBuilder) {
