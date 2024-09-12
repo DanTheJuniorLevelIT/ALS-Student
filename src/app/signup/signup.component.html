@@ -1,67 +1,3 @@
-    <!-- <div class="container">
-        <div class="title">Registration</div>
-        <form action="">
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Firstname</span>
-                    <input type="text" placeholder="Enter your firstname" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Middlename</span>
-                    <input type="text" placeholder="Enter your middlename" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Lastname</span>
-                    <input type="text" placeholder="Enter your lastname" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Extensions</span>
-                    <input type="text" placeholder="Enter your extension name" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Birthdate</span>
-                    <input type="date" placeholder="Enter your extension name" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Place of Birth</span>
-                    <input type="text" placeholder="Enter your place of birth" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Last Education</span>
-                    <input type="text" placeholder="Enter your last attended education" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Civil Status</span>
-                    <select>
-                        <option value="">Select your civil status</option>
-                        <option value="single">Single</option>
-                        <option value="married">Married</option>
-                        <option value="divorced">Divorced</option>
-                        <option value="widowed">Widowed</option>
-                    </select>
-                </div>
-                <div class="input-box">
-                    <span class="details">Contact Number</span>
-                    <input type="text" placeholder="Enter your contact number">
-                </div>
-                <div class="input-box">
-                    <span class="details">Email Address</span>
-                    <input type="text" placeholder="Enter your email">
-                </div>
-                <div class="input-box">
-                    <span class="details">Password</span>
-                    <input type="password" placeholder="Enter your password">
-                </div>
-                <div class="input-box">
-                    <span class="details">Confirm Passowrd</span>
-                    <input type="password" placeholder="Enter your password">
-                </div>
-            </div>
-            <div class="button">
-                <button type="button"><a [routerLink]="['/login']">Register</a></button>
-            </div>
-        </form>
-    </div> -->
     <section class="h-100">
       <div class="container py-1 h-50">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -76,145 +12,143 @@
                                   style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 700px;"
                               />
                           </div>
-                          <div class="col-xl-8">
-                              <div class="card-body p-md-4 text-black">
-                                  <h3 class="mb-5 text-uppercase">Student registration form</h3>
-  
-                                  <div class="row">
-                                      <div class="col-md-4 mb-2">
-                                          <div class="form-outline">
-                                              <input type="text" id="form3Example1m" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example1m">First name</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-4 mb-2">
-                                          <div class="form-outline">
-                                              <input type="text" id="form3Example1n" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example1n">Middle name</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-4 mb-2">
-                                          <div class="form-outline">
-                                              <input type="text" id="form3Example1m1" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example1m1">Last name</label>
-                                          </div>
-                                      </div>
-                                  </div>
-  
-                                  <div class="row">
-                                      <div class="col-md-4 mb-2">
-                                          <div class="form-outline">
-                                              <input type="text" id="form3Example1n1" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example1n1">Extensions</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-4 mb-2">
-                                          <div class="form-outline">
-                                              <input type="date" id="form3Example1m1" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example1m1">Birthdate</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-4 mb-2">
-                                          <div class="form-outline">
-                                              <input type="text" id="form3Example1n1" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example1n1">Birth Place</label>
-                                          </div>
-                                      </div>
-                                  </div>
-  
-                                  <div class="row">
-                                      <div class="col-md-6 mb-2">
-                                          <div class="form-outline mb-2">
-                                              <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example8">Address</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-6 mb-2">
-                                          <div class="form-outline mb-2">
-                                              <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example8">Last School Attended </label>
-                                          </div>
-                                      </div>
-                                  </div>
-  
-                                  <div class="row">
-  
-                                      <div class="col-md-6 mb-2">
-                                          <div class="d-md-flex justify-content-start align-items-center mb-2 py-1">
-                                              <h6 class="mb-0 me-3">Gender: </h6>
-                                              <div class="form-check form-check-inline mb-0 me-4">
-                                                  <input
-                                                      class="form-check-input"
-                                                      type="radio"
-                                                      name="inlineRadioOptions"
-                                                      id="femaleGender"
-                                                      value="option1"
-                                                  />
-                                                  <label class="form-check-label" for="femaleGender">Female</label>
-                                              </div>
-                                              <div class="form-check form-check-inline mb-0 me-4">
-                                                  <input
-                                                      class="form-check-input"
-                                                      type="radio"
-                                                      name="inlineRadioOptions"
-                                                      id="maleGender"
-                                                      value="option2"
-                                                  />
-                                                  <label class="form-check-label" for="maleGender">Male</label>
-                                              </div>
-                                              <div class="form-check form-check-inline mb-0">
-                                                  <input
-                                                      class="form-check-input"
-                                                      type="radio"
-                                                      name="inlineRadioOptions"
-                                                      id="otherGender"
-                                                      value="option3"
-                                                  />
-                                                  <label class="form-check-label" for="otherGender">Other</label>
-                                              </div>
-                                          </div>
-                                      </div>
-  
-                                      <div class="col-md-6 mb-2">
-                                          <select class="select">
-                                              <option value="">Civil Status</option>
-                                              <option value="single">Single</option>
-                                              <option value="married">Married</option>
-                                              <option value="divorced">Divorced</option>
-                                              <option value="widowed">Widowed</option>
-                                          </select>
-                                      </div>
-  
-                                  </div>
-  
-                                  <div class="form-outline mb-2">
-                                      <input type="text" id="form3Example97" class="form-control form-control-lg" />
-                                      <label class="form-label" for="form3Example97">Email ID</label>
-                                  </div>
-  
-                                  <div class="row">
-                                      <div class="col-md-6 mb-2">
-                                          <div class="form-outline mb-2">
-                                              <input type="password" id="form3Example8" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example8">Password</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-6 mb-2">
-                                          <div class="form-outline mb-2">
-                                              <input type="password" id="form3Example8" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form3Example8">Confirm Password</label>
-                                          </div>
-                                      </div>
-                                  </div>
-  
-  
-                                  <div class="d-flex justify-content-end pt-3">
-                                      <!-- <button type="button" class="btn btn-light btn-lg">Reset all</button> -->
-                                      <button type="button" class="btn btn-success btn-lg ms-2">Submit</button>
-                                  </div>
-  
-                              </div>
-                          </div>
+<div class="col-xl-8">
+    <div class="card-body p-md-4 text-black">
+        <h3 class="mb-5 text-uppercase">Student Registration Form</h3>
+        <form (ngSubmit)="onSubmit()" [formGroup]="learnerForm" method="POST">
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <div class="form-outline">
+                        <input type="text" id="firstName" formControlName="firstname" class="form-control form-control-lg" />
+                        <label class="form-label" for="firstName">First name</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-outline">
+                        <input type="text" id="middleName" formControlName="middlename" class="form-control form-control-lg" />
+                        <label class="form-label" for="middleName">Middle name</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-outline">
+                        <input type="text" id="lastName" formControlName="lastname" class="form-control form-control-lg" />
+                        <label class="form-label" for="lastName">Last name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <div class="form-outline">
+                        <input type="text" id="extensions" formControlName="extension_name" class="form-control form-control-lg" />
+                        <label class="form-label" for="extensions">Extensions</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-outline">
+                        <input type="date" id="birthdate" formControlName="birthdate" class="form-control form-control-lg" />
+                        <label class="form-label" for="birthdate">Birthdate</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-outline">
+                        <input type="text" id="birthPlace" formControlName="placeofbirth" class="form-control form-control-lg" />
+                        <label class="form-label" for="birthPlace">Birth Place</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- <div class="col-md-6 mb-2">
+                    <div class="form-outline mb-2">
+                        <input type="text" id="address" formControlName="Address" class="form-control form-control-lg" />
+                        <label class="form-label" for="address">Address</label>
+                    </div>
+                </div> -->
+                <div class="col-md-6 mb-2">
+                    <div class="form-outline mb-2">
+                        <input type="text" id="lastSchool" formControlName="education" class="form-control form-control-lg" />
+                        <label class="form-label" for="lastSchool">Last School Attended</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <div class="d-md-flex justify-content-start align-items-center mb-2 py-1">
+                        <h6 class="mb-0 me-3">Gender:</h6>
+                        <div class="form-check form-check-inline mb-0 me-4">
+                            <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                name="gender" 
+                                id="femaleGender"
+                                formControlName="gender" 
+                                value="female"
+                                required
+                            />
+                            <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-0 me-4">
+                            <input 
+                                class="form-check-input" 
+                                type="radio" 
+                                name="gender" 
+                                id="maleGender"
+                                formControlName="gender"
+                                value="male"
+                                required 
+                            />
+                            <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <select 
+                        class="select form-control form-control-lg"
+                        formControlName="civil_status"
+                        name="civilstatus"
+                        required
+                    >
+                        <option value="">Civil Status</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                    </select>
+                    <label class="form-label" for="emailId">Civil Status</label>
+                </div>
+            </div>
+
+            <div class="form-outline mb-2">
+                <input type="text" id="emailId" formControlName="email" class="form-control form-control-lg" />
+                <label class="form-label" for="emailId">Email ID</label>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <div class="form-outline mb-2">
+                        <input type="password" id="Password" formControlName="password" class="form-control form-control-lg" />
+                        <label class="form-label" for="Password">Password</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-outline mb-2">
+                        <input type="password" id="ConfirmPassword" formControlName="password_confirmation" class="form-control form-control-lg" />
+                        <label class="form-label" for="Confirmpassword">Confirm Password</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end pt-3">
+                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                <button type="submit" class="btn btn-success btn-lg ms-2">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
                       </div>
                   </div>
               </div>
