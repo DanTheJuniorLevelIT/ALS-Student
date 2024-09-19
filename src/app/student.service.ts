@@ -17,11 +17,14 @@ export class StudentService {
   loginLearner(learnerData:any): Observable<any> {
     return this.http.post(this.apiUrl + 'loginLearner', learnerData);
   }
-
-  logoutLearner(token: string): Observable <any> {
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    };
-    return this.http.post(this.apiUrl + 'logoutLearner', {}, { headers });
+  logoutLearner(learnerData:any): Observable<any> {
+    return this.http.post(this.apiUrl + 'logoutLearner', learnerData);
   }
+
+  // logoutLearner(token: string): Observable <any> {
+  //   const headers = {
+  //     'Authorization': `Bearer ${token}`
+  //   };
+  //   return this.http.post(this.apiUrl + 'logoutLearner', {}, { headers });
+  // }
 }

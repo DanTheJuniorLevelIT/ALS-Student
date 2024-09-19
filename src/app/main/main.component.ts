@@ -26,7 +26,13 @@ export class MainComponent implements OnInit {
       sidebar.classList.toggle('show');
     }
   }
+  // logout(){
+  //   this.studentService.logoutLearner(this.tok).subscribe((result: any)=>{
+  //     localStorage.removeItem('authToken');
+  //     // this.route.navigate(['/login']);
 
+  //   })
+  // }
   logout(token:any) {
     if(token) {
       this.studentService.logoutLearner(token).subscribe(

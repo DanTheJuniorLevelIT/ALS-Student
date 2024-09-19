@@ -1,5 +1,6 @@
 <div class="container">
-    <h1 class="titles">My Classworks</h1>
+    <!-- <h1 class="titles">My Classworks</h1> -->
+    <h1 class="text-2xl font-bold">My Classworks</h1>
     <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
     <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']">
         <mat-card class="matcard">
@@ -8,7 +9,8 @@
                   Module 1 | Assessment 1
               </div>
               <div class="col-2">
-                  <p style="font-weight: 300; font-size: 15px;">March 11, 2025</p>
+                  <p style="font-weight: 300; font-size: 15px; color: gray;">March 11, 2025</p>
+                  <!-- <span class="text-muted-foreground">March 11, 2025</span> -->
               </div>
               </mat-card-header>
               <div class="row">
@@ -26,7 +28,15 @@
         </a>
         <a [routerLink]="['#']">
         <mat-card class="matcard">
-            <mat-card-header class="matcardheader">Module 2 | Assessment 2</mat-card-header>
+            <mat-card-header class="matcardheader">
+                <div class="col-10">
+                    Module 2 | Assessment 2
+                </div>
+                <div class="col-2">
+                    <p style="font-weight: 300; font-size: 15px; color: gray;">March 11, 2025</p>
+                    <!-- <span class="text-muted-foreground">March 11, 2025</span> -->
+                </div>
+            </mat-card-header>
             <div class="row">
                 <div class="col-11">
                     <mat-card-content class="matcardcontent">
@@ -35,7 +45,7 @@
                     </mat-card-content>
                 </div>
                 <div class="col-1">
-                    <input class="form-check-input" type="checkbox" unchecked>
+                    <input class="form-check-input" type="checkbox" >
                 </div>
             </div>
         </mat-card>
