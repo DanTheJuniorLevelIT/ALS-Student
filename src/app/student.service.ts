@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +21,24 @@ export class StudentService {
     return this.http.post(this.apiUrl + 'logoutLearner', learnerData);
   }
 
-  // logoutLearner(token: string): Observable <any> {
-  //   const headers = {
-  //     'Authorization': `Bearer ${token}`
-  //   };
-  //   return this.http.post(this.apiUrl + 'logoutLearner', {}, { headers });
-  // }
+  getLearnerByToken(token:string): Observable <any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get(this.apiUrl + 'getLearnerByToken', { headers });
+  }
+
+  getSubjects(lrn: string): Observable<any> {
+    console.log("Get subjects called with LRN: " + lrn);
+  
+    return this.http.get(`${this.apiUrl}getSubjects?lrn=${lrn}`);
+  }
+
+  getSubjectsToday(lrn: string): Observable<any> {
+    console.log("Get subjects called with LRN: " + lrn);
+
+    return this.http.get(`${this.apiUrl}getSubjectsToday?lrn=${lrn}`);
+  }
+  
 }
