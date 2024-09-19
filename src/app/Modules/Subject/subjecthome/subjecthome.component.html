@@ -3,7 +3,7 @@
 <div class="row">
   @for (item of subjects; track $index) {
     <div class="col-md-3 mb-3">
-      <a [routerLink]="['/main/Subject/subjectmain/modules']">
+      <a [routerLink]="['/main/Subject/subjectmain/modules']" (click)="getClassID(item.classid)">
         <div class="card" style="width: 13rem;">
           <div class="image">
             <img src="assets/{{item.image}}" class="card-img-top border border-bottom" alt="...">
@@ -11,8 +11,8 @@
           <div class="card-body">
             <h5 class="card-title">{{item.subject_name}}</h5>
             <div class="card-details">
-              <p class="card-text">Monday - Thursday</p>
-              <p class="card-text">John Lloyd Glee</p>
+              <p class="card-text">{{item.schedule}}</p>
+              <p class="card-text">{{item.admin_name}}</p>
             </div>
           </div>
         </div>
