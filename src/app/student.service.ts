@@ -44,5 +44,13 @@ export class StudentService {
 
     return this.http.get(`${this.apiUrl}getSubjectsToday?lrn=${lrn}`);
   }
+
+  getModules(classid: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getModules?classid=${classid}`);
+  }
+
+  getLessons(moduleID: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getLessons?moduleID=${moduleID}`);
+  }
   
 }

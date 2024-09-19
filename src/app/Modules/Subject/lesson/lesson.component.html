@@ -8,22 +8,27 @@
 
 
 
-<div class="container text-center justify-content-center border-bottom">
-    <h1>Module 1: Halika, Sama Ka Kaibigan</h1>
-    <h5>July 29, 2024</h5>
-</div>
+@for (item of modulename; track $index) {
+    <div class="container text-center justify-content-center border-bottom">
+        <h1>{{item.title}}</h1>
+        <h5>{{item.formatted_date}}</h5>
+    </div>
+}
 
-<div class="details">
-    <div class="lessontitle fw-bold">
-        Lesson: 1: Your Title Here
-    </div>
-    <div class="lessons lh-lg">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam quibusdam nesciunt odio, eum nam similique a doloremque, id sequi ipsa officia unde atque suscipit maiores rerum explicabo, hic et eaque? Numquam labore ipsam iusto sequi libero impedit hic illo aspernatur facere eligendi, repellat quo perspiciatis rerum officia deserunt odio, et quos. Ad officiis est odio at sunt temporibus tenetur commodi vero quos magnam accusamus placeat quaerat, maxime voluptatibus eaque animi veritatis quasi illum minima earum nam! Expedita qui blanditiis iusto, quaerat et sequi totam alias voluptas cum! Quasi consequuntur, praesentium veritatis labore ratione a illo at officiis voluptas dolorem deleniti possimus nemo laboriosam excepturi molestias eum consequatur necessitatibus, beatae aperiam vitae cupiditate quas non iure. Id deserunt aperiam, sed odit animi perferendis iure repellat facilis! Maxime non placeat illum consectetur eos aut, deleniti eveniet libero laboriosam doloribus laborum voluptatem commodi impedit saepe accusantium cumque aliquid voluptatibus neque amet molestiae optio hic!
-        
-    </div>
-    <div class="alert alert-primary mt-3" role="alert">
-        <a href="file"download>learningmaterials.pdf</a>
-    </div>
+<!-- Retrieving Lessons -->
+ @for (item of lessons; track $index) {
 
-</div>
+     <div class="details">
+         <div class="lessontitle fw-bold">
+             {{item.topic_title}}
+         </div>
+         <div class="lessons lh-lg">
+             {{item.handout}}             
+         </div>
+         <div class="alert alert-primary mt-3" role="alert">
+             <a href="file"download>learningmaterials.pdf</a>
+         </div>
+     </div>
+ }
+
 
