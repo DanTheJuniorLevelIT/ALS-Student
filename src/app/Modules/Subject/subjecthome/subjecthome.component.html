@@ -1,133 +1,23 @@
 <h1>My Classes</h1>
-<h4>July 31, 2024</h4>
+<h4>{{currentDayAndDate}}</h4>
 <div class="row">
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/understandingtheself.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">John Lloyd Glee</p>
+  @for (item of subjects; track $index) {
+    <div class="col-md-3 mb-3">
+      <a [routerLink]="['/main/Subject/subjectmain/modules']">
+        <div class="card" style="width: 13rem;">
+          <div class="image">
+            <img src="assets/{{item.image}}" class="card-img-top border border-bottom" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{item.subject_name}}</h5>
+            <div class="card-details">
+              <p class="card-text">Monday - Thursday</p>
+              <p class="card-text">John Lloyd Glee</p>
+            </div>
           </div>
         </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/communication.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Dan Malayo</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/problemsolving.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Elzaina Nabor</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/understandingtheself.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Raygienald Curammeng</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/communication.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Mark Bronuela</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/problemsolving.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Heavenson Sencio</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/understandingtheself.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Christian Agcaoili</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="col-md-3 mb-3">
-    <a [routerLink]="['/main/Subject/subjectmain/modules']">
-      <div class="card" style="width: 13rem;">
-        <div class="image">
-          <img src="./assets/understandingtheself.jpg" class="card-img-top border border-bottom" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-          <div class="card-details">
-            <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-            <p class="card-text">Eleizer Dacaymat</p>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
+      </a>
+    </div>
+  }
 </div>
  

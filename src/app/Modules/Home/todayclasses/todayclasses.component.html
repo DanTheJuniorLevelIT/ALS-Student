@@ -1,98 +1,130 @@
-  <div class="container">
+<div class="row">
+
+  <!-- Greeting Section -->
+  <div class="container" *ngIf="learner">
     <div class="row">
       <div class="col-8">      
-        <h1 class="greeting">Goodmorning Heavenson!</h1>
-        <h3>Monday | August 15, 2024</h3>
+        <h1 class="greeting">Goodmorning {{learner.firstname}}</h1>
+        <h3>{{currentDayAndDate}}</h3>
       </div>
     </div>
   </div>
   
   
-  <div class="row">
-    <div class="col-8">
-      <div class="row">
-        <div class="col-md-4">
-          <a [routerLink]="['/main/Subject/subjectmain/modules']">
-            <div class="card" style="width: 12rem;">
-              <div class="image">
-                <img src="./assets/communication.jpg" class="card-img-top border border-bottom" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">BLP LS1: COMMUNICATION SKILLS</h5>
-                <div class="card-details">            
-                  <p class="card-text">Mon-Fri | 7:00 - 8:00 AM</p>
-                  <p class="card-text">Elzaina Nabor</p>
+  <!-- Today's Classes -->
+  <div class="col-8">
+    <div class="row">
+      <div class="col-8">
+        <div class="row">
+        @for (item of subjects; track $index) {
+          <div class="col-md-4">
+            <a [routerLink]="['/main/Subject/subjectmain/modules']">
+              <div class="card" style="width: 12rem;">
+                <div class="image">
+                  <img src="assets/{{item.image}}" class="card-img-top border border-bottom" alt="...">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{item.subject_name}}</h5>
+                  <div class="card-details">            
+                    <p class="card-text">{{item.schedule}}</p>
+                    <p class="card-text">Elzaina Nabor</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a [routerLink]="['/main/Subject/subjectmain/modules']">
-            <div class="card" style="width: 12rem;">
-              <div class="image">
-                <img src="./assets/problemsolving.jpg" class="card-img-top border border-bottom" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">BLP LS2: PROBLEM SOLVING AND CRITICAL THINKING</h5>
-                <div class="card-details">
-                  <p class="card-text">Mon-Fri | 9:00 - 10:00 PM</p>
-                  <p class="card-text">Dan Malayo</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a [routerLink]="['/main/Subject/subjectmain/=modules']">
-            <div class="card" style="width: 12rem;">
-              <div class="image">
-                <img src="./assets/understandingtheself.jpg" class="card-img-top border border-bottom" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-                <div class="card-details">
-                  <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-                  <p class="card-text">John Lloyd Glee</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <a [routerLink]="['/main/Subject/subjectmain/=modules']">
-            <div class="card" style="width: 12rem;">
-              <div class="image">
-                <img src="./assets/understandingtheself.jpg" class="card-img-top border border-bottom" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">BLP LS5: UNDERSTANDING THE SELF AND SOCIETY</h5>
-                <div class="card-details">
-                  <p class="card-text">Mon-Fri | 10:00 - 11:00 AM</p>
-                  <p class="card-text">John Lloyd Glee</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="col-4" id="pendingassessment">
-        <div class="card-assessment border border-dark p-2 mb-5">
-          <div class="card-body-assessment">
-            Pending Assessments
+            </a>
           </div>
-          <div class="card-body-assessment-links" style="margin-top: 10px;">
-            <a href="">Patinig | Aralin 3</a>
-            <a href="">Sa Likod ng Isang Awit | Aralin 5</a>
-          </div>
+        }
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Pending Assessment Area -->
+   <div class="col-4">
+      <div class="overflow-scroll">
+        <div class="card">
+            <div class="card-body-assessment">
+              <div class="card-body-assessment-links">
+                    <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
+                  <a href="#">Assessment 1</a>
+                  <a href="#">Assessment 2</a>
+                  <a href="#">Assessment 3</a>
+                  <a href="#">Assessment 4</a>
+                  <a href="#">Assessment 5</a>
+                  <a href="#">Assessment 6</a>
+                  <a href="#">Assessment 7</a>
+                  <a href="#">Assessment 8</a>
+                  <a href="#">Assessment 9</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+                  <a href="#">Assessment 10</a>
+              </div>
+            </div>
+        </div>
+      </div>
+   </div>
+</div>
+  
   
 
 
