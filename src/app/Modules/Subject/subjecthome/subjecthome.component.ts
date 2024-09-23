@@ -73,8 +73,10 @@
     }
 
 
-    getClassID(cid: any) {
+    getClassID(cid: any, admin_name: any, subname: any) {
       localStorage.setItem('classID', cid);
+      localStorage.setItem('admin_name', admin_name);
+      localStorage.setItem('subname', subname);
     }
     
   }

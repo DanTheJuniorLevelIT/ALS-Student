@@ -9,6 +9,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { QuestionnairesComponent } from './questionnaires/questionnaires.component';
 import { SubjecthomeComponent } from './subjecthome/subjecthome.component';
+import { DiscussionlistComponent } from './discussionlist/discussionlist.component';
 
 export const subjectRoute: Routes = [
     {path: "subjecthome", component: SubjecthomeComponent},
@@ -23,6 +24,7 @@ export const subjectRoute: Routes = [
                     {path: "progress", component: ProgressComponent},
                     {path: "discussion", component: DiscussionComponent},
                     {path: "questionnaires", component: QuestionnairesComponent},
+                    {path: "discussionlist", component: DiscussionlistComponent},
                     {path: "", redirectTo: "learningmaterials", pathMatch: "full"}
                 ]
             },
