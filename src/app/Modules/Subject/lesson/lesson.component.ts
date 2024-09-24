@@ -12,9 +12,12 @@ import { StudentService } from '../../../student.service';
 export class LessonComponent implements OnInit {
 
   lessons: any
+  lessonID: any
   moduleID: any
   modulename: any
   moduletitle: any
+  admin_name: any
+  subname: any
 
   constructor(private studentservice: StudentService) {}
 
@@ -22,8 +25,12 @@ export class LessonComponent implements OnInit {
     this.moduleID = localStorage.getItem('moduleID');
     this.moduletitle = localStorage.getItem('mtitle');
     console.log(this.moduleID);
+    this.modulename = localStorage.getItem('moduletitle');
+    this.admin_name = localStorage.getItem('admin_name');
+    this.subname = localStorage.getItem('subname');
     this.getLessons(this.moduleID);
-    // this.getModules(this.moduleID);
+    
+    // // this.getModules(this.moduleID);
   }
 
   getLessons(moduleID: any) {
@@ -31,11 +38,15 @@ export class LessonComponent implements OnInit {
     this.lessons = result;
     })
   }
+  getLessonID(lid:any) {
+    this.lessonID = localStorage.setItem('lessonid',lid);
+    
+  }
 
-  // getModules(moduleID:any ) {
-  //   this.studentservice.getModules(moduleID).subscribe((result: any) => {
-  //   this.modulename = result;
-  //   })
-  // }
+  // // getModules(moduleID:any ) {
+  // //   this.studentservice.getModules(moduleID).subscribe((result: any) => {
+  // //   this.modulename = result;
+  // //   })
+  // // }
 
 }
