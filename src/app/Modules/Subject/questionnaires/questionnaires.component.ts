@@ -19,6 +19,7 @@ import { StudentService } from '../../../student.service';
 export class QuestionnairesComponent implements OnInit{
   assessmentID: any;
   questions: any;
+  itemno = 0;
 
 constructor(private student: StudentService){}
 
@@ -32,6 +33,16 @@ constructor(private student: StudentService){}
   getQuestions(aid: any){
     this.student.getQuestions(aid).subscribe((result: any)=>{
       this.questions=result;
+      console.log(result);
     })
   }
+  next(i: number){
+    if(this.itemno > 0 && i==-1) {
+      this.itemno+=i;
+    }
+    if(this.itemno < this.questions.length-1 && i==1) {
+      this.itemno+=i;
+    }
+  }
+
 }
