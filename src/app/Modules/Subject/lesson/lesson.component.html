@@ -7,11 +7,14 @@
 
 
 <div class="container mb-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
-        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
-        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
-    </div>
+    @for (item of lessons; track $index) {
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
+            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
+            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']" (click)="getLessonID(item.lesson_id)"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
+        </div>
+
+    }
 </div>
 
 
@@ -25,7 +28,14 @@
     <!-- <h5>{{item.formatted_date}}</h5> -->
 </div>
 
-<!-- Retrieving Lessons -->
+
+
+<!-- <div class="container text-center justify-content-center border-bottom">
+    <h1>{{moduletitle}}</h1>  
+</div> -->
+    
+
+<!-- Retrieving Lessons
 @for (item of lessons; track $index) {
 
      <div class="details">
@@ -36,9 +46,26 @@
              {{item.lesson}}             
          </div>
          <div class="alert alert-primary mt-3" role="alert">
-             <a href="file"download>learningmaterials.pdf</a>
+             <a href="  file"download>learningmaterials.pdf</a>
          </div>
      </div>
- }
+ } -->
+@for (item of lessons; track $index) {
+    @if (item.lesson_id == item.module_id) {
+        <div class="details">
+            <div class="lessontitle fw-bold">
+                {{item.topic_title}}
+            </div>
+            <div class="lessons lh-lg">
+                {{item.handout}}             
+            </div>
+            <div class="alert alert-primary mt-3" role="alert">
+                <a href="file"download>learningmaterials.pdf</a>
+            </div>
+        </div>
+    }
+}
+
+
 
 

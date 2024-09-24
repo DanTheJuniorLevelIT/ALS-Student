@@ -36,6 +36,7 @@ export class LearningmaterialsComponent implements OnInit {
     })
   }
 
+
   getLessons(mid: any, title: any) {
     localStorage.setItem('moduleID', mid);
     localStorage.setItem('moduletitle', title);

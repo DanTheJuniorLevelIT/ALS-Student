@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCardHeader, MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+import { StudentService } from '../../../student.service';
 
 @Component({
   selector: 'app-assessment',
@@ -13,11 +14,27 @@ export class AssessmentComponent implements OnInit {
 
   subname: any
   admin_name: any
+  lessonid: any;
+  assessmentlist: any;
 
-  constructor() {}
+  constructor(private student: StudentService) {}
 
   ngOnInit(): void {
     this.subname = localStorage.getItem('subname');
     this.admin_name = localStorage.getItem('admin_name');
+    this.lessonid = localStorage.getItem('lessonid');
+    console.log(this.lessonid);
+    this.getAssessments(this.lessonid);
+
   }
+  getAssessments(lid: any){
+    this.student.getAssessments(lid).subscribe((result:any)=>{
+      this.assessmentlist = result;
+    })
+  }
+  getAssessmentID(aid: any){
+    localStorage.setItem('assessmentID', aid);
+  }
+  
+
 }

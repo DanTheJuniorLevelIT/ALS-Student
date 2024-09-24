@@ -10,35 +10,41 @@
     <h1 class="titles">Assessment Page</h1>
     <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
 
-    <div class="d-flex justify-content-end">
-        <button class="button-3" role="button">Identification</button>
-        <button class="button-3" role="button">Essay Type</button>
-        <button class="button-3" role="button">Identification</button>
-        <button class="button-3" role="button">Identification</button>
+    <!-- <div class="d-flex justify-content-end">
+        <button class="button-3" role="button" (click)="onSelect('Identification')">Identification</button>
+        <button class="button-3" role="button" (click)="onSelect('Essay')">Essay Type</button>
+        <button class="button-3" role="button" (click)="onSelect('TrueOrFalse/MultipleChoice')">True or False</button>
     </div>
+      -->
+
+    <!-- Identification -->
+     @for (item of questions; track $index) {
+         <div class="identification mt-5">
+             <h1>{{item.type}}</h1>
+             <mat-card class="questioncard">
+                 <mat-card-header>
+                     <mat-card-title>Question {{$index + 1}}</mat-card-title>
+                 </mat-card-header>
+                 <mat-card-content>
+                     <p>{{item.question}}</p>
+                 </mat-card-content>
+                 <form class="formanswer">
+                     <mat-form-field>
+                         <mat-label>Provide an answer</mat-label>
+                         <input matInput>
+                     </mat-form-field>
+                 </form>
      
-    <div class="identification mt-5">
-        <h1>Identification | True or False</h1>
-        <mat-card class="questioncard">
-            <mat-card-header>
-                <mat-card-title>Question #1</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Ano ang pinakamahalagang elemento ng mabisang komunikasyon?</p>
-            </mat-card-content>
-            <form class="formanswer">
-                <mat-form-field>
-                    <mat-label>Provide an answer</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </form>
+                 <div class="matbuttons">
+                     <button mat-button color="accent">Next</button>
+                 </div>
+             </mat-card>
+         </div>
+     }
 
-            <div class="matbuttons">
-                <button mat-button color="accent">Next</button>
-            </div>
-        </mat-card>
-    </div>
 
+
+    <!-- Essay Type -->
     <div class="essay mt-5">
         <h1>Essay Type</h1>
         <mat-card class="essaycard">
@@ -55,6 +61,8 @@
         </mat-card>
     </div>
 
+
+    <!-- Multiple Choice -->
     <div class="multiplechoice mt-5">
         <h1>Multiple Choice</h1>
         <mat-card class="multiplechoicecard">
@@ -77,6 +85,32 @@
         </mat-card>
     </div>
 
+
+    <!-- True or False -->
+    <div class="multiplechoice mt-5">
+        <h1>True or False</h1>
+        <mat-card class="multiplechoicecard">
+            <mat-card-header>
+                <mat-card-title>Question #3</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Ano ang pinakamahalagang elemento ng mabisang komunikasyon?</p>
+            </mat-card-content>
+            <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group">
+            @for (season of seasons; track season) {
+              <mat-radio-button class="example-radio-button" [value]="season">{{tf}}</mat-radio-button>
+            }
+          </mat-radio-group>
+          <div class="d-flex justify-content-end m-3">
+            <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+          </div>
+        </mat-card>
+    </div>
+    
+
+    <!-- Matching Type -->
     <div class="matchingtype mt-5">
         <h1>Matching Type</h1>
         <mat-card class="matchingtypecard">

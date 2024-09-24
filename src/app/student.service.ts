@@ -44,9 +44,18 @@ export class StudentService {
   getModules(classid: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getModules?classid=${classid}`);
   }
+  getLessonID(mid: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getLessonID?lessonid=${mid}`);
+  }
 
   getLessons(moduleID: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getLessons?moduleID=${moduleID}`);
+  }
+  getAssessments(lessonID: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getAssessments?lessonID=${lessonID}`);
+  }
+  getQuestions(assessmentID: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getQuestions?assessmentID=${assessmentID}`);
   }
   
 }

@@ -219,4 +219,5 @@ div {
     touch-action: manipulation;
     vertical-align: middle;
     white-space: nowrap;
+    margin-left: 5px;
   }
