@@ -3,17 +3,17 @@
     <h5 class="text-muted text-uppercase">blp ls1: communication skills | john lloyd glee</h5>
     <!-- Retrieving Module -->
         @for (item of modules; track $index) {
-            <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']" (click)="getLessons(item.modules_id)">
+            <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']" (click)="getLessons(item.modules_id,item.title)">
             <mat-card class="matcard">
                 <div class="row">
                     <div class="col-9">
-                        <mat-card-header class="matcardheader">Module {{item.modules_id}}</mat-card-header>
+                        <mat-card-header class="matcardheader">{{item.title}}</mat-card-header>
                     </div>
                     <div class="col-3">
-                        <mat-card-content class="matcardcontent">August 29, 2024</mat-card-content>
+                        <mat-card-content class="matcardcontent">{{item.formatted_date}}</mat-card-content>
                     </div>
                 </div>
-                <mat-card-content class="matcardcontent">{{item.title}}</mat-card-content>
+                <!-- <mat-card-content class="matcardcontent">{{item.description}}</mat-card-content> -->
             </mat-card>
             </a>
         }

@@ -15,6 +15,8 @@ export class LearningmaterialsComponent implements OnInit {
   cid: any;
   modules: any;
 
+  modulenumber = 1;
+
   constructor (private studentservice: StudentService) {}
 
   ngOnInit(): void {
@@ -29,7 +31,8 @@ export class LearningmaterialsComponent implements OnInit {
     })
   }
 
-  getLessons(mid: any) {
+  getLessons(mid: any, mtitle: any) {
     localStorage.setItem('moduleID', mid);
+    localStorage.setItem('mtitle', mtitle);
   }
 }

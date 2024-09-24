@@ -8,27 +8,29 @@
 
 
 
-@for (item of modulename; track $index) {
-    <div class="container text-center justify-content-center border-bottom">
-        <h1>{{item.title}}</h1>
-        <h5>{{item.formatted_date}}</h5>
-    </div>
-}
+
+<div class="container text-center justify-content-center border-bottom">
+    <h1>{{moduletitle}}</h1>  
+</div>
+    
 
 <!-- Retrieving Lessons -->
- @for (item of lessons; track $index) {
+@for (item of lessons; track $index) {
+    @if (item.lesson_id == item.module_id) {
+        <div class="details">
+            <div class="lessontitle fw-bold">
+                {{item.topic_title}}
+            </div>
+            <div class="lessons lh-lg">
+                {{item.handout}}             
+            </div>
+            <div class="alert alert-primary mt-3" role="alert">
+                <a href="file"download>learningmaterials.pdf</a>
+            </div>
+        </div>
+    }
+}
 
-     <div class="details">
-         <div class="lessontitle fw-bold">
-             {{item.topic_title}}
-         </div>
-         <div class="lessons lh-lg">
-             {{item.handout}}             
-         </div>
-         <div class="alert alert-primary mt-3" role="alert">
-             <a href="file"download>learningmaterials.pdf</a>
-         </div>
-     </div>
- }
+
 
 
