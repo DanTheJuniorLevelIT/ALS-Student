@@ -3,13 +3,13 @@ import { MatCardHeader, MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-assessment',
+  selector: 'app-discussionlist',
   standalone: true,
-  imports: [RouterModule ,MatCardModule, MatCardHeader],
-  templateUrl: './assessment.component.html',
-  styleUrl: './assessment.component.css'
+  imports: [MatCardHeader, MatCardModule, RouterModule],
+  templateUrl: './discussionlist.component.html',
+  styleUrl: './discussionlist.component.css'
 })
-export class AssessmentComponent implements OnInit {
+export class DiscussionlistComponent implements OnInit {
 
   subname: any
   admin_name: any

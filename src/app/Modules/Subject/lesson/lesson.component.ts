@@ -14,13 +14,18 @@ export class LessonComponent implements OnInit {
   lessons: any
   moduleID: any
   modulename: any
+  admin_name: any
+  subname: any
 
   constructor(private studentservice: StudentService) {}
 
   ngOnInit(): void {
     this.moduleID = localStorage.getItem('moduleID');
+    this.modulename = localStorage.getItem('moduletitle');
+    this.admin_name = localStorage.getItem('admin_name');
+    this.subname = localStorage.getItem('subname');
     this.getLessons(this.moduleID);
-    this.getModules(this.moduleID);
+    // this.getModules(this.moduleID);
   }
 
   getLessons(moduleID: any) {
@@ -29,10 +34,10 @@ export class LessonComponent implements OnInit {
     })
   }
 
-  getModules(moduleID:any ) {
-    this.studentservice.getModules(moduleID).subscribe((result: any) => {
-    this.modulename = result;
-    })
-  }
+  // getModules(moduleID:any ) {
+  //   this.studentservice.getModules(moduleID).subscribe((result: any) => {
+  //   this.modulename = result;
+  //   })
+  // }
 
 }

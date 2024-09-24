@@ -1,7 +1,19 @@
+<!-- Navigation Bars for Lessons, Discussions and Assessments -->
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
+        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
+    </div>
+</div>
+
+
+
+<!-- List of Assessments -->
 <div class="container">
-    <!-- <h1 class="titles">My Classworks</h1> -->
-    <h1 class="text-2xl font-bold">My Classworks</h1>
-    <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
+    <h1 class="titles">My Assessments</h1>
+    <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
     <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']">
         <mat-card class="matcard">
             <mat-card-header class="matcardheader">
