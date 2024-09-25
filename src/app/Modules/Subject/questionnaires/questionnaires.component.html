@@ -1,5 +1,4 @@
 <div class="container">
-    {{itemno}}
     
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -9,7 +8,7 @@
       </nav>
 
     <h1 class="titles">Assessment Page</h1>
-    <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
+    <h5 class="text-muted text-uppercase">{{assessmentitle}}</h5>
 
     <!-- <div class="d-flex justify-content-end">
         <button class="button-3" role="button" (click)="onSelect('Identification')">Identification</button>
@@ -35,10 +34,18 @@
                     </div> -->
                 </mat-card-content>
                         <div class="matbuttons">
-
-                            <button mat-button color="accent" (click)="next(-1)">Prev</button>
-                            <button mat-button color="accent" (click)="next(1)">Next</button>
+                            @if (itemno != questions.length-questions.length) {
+                                <button mat-button color="accent" (click)="prev(-1)">Prev</button>
+                            }
+                            @if (itemno != questions.length-1) {
+                                <button mat-button color="accent" (click)="next(1)">Next</button>
+                            }
                         </div>
+                        @if (itemno == questions.length-1) {
+                            <div class="d-flex justify-content-end m-3">
+                                <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                              </div>
+                        }
                     </mat-card>
                 </div>
             }
@@ -62,13 +69,22 @@
                 </form>
     
                 <div class="matbuttons">
-                    <button mat-button color="accent" (click)="next(-1)">Prev</button>
-                    <button mat-button color="accent" (click)="next(1)">Next</button>
+                    @if (itemno != questions.length-questions.length) {
+                        <button mat-button color="accent" (click)="prev(-1)">Prev</button>
+                    }
+                    @if (itemno != questions.length-1) {
+                        <button mat-button color="accent" (click)="next(1)">Next</button>
+                    }
                 </div>
+                @if (itemno == questions.length-1) {
+                    <div class="d-flex justify-content-end m-3">
+                        <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                      </div>
+                }
             </mat-card>
         </div>
         }
-        @else if (questions[itemno]?.type === "Multiple Choice") {
+        @else if (questions[itemno]?.type === "Multiple Choice" ||  questions[itemno]?.type === "True or False") {
             <div class="multiplechoice mt-5">
                 <mat-card class="multiplechoicecard">
                     <mat-card-header>
@@ -85,9 +101,10 @@
                     }
                   </mat-radio-group>
                   <div class="matbuttons">
-                    <button mat-button color="accent" (click)="next(-1)">Prev</button>
+                    @if (itemno != questions.length-questions.length) {
+                        <button mat-button color="accent" (click)="prev(-1)">Prev</button>
+                    }
                     @if (itemno != questions.length-1) {
-
                         <button mat-button color="accent" (click)="next(1)">Next</button>
                     }
                 </div>
@@ -100,6 +117,7 @@
             </div>
 
         }
+        
 
 
 

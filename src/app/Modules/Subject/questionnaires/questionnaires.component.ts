@@ -18,14 +18,16 @@ import { StudentService } from '../../../student.service';
 })
 export class QuestionnairesComponent implements OnInit{
   assessmentID: any;
+  assessmentitle: any;
   questions: any;
   itemno = 0;
 
 constructor(private student: StudentService){}
 
   ngOnInit(): void {
-    this.assessmentID = localStorage.getItem('assessmentID')
+    this.assessmentID = localStorage.getItem('assessmentID');
     this.getQuestions(this.assessmentID);
+    this.assessmentitle = localStorage.getItem('assessmenttitle');
   }
   seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   tf: string[] = ['True', 'False'];
@@ -37,10 +39,12 @@ constructor(private student: StudentService){}
     })
   }
   next(i: number){
-    if(this.itemno > 0 && i==-1) {
+    if(this.itemno < this.questions.length-1 && i==1) {
       this.itemno+=i;
     }
-    if(this.itemno < this.questions.length-1 && i==1) {
+  }
+  prev(i:number) {
+    if(this.itemno > 0 && i==-1) {
       this.itemno+=i;
     }
   }

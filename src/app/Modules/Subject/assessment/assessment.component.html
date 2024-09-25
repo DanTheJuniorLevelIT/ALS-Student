@@ -15,13 +15,11 @@
     <div class="container">
         <h1 class="titles">My Assessments</h1>
         <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
-        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid)">
+        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)">
             <mat-card class="matcard">
                 <mat-card-header class="matcardheader">
                   <div class="col-sm-8">
-
                       Assessment {{$index + 1}}
-
                   </div>
                   <div class="col-sm-4">
                       <p style="font-weight: 300; font-size: 15px;">Until: {{item.formatted_date}}</p>

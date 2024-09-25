@@ -32,8 +32,9 @@ export class AssessmentComponent implements OnInit {
       this.assessmentlist = result;
     })
   }
-  getAssessmentID(aid: any){
+  getAssessmentID(aid: any, title: any){
     localStorage.setItem('assessmentID', aid);
+    localStorage.setItem('assessmenttitle', title);
   }
   
 
