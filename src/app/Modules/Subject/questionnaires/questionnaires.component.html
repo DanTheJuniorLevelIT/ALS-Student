@@ -18,97 +18,96 @@
     </div>
       -->
 
-    <!-- Identification -->
-     
-     
-    @if (questions[itemno]?.type === "Essay") {
-        <div class="essay mt-5">
-            <mat-card class="essaycard">
-                <mat-card-header>
-                    <!-- <mat-card-title>Question #2</mat-card-title> -->
-                </mat-card-header>
-                <mat-card-content>
-                    <h3>{{questions[itemno].question}}</h3>
-                    <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}"></editor>
-                    <!-- <div class="d-flex justify-content-end mt-3">
-                        <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
-                    </div> -->
-                </mat-card-content>
-                        <div class="matbuttons">
 
-                            <button mat-button color="accent" (click)="next(-1)">Prev</button>
-                            <button mat-button color="accent" (click)="next(1)">Next</button>
-                        </div>
-                    </mat-card>
-                </div>
-            }
 
-    @else if (questions[itemno]?.type === "Identification") {
-        <div class="identification mt-5">
-            <mat-card class="questioncard">
-                <mat-card-header>
-               
-                       <!-- <mat-card-title>Question {{$index + 1}}</mat-card-title> -->
-                  
-                </mat-card-header>
-                <mat-card-content>
-                    <h3>{{questions[itemno].question}}</h3>
-                </mat-card-content>
-                <form class="formanswer">
-                    <mat-form-field>
-                        <mat-label>Provide an answer</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </form>
-    
-                <div class="matbuttons">
-                    <button mat-button color="accent" (click)="next(-1)">Prev</button>
-                    <button mat-button color="accent" (click)="next(1)">Next</button>
-                </div>
-            </mat-card>
-        </div>
-        }
-        @else if (questions[itemno]?.type === "Multiple Choice") {
-            <div class="multiplechoice mt-5">
-                <mat-card class="multiplechoicecard">
+    <mat-card>
+
+        <!-- Essay Type -->
+        @if (questions[itemno]?.type === "Essay") {
+            <div class="essay mt-5">
+                <div class="essaycard">
                     <mat-card-header>
-                        <!-- <mat-card-title>Question #3</mat-card-title> -->
+                        <!-- <mat-card-title>Question #2</mat-card-title> -->
                     </mat-card-header>
                     <mat-card-content>
                         <h3>{{questions[itemno].question}}</h3>
+                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}"></editor>
                     </mat-card-content>
-                    <mat-radio-group
-                    aria-labelledby="example-radio-group-label"
-                    class="example-radio-group">
-                    @for (option of questions[itemno]?.options; track $index) {
-                      <mat-radio-button class="example-radio-button" [value]="option.option_text">{{option.option_text}}</mat-radio-button>
-                    }
-                  </mat-radio-group>
-                  <div class="matbuttons">
-                    <button mat-button color="accent" (click)="next(-1)">Prev</button>
-                    @if (itemno != questions.length-1) {
-
-                        <button mat-button color="accent" (click)="next(1)">Next</button>
-                    }
+                            <div class="matbuttons">
+                                <button mat-button color="accent" (click)="next(-1)">Prev</button>
+                                <button mat-button color="accent" (click)="next(1)">Next</button>
+                            </div>
                 </div>
-                @if (itemno == questions.length-1) {
-                    <div class="d-flex justify-content-end m-3">
-                        <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
-                      </div>
-                }
-                </mat-card>
             </div>
-
+            @if (itemno == questions.length-1) {
+                <div class="d-flex justify-content-end m-3">
+                    <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                </div>
+            }
         }
+                <!-- Identification -->
+        @else if (questions[itemno]?.type === "Identification") {
+                    <div class="identification mt-5">
+                        <div class="questioncard">
+                            <mat-card-header>
+                                <!-- <mat-card-title>Question {{$index + 1}}</mat-card-title> -->
+                            </mat-card-header>
+                            <mat-card-content>
+                                <h3>{{questions[itemno].question}}</h3>
+                            </mat-card-content>
+                            <form class="formanswer">
+                                <mat-form-field>
+                                    <mat-label>Provide an answer</mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+                            </form>
+                
+                            <div class="matbuttons">
+                                <button mat-button color="accent" (click)="next(-1)">Prev</button>
+                                <button mat-button color="accent" (click)="next(1)">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                    @if (itemno == questions.length-1) {
+                        <div class="d-flex justify-content-end m-3">
+                            <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                        </div>
+                    }
+        }
+                <!-- Multiple Choice -->
+        @else if (questions[itemno]?.type === "Multiple Choice") {
+                        <div class="multiplechoice mt-5">
+                            <div class="multiplechoicecard">
+                                <mat-card-header>
+                                    <!-- <mat-card-title>Question #3</mat-card-title> -->
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <h3>{{questions[itemno].question}}</h3>
+                                </mat-card-content>
+                                <mat-radio-group
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group">
+                                @for (option of questions[itemno]?.options; track $index) {
+                                <mat-radio-button class="example-radio-button" [value]="option.option_text">{{option.option_text}}</mat-radio-button>
+                                }
+                            </mat-radio-group>
+                            <div class="matbuttons">
+                                <button mat-button color="accent" (click)="next(-1)">Prev</button>
+                                @if (itemno != questions.length-1) {
+                                    <button mat-button color="accent" (click)="next(1)">Next</button>
+                                }
+                            </div>
+                            </div>
+                        </div>
+                        
+                        @if (itemno == questions.length-1) {
+                                <div class="d-flex justify-content-end m-3">
+                                    <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                                </div>
+                        }
+            }
 
-
-
-    <!-- Essay Type -->
-
-
-
-    <!-- Multiple Choice -->
-    
-
+            
+    </mat-card>
 
 </div>

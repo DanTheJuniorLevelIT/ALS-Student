@@ -8,11 +8,12 @@ import { EditorComponent } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-questionnaires',
   standalone: true,
-  imports: [RouterModule, MatCardModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, EditorComponent, MatRadioModule],
+  imports: [RouterModule, MatCardModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, EditorComponent, MatRadioModule, CommonModule],
   templateUrl: './questionnaires.component.html',
   styleUrl: './questionnaires.component.css'
 })
@@ -36,6 +37,7 @@ constructor(private student: StudentService){}
       console.log(result);
     })
   }
+  
   next(i: number){
     if(this.itemno > 0 && i==-1) {
       this.itemno+=i;
