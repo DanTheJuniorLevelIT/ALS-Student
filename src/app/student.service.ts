@@ -61,5 +61,19 @@ export class StudentService {
   getQuestions(assessmentID: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getQuestions?assessmentID=${assessmentID}`);
   }
+  getAssessmentProgress(lrn:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getAssessmentProgress?lrn=${lrn}`);
+  }
+  saveAnswers(qid: any, slrn: any, answerValue: any): Observable<any> {
+    const body = {
+        qid: qid,
+        slrn: slrn,
+        answerValue: answerValue
+    };
+    return this.http.post(`${this.apiUrl}saveAnswers`, body);
+  }
+
+  
+  
   
 }
