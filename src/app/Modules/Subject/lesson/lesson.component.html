@@ -28,28 +28,6 @@
     <!-- <h5>{{item.formatted_date}}</h5> -->
 </div>
 
-
-
-<!-- <div class="container text-center justify-content-center border-bottom">
-    <h1>{{moduletitle}}</h1>  
-</div> -->
-    
-
-<!-- Retrieving Lessons
-@for (item of lessons; track $index) {
-
-     <div class="details">
-         <div class="lessontitle fw-bold">
-             {{item.topic_title}}
-         </div>
-         <div class="lessons lh-lg">
-             {{item.lesson}}             
-         </div>
-         <div class="alert alert-primary mt-3" role="alert">
-             <a href="  file"download>learningmaterials.pdf</a>
-         </div>
-     </div>
- } -->
 @for (item of lessons; track $index) {
     @if (item.lesson_id == item.module_id) {
         <div class="details">
@@ -57,7 +35,7 @@
                 {{item.topic_title}}
             </div>
             <div class="lessons lh-lg">
-                {{item.handout}}             
+                {{item.lesson}}             
             </div>
             <div class="alert alert-primary mt-3" role="alert">
                 <a href="file"download>learningmaterials.pdf</a>

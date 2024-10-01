@@ -15,15 +15,13 @@
     <div class="container">
         <h1 class="titles">My Assessments</h1>
         <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
-        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid)">
+        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)">
             <mat-card class="matcard">
                 <mat-card-header class="matcardheader">
-                  <div class="col-sm-8">
-
+                  <div class="col-sm-9">
                       Assessment {{$index + 1}}
-
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-5">
                       <p style="font-weight: 300; font-size: 15px;">Until: {{item.formatted_date}}</p>
                   </div>
                   </mat-card-header>
@@ -34,9 +32,18 @@
                               <br>
                           </mat-card-content>
                       </div>
-                      <div class="col-1">
+                    <!-- @if (progress.assessmentid) {
+                        <div class="col-1">
+                            <input class="form-check-input" type="checkbox" checked>
+                        </div>
+                    }@else if(progress.assessmentid != item.assessmentid) {
+                        <div class="col-1">
+                            <input class="form-check-input" type="checkbox">
+                        </div>
+                    }  -->
+                      <!-- <div class="col-1">
                           <input class="form-check-input" type="checkbox" checked>
-                      </div>
+                      </div> -->
                   </div>
               </mat-card>
         </a>

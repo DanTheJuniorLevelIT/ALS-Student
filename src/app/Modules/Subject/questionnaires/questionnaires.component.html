@@ -8,7 +8,7 @@
       </nav>
 
     <h1 class="titles">Assessment Page</h1>
-    <h5 class="text-muted text-uppercase">blp ls1: communication skills</h5>
+    <h5 class="text-muted text-uppercase">{{assessmentitle}}</h5>
 
     <!-- <div class="d-flex justify-content-end">
         <button class="button-3" role="button" (click)="onSelect('Identification')">Identification</button>
@@ -18,147 +18,128 @@
       -->
 
     <!-- Identification -->
-     @for (item of questions; track $index) {
-         <div class="identification mt-5">
-             <h1>{{item.type}}</h1>
-             <mat-card class="questioncard">
-                 <mat-card-header>
-                     <mat-card-title>Question {{$index + 1}}</mat-card-title>
-                 </mat-card-header>
-                 <mat-card-content>
-                     <p>{{item.question}}</p>
-                 </mat-card-content>
-                 <form class="formanswer">
-                     <mat-form-field>
-                         <mat-label>Provide an answer</mat-label>
-                         <input matInput>
-                     </mat-form-field>
-                 </form>
      
-                 <div class="matbuttons">
-                     <button mat-button color="accent">Next</button>
-                 </div>
-             </mat-card>
-         </div>
-     }
+    <form action="" [formGroup]="answerForm" (ngSubmit)="onSubmit(questions[itemno]?.question_id-1, lrn)" method="post">
+    @if (questions[itemno]?.type === "Essay") {
+            <!-- <div class="essay mt-5">
+                <mat-card class="quiz-container">
+                    <mat-card-header>
+                        {{questions.question_id}} -->
+                        <!-- <mat-card-title>Question #2</mat-card-title> -->
+                    <!-- </mat-card-header>
+                    <mat-card-content> -->
+
+                        <div class="quiz-container">
+                            <h1 class="quiz-title">Essay</h1>
+
+                            <div class="card">
+                                <div class="question">
+                                    <h3>{{questions[itemno].question}}</h3>
+                                    <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer" class="text-input"></editor>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="d-flex justify-content-end mt-3">
+                            <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                        </div>
+                    </mat-card-content> 
+                         </mat-card> 
+                    </div> -->
+    }
+
+    @else if (questions[itemno]?.type === "Identification") {
+            <!-- <div class="identification mt-5">
+                <mat-card class="questioncard">
+                    {{questions[itemno]?.question_id - 1 }}
+                    <mat-card-header>  -->
+                           <!-- <mat-card-title>Question {{$index + 1}}</mat-card-title> -->
+                      
+                    <!-- </mat-card-header>
+                    <mat-card-content> 
+                         <h3>{{questions[itemno].question}}</h3>
+                    </mat-card-content>
+                    <form class="formanswer">
+                        <mat-form-field>
+                            <mat-label>Provide an answer</mat-label>
+                            <input matInput formControlName="answer"> -->
+                        
+                        <div class="quiz-container">
+                            <h1 class="quiz-title">Identification</h1>
+
+                            <div class="card">
+                                <div class="question">
+                                    <h3>{{questions[itemno].question}}</h3>
+                                    <input type="text" class="text-input" formControlName="answer">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- </mat-form-field>
+                    </form>
+                </mat-card>
+            </div> -->
+    }
+    @else if (questions[itemno]?.type === "Multiple Choice" ||  questions[itemno]?.type === "True or False") {
+            <div class="multiplechoice mt-5">
+                <!-- <mat-card class="multiplechoicecard">
+                    <mat-card-header> -->
+                        <!-- <mat-card-title>Question #3</mat-card-title> -->
+                    <!-- </mat-card-header>
+                    <mat-card-content> -->
+                        <!-- <h3>{{questions[itemno].question}}</h3>
+                    </mat-card-content>
+                    <mat-radio-group -->
+                     <!-- aria-labelledby="example-radio-group-label" -->
+                    <!-- class="example-radio-group"> -->
+                    
+
+                    <div class="quiz-container">
+                        <h1 class="quiz-title">
+                            
+                            <div class="card">
+                                <div class="question">
+                                    <h3>{{questions[itemno].question}}</h3>
+                                    @for (option of questions[itemno]?.options; track $index) {
+                                        <mat-radio-button class="example-radio-button" [value]="option.option_text" formControlName="answer">{{option.option_text}}</mat-radio-button>
+                                    }
+                                </div>
+                            </div>
+                        </h1>
+                    </div>
+
+
+                  <!-- </mat-radio-group>
+                </mat-card>  -->
+            </div>
+        }
+        
+        @if (itemno == questions.length-1) {
+            <div class="d-flex justify-content-end m-3">
+                <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit">Submit</button></a>
+            </div>
+        }
+        <div class="matbuttons">
+            @if (itemno != questions.length-questions.length) {
+                <button mat-button color="accent" (click)="prev(-1)" type="button">Prev</button>
+            }
+            @if (itemno != questions.length-1) {
+                <button mat-button color="accent" (click)="next(1)" type="submit">Next</button>
+            }
+        </div>
+    </form>
+        
 
 
 
     <!-- Essay Type -->
-    <div class="essay mt-5">
-        <h1>Essay Type</h1>
-        <mat-card class="essaycard">
-            <mat-card-header>
-                <mat-card-title>Question #2</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Ano ang pinakamahalagang elemento ng mabisang komunikasyon?</p>
-                <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}"></editor>
-                <div class="d-flex justify-content-end mt-3">
-                    <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
+
 
 
     <!-- Multiple Choice -->
-    <div class="multiplechoice mt-5">
-        <h1>Multiple Choice</h1>
-        <mat-card class="multiplechoicecard">
-            <mat-card-header>
-                <mat-card-title>Question #3</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Ano ang pinakamahalagang elemento ng mabisang komunikasyon?</p>
-            </mat-card-content>
-            <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group">
-            @for (season of seasons; track season) {
-              <mat-radio-button class="example-radio-button" [value]="season">{{season}}</mat-radio-button>
-            }
-          </mat-radio-group>
-          <div class="d-flex justify-content-end m-3">
-            <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
-          </div>
-        </mat-card>
-    </div>
-
-
-    <!-- True or False -->
-    <div class="multiplechoice mt-5">
-        <h1>True or False</h1>
-        <mat-card class="multiplechoicecard">
-            <mat-card-header>
-                <mat-card-title>Question #3</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Ano ang pinakamahalagang elemento ng mabisang komunikasyon?</p>
-            </mat-card-content>
-            <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group">
-            @for (season of seasons; track season) {
-              <mat-radio-button class="example-radio-button" [value]="season">{{tf}}</mat-radio-button>
-            }
-          </mat-radio-group>
-          <div class="d-flex justify-content-end m-3">
-            <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
-          </div>
-        </mat-card>
-    </div>
     
 
-    <!-- Matching Type -->
-    <div class="matchingtype mt-5">
-        <h1>Matching Type</h1>
-        <mat-card class="matchingtypecard">
-            <mat-card-header>
-                <mat-card-title>Question #4</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Pagtutugmain ang mga tanong sa hanay A sa tamang sagot sa hanay B.</p>
-                <div class="container">
-                    <div class="row">
-                        <!-- First Column -->
-                        <div class="col-10 d-flex flex-column">
-                            <div class="d-flex">
-                                <input type="text" class="me-2 inputmatching">
-                                <label for="">1. Paano ka magbibigay ng mabisang papuri?</label>
-                            </div>
-                            <div class="d-flex">
-                                <input type="text" class="me-2 inputmatching">
-                                <label for="">2. Ano ang tamang paraan ng pakikinig?</label>
-                            </div>
-                            <div class="d-flex">
-                                <input type="text" class="me-2 inputmatching">
-                                <label for="">3. Ano ang mahalagang aspeto ng pag-uusap?</label>
-                            </div>
-                            <div class="d-flex">
-                                <input type="text" class="me-2 inputmatching">
-                                <label for="">4. Paano mo ipapakita ang paggalang sa kausap?</label>
-                            </div>
-                            <div class="d-flex">
-                                <input type="text" class="me-2 inputmatching">
-                                <label for="">5. Ano ang kahalagahan ng di-berbal na komunikasyon?</label>
-                            </div>
-                        </div>
-                        <!-- Second Column -->
-                        <div class="col-2 d-flex flex-column">
-                            <p>C. Gamitin ang pangalan ng kausap at magbigay ng specific na halimbawa.</p>
-                            <p>D. Bigyan ng pansin ang bawat salita at magpakita ng interes.</p>
-                            <p>A. Tingnan sa mata ang kausap at iwasan ang paggambala.</p>
-                            <p>E. Makinig ng mabuti at huwag sumingit habang nagsasalita ang iba.</p>
-                            <p>B. Gumamit ng kumpas ng kamay, ekspresyon ng mukha, at postura upang ipahayag ang mensahe.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end m-3">
-                    <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
 
 </div>
