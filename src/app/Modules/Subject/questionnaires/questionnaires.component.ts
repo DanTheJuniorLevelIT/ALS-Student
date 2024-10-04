@@ -58,11 +58,17 @@ constructor(private student: StudentService){}
   }
 
   onSubmit(qid: any, slrn: any) {
-    const answerValue = this.answerForm.get('answer')?.value; // Get the value of the answer field
-    this.student.saveAnswers(qid, slrn, answerValue).subscribe((result: any) => {
+    const answerValue = this.answerForm.get('answer')?.value;  // Get the value from the radio buttons or input
+    if (answerValue) {
+      this.student.saveAnswers(qid, slrn, answerValue).subscribe((result: any) => {
         console.log(result);
-    });
-}
+        this.answerForm.reset();
+      });
+    } else {
+      console.error('No answer selected or provided.');
+    }
+  }
+
 
 
 

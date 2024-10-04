@@ -104,7 +104,7 @@ div {
   outline: 0;
 }
 
-/* .questioncard {
+.questioncard {
     background-color: #dcdcdc;
 }
 
@@ -131,7 +131,7 @@ div {
 
 .formanswer mat-form-field mat-label {
     color: black;
-} */
+}
 
 :host ::ng-deep .mat-mdc-text-field-wrapper {
     width: 900px;
