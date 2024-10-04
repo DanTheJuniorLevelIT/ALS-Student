@@ -27,7 +27,7 @@ export class QuestionnairesComponent implements OnInit{
 constructor(private student: StudentService){}
 
   answerForm = new FormGroup({
-    answer: new FormControl('', [Validators.required])
+    answer: new FormControl(''),
   });
 
   ngOnInit(): void {
@@ -58,10 +58,11 @@ constructor(private student: StudentService){}
   }
 
   onSubmit(qid: any, slrn: any) {
-    const answerValue = this.answerForm.get('answer')?.value; // Get the value of the answer field
-    this.student.saveAnswers(qid, slrn, answerValue).subscribe((result: any) => {
-        console.log(result);
-    });
+    // const answerValue = this.answerForm.get('answer')?.value; // Get the value of the answer field
+    // this.student.saveAnswers(qid, slrn, answerValue).subscribe((result: any) => {
+    //     console.log(result);
+    // });
+    console.warn(this.answerForm.value);
 }
 
 
