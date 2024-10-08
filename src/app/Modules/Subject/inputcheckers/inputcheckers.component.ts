@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { EditorComponent } from '@tinymce/tinymce-angular';
+import { StudentService } from '../../../student.service';
 
 @Component({
   selector: 'app-inputcheckers',
@@ -18,10 +19,28 @@ import { EditorComponent } from '@tinymce/tinymce-angular';
 })
 export class InputcheckersComponent implements OnInit {
 
-  constructor () {}
+  assessmentID: any;
+  assessmentitle: any;
+  questions: any;
+  lrn: any;
+  itemno = 0;
+
+  constructor (private student: StudentService) {}
 
   ngOnInit(): void {
+    this.assessmentID = localStorage.getItem('assessmentID');
+    this.getQuestions(this.assessmentID);
+    this.assessmentitle = localStorage.getItem('assessmenttitle');
+    this.lrn = localStorage.getItem('LRN');
+    // console.log(this.questions[this.itemno-this.questionID].question_id)
+  }
+
+  getQuestions(aid: any){
+    this.student.getQuestions(aid).subscribe((result: any)=>{
+      this.questions=result;
       
+      console.log(result);
+    })
   }
 
   answerForm = new FormGroup({
