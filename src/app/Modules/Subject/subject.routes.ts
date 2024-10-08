@@ -10,6 +10,7 @@ import { SubjectsComponent } from './subjects/subjects.component';
 import { QuestionnairesComponent } from './questionnaires/questionnaires.component';
 import { SubjecthomeComponent } from './subjecthome/subjecthome.component';
 import { DiscussionlistComponent } from './discussionlist/discussionlist.component';
+import { InputcheckersComponent } from './inputcheckers/inputcheckers.component';
 
 export const subjectRoute: Routes = [
     {path: "subjecthome", component: SubjecthomeComponent},
@@ -25,6 +26,7 @@ export const subjectRoute: Routes = [
                     {path: "discussion", component: DiscussionComponent},
                     {path: "questionnaires", component: QuestionnairesComponent},
                     {path: "discussionlist", component: DiscussionlistComponent},
+                    {path: "inputcheckers", component: InputcheckersComponent},
                     {path: "", redirectTo: "learningmaterials", pathMatch: "full"}
                 ]
             },

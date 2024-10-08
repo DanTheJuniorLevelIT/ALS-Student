@@ -17,37 +17,46 @@ export class StudentService {
   loginLearner(learnerData:any): Observable<any> {
     return this.http.post(this.apiUrl + 'loginLearner', learnerData);
   }
+<<<<<<< HEAD
   logoutLearner(learnerData:any): Observable<any> {
     return this.http.post(this.apiUrl + 'logoutLearner', learnerData);
+=======
+  
+  logoutLearner(token: string): Observable <any> {
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+    return this.http.post(this.apiUrl + 'logoutLearner', {}, { headers });
+>>>>>>> 31841b1cbb894f2f3f88374dabe0d133ffb843fe
   }
-
+  
   getLearnerByToken(token:string): Observable <any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
+    
     return this.http.get(this.apiUrl + 'getLearnerByToken', { headers });
   }
 
   getSubjects(lrn: string): Observable<any> {
     console.log("Get subjects called with LRN: " + lrn);
-  
+    
     return this.http.get(`${this.apiUrl}getSubjects?lrn=${lrn}`);
   }
-
+  
   getSubjectsToday(lrn: string): Observable<any> {
     console.log("Get subjects called with LRN: " + lrn);
-
+    
     return this.http.get(`${this.apiUrl}getSubjectsToday?lrn=${lrn}`);
   }
-
+  
   getModules(classid: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getModules?classid=${classid}`);
   }
   getLessonID(mid: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getLessonID?lessonid=${mid}`);
   }
-
+  
   getLessons(moduleID: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getLessons?moduleID=${moduleID}`);
   }
@@ -62,14 +71,22 @@ export class StudentService {
   }
   saveAnswers(qid: any, slrn: any, answerValue: any): Observable<any> {
     const body = {
-        qid: qid,
-        slrn: slrn,
+      qid: qid,
+      slrn: slrn,
         answerValue: answerValue
-    };
-    return this.http.post(`${this.apiUrl}saveAnswers`, body);
-  }
-
-  
-  
-  
+      };
+      return this.http.post(`${this.apiUrl}saveAnswers`, body);
+    }
+    saveAssessmentsAnswer(assessmentID: any, lrn: any): Observable<any> {
+      const body = {
+        assessmentID: assessmentID,
+        lrn: lrn
+        };
+      return this.http.post(this.apiUrl + 'saveAssessmentsAnswer', body);
+    }
+    
+    
+    
+    
+    
 }

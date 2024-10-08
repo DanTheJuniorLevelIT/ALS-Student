@@ -1,0 +1,78 @@
+<form action="" [formGroup]="answerForm" (ngSubmit)="onSubmit()" method="post">
+    <div class="essay mt-5">
+        <mat-card class="quiz-container">
+            <mat-card-header>
+                <!-- <mat-card-title>Question #2</mat-card-title> -->
+            </mat-card-header>
+            <mat-card-content>
+
+                <!-- <div class="quiz-container">
+                    <h1 class="quiz-title">Essay</h1>
+
+                    <div class="card">
+                        <div class="question">
+                        </div>
+                    </div>
+                </div> -->
+                
+                <h3></h3>
+                <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer"></editor>
+
+                <!-- <div class="d-flex justify-content-end mt-3">
+                    <a [routerLink]="['#']"><button class="submitbutton justify-content-end">Submit</button></a>
+                </div> -->
+            </mat-card-content> 
+        </mat-card> 
+    </div>
+
+    <div class="identification mt-5">
+        <mat-card class="questioncard">
+            <!-- {{questions[itemno]?.question_id}} -->
+            <mat-card-header>
+                   <!-- <mat-card-title>Question {{$index + 1}}</mat-card-title> -->
+              
+          </mat-card-header>
+            <mat-card-content> 
+                 <!-- <h3>{{questions[itemno].question}}</h3> -->
+                 <!-- <input type="text" class="text-input" formControlName="answer"> -->
+            </mat-card-content>
+                <mat-form-field>
+                    <mat-label>Provide an answer</mat-label>
+                    <input matInput formControlName="identification">
+                
+                <!-- <div class="quiz-container">
+                    <h1 class="quiz-title">Identification</h1>
+
+                    <div class="card">
+                        <div class="question">
+                            <h3>{{questions[itemno].question}}</h3>
+                        </div>
+                    </div>
+                </div> -->
+
+
+               </mat-form-field>
+        </mat-card>
+    </div> 
+
+    <div class="multiplechoice mt-5">
+        <mat-card class="multiplechoicecard">
+            <mat-card-header>
+                <!-- <mat-card-title>Question #3</mat-card-title> -->
+            </mat-card-header>
+            <mat-card-content>
+                <h3>{{questions[itemno]?.question}}</h3>
+            </mat-card-content>
+            <mat-radio-group
+             aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            formControlName="answer">
+            @for (option of questions[itemno]?.options; track $index) {
+                <mat-radio-button class="example-radio-button" [value]="option.option_text">{{option.option_text}}</mat-radio-button>
+            }
+          </mat-radio-group>
+        </mat-card> 
+    </div>
+
+    <button type="submit">SUBMIT</button>
+</form>
