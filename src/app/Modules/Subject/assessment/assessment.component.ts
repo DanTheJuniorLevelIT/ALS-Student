@@ -28,12 +28,13 @@ export class AssessmentComponent implements OnInit {
     this.lrn = localStorage.getItem('LRN');
     console.log(this.lessonid);
     this.getAssessments(this.lessonid);
-    this.getAssessmentProgress(this.lrn);
+    // this.getAssessmentProgress(this.lrn);
 
   }
   getAssessments(lid: any){
-    this.student.getAssessments(lid).subscribe((result:any)=>{
+    this.student.getAssessments(lid, this.lrn).subscribe((result:any)=>{
       this.assessmentlist = result;
+      console.log(result);
     })
   }
   getAssessmentID(aid: any, title: any){
@@ -41,19 +42,14 @@ export class AssessmentComponent implements OnInit {
     localStorage.setItem('assessmenttitle', title);
   }
 
-  getAssessmentProgress(lrn: any) {
-    this.student.getAssessmentProgress(lrn).subscribe((result:any) => {
-      this.progress = result;
-      console.log(result);
-    })
-  }
+  // getAssessmentProgress(lrn: any) {
+  //   this.student.getAssessmentProgress(lrn).subscribe((result:any) => {
+  //     this.progress = result;
+  //     console.log(result);
+  //   })
+  // }
 
-//   isAssessmentCompleted(assessmentId: any): boolean {
-//     if (this.progress) {
-//         return this.progress.some((progressItem: any) => progressItem.assessmentID === assessmentId);
-//     }
-//     return false;
-// }
+
   
 
 }
