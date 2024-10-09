@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { StudentService } from '../student.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-main',
@@ -28,6 +29,13 @@ export class MainComponent implements OnInit {
   }
 
   logout(token:any) {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "You are now logged out!",
+      showConfirmButton: false,
+      timer: 1500
+    });
     if(token) {
       this.studentService.logoutLearner(token).subscribe(
         (response:any) => {

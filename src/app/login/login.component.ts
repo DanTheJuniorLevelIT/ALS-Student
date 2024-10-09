@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { StudentService } from '../student.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -33,6 +34,13 @@ export class LoginComponent {
 
             //Navigate to the desired page
             if(token != null) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "You are now logged in!",
+                showConfirmButton: false,
+                timer: 1000
+              });
               this.route.navigate(['/main/Home']);
             }else{
               console.error('Invalid Login');
@@ -40,6 +48,13 @@ export class LoginComponent {
             }
           },
           error => {
+            Swal.fire({
+              position: "center",
+              icon: "warning",
+              title: "Error Logging in",
+              showConfirmButton: false,
+              timer: 500
+            });
             console.error('Error logging in', error);
           }
         );
