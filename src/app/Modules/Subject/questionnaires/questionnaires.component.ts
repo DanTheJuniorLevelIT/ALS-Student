@@ -6,7 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import {MatRadioModule} from '@angular/material/radio';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
 import { CommonModule } from '@angular/common';
 
@@ -25,7 +25,12 @@ export class QuestionnairesComponent implements OnInit{
   itemno = 0;
   questionID = 1;
   value: any;
-constructor(private student: StudentService){}
+  answervalue: any;
+constructor(
+  private student: StudentService,
+  private route: Router
+  
+  ){}
 
   answerForm = new FormGroup({
     answer: new FormControl(''),
@@ -36,27 +41,45 @@ constructor(private student: StudentService){}
     this.getQuestions(this.assessmentID);
     this.assessmentitle = localStorage.getItem('assessmenttitle');
     this.lrn = localStorage.getItem('LRN');
+    this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
+
+    // this.getAnswers(this.questions[this.itemno]?.question_id);
   }
 
   getQuestions(aid: any){
     this.student.getQuestions(aid).subscribe((result: any)=>{
       this.questions=result;
       console.log(result);
+    this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
+
+      // this.getAnswers(this.questions[this.itemno]?.question_id);
     })
   }
-  
+  // getAnswers(qid: any){
+  //   this.student.getAnswers(qid).subscribe((result: any)=>{
+  //     this.answervalue=result;
+  //     this.answerForm.get('answer')?.setValue(this.answervalue[0].answer);
+  //     console.log(result);
+  //     console.log()
+  //   });
+  //   // console.log(qid);
+  // }
   next(i: number){
     console.log(this.itemno);
     if(this.itemno < this.questions.length && i==1) {
       this.itemno+=i;
       this.answerForm.reset();
     }
+    this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
+
 
   }
   prev(i:number) {
     if(this.itemno > 0 && i==-1) {
       this.itemno+=i;
     }
+    this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
+
   }
 
   onSubmit(qid: any, slrn: any) {
@@ -92,6 +115,7 @@ constructor(private student: StudentService){}
   submitAs(){
     this.student.saveAssessmentsAnswer(this.assessmentID, this.lrn).subscribe((result:any)=> {
       console.log(result);
+      this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
     })
   }
 

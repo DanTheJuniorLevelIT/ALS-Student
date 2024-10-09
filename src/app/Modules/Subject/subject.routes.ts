@@ -11,6 +11,7 @@ import { QuestionnairesComponent } from './questionnaires/questionnaires.compone
 import { SubjecthomeComponent } from './subjecthome/subjecthome.component';
 import { DiscussionlistComponent } from './discussionlist/discussionlist.component';
 import { InputcheckersComponent } from './inputcheckers/inputcheckers.component';
+import { AssessmentfinishComponent } from './assessmentfinish/assessmentfinish.component';
 
 export const subjectRoute: Routes = [
     {path: "subjecthome", component: SubjecthomeComponent},
@@ -27,6 +28,7 @@ export const subjectRoute: Routes = [
                     {path: "questionnaires", component: QuestionnairesComponent},
                     {path: "discussionlist", component: DiscussionlistComponent},
                     {path: "inputcheckers", component: InputcheckersComponent},
+                    {path: "assessmentfinish", component: AssessmentfinishComponent},
                     {path: "", redirectTo: "learningmaterials", pathMatch: "full"}
                 ]
             },

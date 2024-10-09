@@ -17,17 +17,12 @@ export class StudentService {
   loginLearner(learnerData:any): Observable<any> {
     return this.http.post(this.apiUrl + 'loginLearner', learnerData);
   }
-<<<<<<< HEAD
-  logoutLearner(learnerData:any): Observable<any> {
-    return this.http.post(this.apiUrl + 'logoutLearner', learnerData);
-=======
   
   logoutLearner(token: string): Observable <any> {
     const headers = {
       'Authorization': `Bearer ${token}`
     };
     return this.http.post(this.apiUrl + 'logoutLearner', {}, { headers });
->>>>>>> 31841b1cbb894f2f3f88374dabe0d133ffb843fe
   }
   
   getLearnerByToken(token:string): Observable <any> {
@@ -66,6 +61,9 @@ export class StudentService {
   getQuestions(assessmentID: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getQuestions?assessmentID=${assessmentID}`);
   }
+  getAnswers(questionID: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getAnswers?questionID=${questionID}`);
+  }
   getAssessmentProgress(lrn:any): Observable<any> {
     return this.http.get(`${this.apiUrl}getAssessmentProgress?lrn=${lrn}`);
   }
@@ -77,6 +75,7 @@ export class StudentService {
       };
       return this.http.post(`${this.apiUrl}saveAnswers`, body);
     }
+    
     saveAssessmentsAnswer(assessmentID: any, lrn: any): Observable<any> {
       const body = {
         assessmentID: assessmentID,
