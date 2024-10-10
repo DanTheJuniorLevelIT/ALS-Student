@@ -38,16 +38,16 @@ constructor(
 
   ngOnInit(): void {
     this.assessmentID = localStorage.getItem('assessmentID');
-    this.getQuestions(this.assessmentID);
     this.assessmentitle = localStorage.getItem('assessmenttitle');
     this.lrn = localStorage.getItem('LRN');
+    this.getQuestions(this.assessmentID, this.lrn);
     this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
 
     // this.getAnswers(this.questions[this.itemno]?.question_id);
   }
 
-  getQuestions(aid: any){
-    this.student.getQuestions(aid).subscribe((result: any)=>{
+  getQuestions(aid: any, lrn: any){
+    this.student.getQuestions(aid, lrn).subscribe((result: any)=>{
       this.questions=result;
       console.log(result);
     this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);

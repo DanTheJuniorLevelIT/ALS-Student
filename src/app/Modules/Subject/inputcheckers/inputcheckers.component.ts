@@ -29,19 +29,19 @@ export class InputcheckersComponent implements OnInit {
 
   ngOnInit(): void {
     this.assessmentID = localStorage.getItem('assessmentID');
-    this.getQuestions(this.assessmentID);
+    // this.getQuestions(this.assessmentID);
     this.assessmentitle = localStorage.getItem('assessmenttitle');
     this.lrn = localStorage.getItem('LRN');
     // console.log(this.questions[this.itemno-this.questionID].question_id)
   }
 
-  getQuestions(aid: any){
-    this.student.getQuestions(aid).subscribe((result: any)=>{
-      this.questions=result;
+  // getQuestions(aid: any){
+  //   this.student.getQuestions(aid).subscribe((result: any)=>{
+  //     this.questions=result;
       
-      console.log(result);
-    })
-  }
+  //     console.log(result);
+  //   })
+  // }
 
   answerForm = new FormGroup({
     answer: new FormControl(''),

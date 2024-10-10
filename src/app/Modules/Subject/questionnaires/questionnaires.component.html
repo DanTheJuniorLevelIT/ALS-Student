@@ -26,7 +26,8 @@
                         <h4>{{questions[itemno]?.question}}</h4>
                     </mat-card-header>
                     <mat-card-content>
-                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer" (onKeyPress)="keyUpTiny($event, questions[itemno]?.question_id, lrn)" allowedEvents="onKeyPress"></editor>
+                        
+                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer"  [ngModel]="questions[itemno]?.user_answer" (onKeyPress)="keyUpTiny($event, questions[itemno]?.question_id, lrn)" allowedEvents="onKeyPress"></editor>
                     </mat-card-content> 
                          </mat-card> 
                     </div>
@@ -42,7 +43,7 @@
                     </mat-card-content>
                         <mat-form-field>
                             <mat-label>Provide an answer</mat-label>
-                            <input matInput formControlName="answer" (blur)="keyUpFunction(questions[itemno]?.question_id, lrn)">
+                            <input matInput formControlName="answer"  [ngModel]="questions[itemno]?.user_answer" (blur)="keyUpFunction(questions[itemno]?.question_id, lrn)">
                         </mat-form-field>
                 </mat-card>
             </div>
@@ -58,7 +59,7 @@
                     <mat-radio-group
                      aria-labelledby="example-radio-group-label"
                     class="example-radio-group"
-                    formControlName="answer">
+                    formControlName="answer"  [ngModel]="questions[itemno]?.user_answer">
                     @for (option of questions[itemno]?.options; track $index) {
                         <mat-radio-button class="example-radio-button" [value]="option.option_text" (change)="submitRadio(option.option_text, questions[itemno]?.question_id, lrn)">{{option.option_text}}</mat-radio-button>
                     }

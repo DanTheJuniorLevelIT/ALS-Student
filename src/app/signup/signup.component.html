@@ -12,142 +12,144 @@
                                   style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 700px;"
                               />
                           </div>
-<div class="col-xl-8">
-    <div class="card-body p-md-4 text-black">
-        <h3 class="mb-5 text-uppercase">Student Registration Form</h3>
-        <form (ngSubmit)="onSubmit()" [formGroup]="learnerForm" method="POST">
-            <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="form-outline">
-                        <input type="text" id="firstName" formControlName="firstname" class="form-control form-control-lg" />
-                        <label class="form-label" for="firstName">First name</label>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="form-outline">
-                        <input type="text" id="middleName" formControlName="middlename" class="form-control form-control-lg" />
-                        <label class="form-label" for="middleName">Middle name</label>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="form-outline">
-                        <input type="text" id="lastName" formControlName="lastname" class="form-control form-control-lg" />
-                        <label class="form-label" for="lastName">Last name</label>
-                    </div>
-                </div>
-            </div>
+                                <div class="col-xl-8">
+                                    <div class="card-body p-md-4 text-black">
+                                        <h3 class="mb-5 text-uppercase">Student Registration Form</h3>
+                                        <form (ngSubmit)="onSubmit()" [formGroup]="learnerForm" method="POST">
+                                            <div class="row">
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="firstName" formControlName="firstname" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="firstName">First name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="middleName" formControlName="middlename" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="middleName">Middle name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="lastName" formControlName="lastname" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="lastName">Last name</label>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-            <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="form-outline">
-                        <input type="text" id="extensions" formControlName="extension_name" class="form-control form-control-lg" />
-                        <label class="form-label" for="extensions">Extensions</label>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="form-outline">
-                        <input type="date" id="birthdate" formControlName="birthdate" class="form-control form-control-lg" />
-                        <label class="form-label" for="birthdate">Birthdate</label>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="form-outline">
-                        <input type="text" id="birthPlace" formControlName="placeofbirth" class="form-control form-control-lg" />
-                        <label class="form-label" for="birthPlace">Birth Place</label>
-                    </div>
-                </div>
-            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="extensions" formControlName="extension_name" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="extensions">Extensions</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="form-outline">
+                                                        <input type="date" id="birthdate" formControlName="birthdate" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="birthdate">Birthdate</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-2">
+                                                    <div class="form-outline">
+                                                        <input type="text" id="birthPlace" formControlName="placeofbirth" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="birthPlace">Birth Place</label>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-            <div class="row">
-                <!-- <div class="col-md-6 mb-2">
-                    <div class="form-outline mb-2">
-                        <input type="text" id="address" formControlName="Address" class="form-control form-control-lg" />
-                        <label class="form-label" for="address">Address</label>
-                    </div>
-                </div> -->
-                <div class="col-md-6 mb-2">
-                    <div class="form-outline mb-2">
-                        <input type="text" id="lastSchool" formControlName="education" class="form-control form-control-lg" />
-                        <label class="form-label" for="lastSchool">Last School Attended</label>
-                    </div>
-                </div>
-            </div>
+                                            <div class="row">
+                                                <!-- <div class="col-md-6 mb-2">
+                                                    <div class="form-outline mb-2">
+                                                        <input type="text" id="address" formControlName="Address" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="address">Address</label>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-outline mb-2">
+                                                        <input type="text" id="lastSchool" formControlName="education" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="lastSchool">Last School Attended</label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6 mb-2">
+                                                    <select 
+                                                        class="select form-control form-control-lg"
+                                                        formControlName="civil_status"
+                                                        name="civilstatus"
+                                                        required
+                                                    >
+                                                        <option value="">Civil Status</option>
+                                                        <option value="single">Single</option>
+                                                        <option value="married">Married</option>
+                                                        <option value="divorced">Divorced</option>
+                                                        <option value="widowed">Widowed</option>
+                                                    </select>
+                                                    <label class="form-label" for="emailId">Civil Status</label>
+                                                </div>
+                                            </div>
 
-            <div class="row">
-                <div class="col-md-6 mb-2">
-                    <div class="d-md-flex justify-content-start align-items-center mb-2 py-1">
-                        <h6 class="mb-0 me-3">Gender:</h6>
-                        <div class="form-check form-check-inline mb-0 me-4">
-                            <input 
-                                class="form-check-input" 
-                                type="radio" 
-                                name="gender" 
-                                id="femaleGender"
-                                formControlName="gender" 
-                                value="female"
-                                required
-                            />
-                            <label class="form-check-label" for="femaleGender">Female</label>
-                        </div>
-                        <div class="form-check form-check-inline mb-0 me-4">
-                            <input 
-                                class="form-check-input" 
-                                type="radio" 
-                                name="gender" 
-                                id="maleGender"
-                                formControlName="gender"
-                                value="male"
-                                required 
-                            />
-                            <label class="form-check-label" for="maleGender">Male</label>
-                        </div>
-                    </div>
-                </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="d-md-flex justify-content-start align-items-center mb-2 py-1">
+                                                        <h6 class="mb-0 me-3">Gender:</h6>
+                                                        <div class="form-check form-check-inline mb-0 me-4">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="radio" 
+                                                                name="gender" 
+                                                                id="femaleGender"
+                                                                formControlName="gender" 
+                                                                value="female"
+                                                                required
+                                                            />
+                                                            <label class="form-check-label" for="femaleGender">Female</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mb-0 me-4">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="radio" 
+                                                                name="gender" 
+                                                                id="maleGender"
+                                                                formControlName="gender"
+                                                                value="male"
+                                                                required 
+                                                            />
+                                                            <label class="form-check-label" for="maleGender">Male</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                <div class="col-md-6 mb-2">
-                    <select 
-                        class="select form-control form-control-lg"
-                        formControlName="civil_status"
-                        name="civilstatus"
-                        required
-                    >
-                        <option value="">Civil Status</option>
-                        <option value="single">Single</option>
-                        <option value="married">Married</option>
-                        <option value="divorced">Divorced</option>
-                        <option value="widowed">Widowed</option>
-                    </select>
-                    <label class="form-label" for="emailId">Civil Status</label>
-                </div>
-            </div>
 
-            <div class="form-outline mb-2">
-                <input type="text" id="emailId" formControlName="email" class="form-control form-control-lg" />
-                <label class="form-label" for="emailId">Email ID</label>
-            </div>
+                                            </div>
 
-            <div class="row">
-                <div class="col-md-6 mb-2">
-                    <div class="form-outline mb-2">
-                        <input type="password" id="Password" formControlName="password" class="form-control form-control-lg" />
-                        <label class="form-label" for="Password">Password</label>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-outline mb-2">
-                        <input type="password" id="ConfirmPassword" formControlName="password_confirmation" class="form-control form-control-lg" />
-                        <label class="form-label" for="Confirmpassword">Confirm Password</label>
-                    </div>
-                </div>
-            </div>
+                                            <div class="form-outline mb-2">
+                                                <input type="text" id="emailId" formControlName="email" class="form-control form-control-lg" />
+                                                <label class="form-label" for="emailId">Email ID</label>
+                                            </div>
 
-            <div class="d-flex justify-content-end pt-3">
-                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
-                <button type="submit" class="btn btn-success btn-lg ms-2">Submit</button>
-            </div>
-        </form>
-    </div>
-</div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-outline mb-2">
+                                                        <input type="password" id="Password" formControlName="password" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="Password">Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="form-outline mb-2">
+                                                        <input type="password" id="ConfirmPassword" formControlName="password_confirmation" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="Confirmpassword">Confirm Password</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <button type="reset" class="btn btn-light btn-lg">Reset all</button>
+                                                <button type="submit" class="btn btn-success btn-lg ms-2">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
 
                       </div>
                   </div>
