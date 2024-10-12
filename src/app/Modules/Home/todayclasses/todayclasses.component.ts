@@ -17,6 +17,7 @@ export class TodayclassesComponent implements OnInit {
   subjects: any;
   learner:any
   lrn: any
+  pendingassessments: any;
   currentDayAndDate: string; // Variable that will hold the current day and date
 
   constructor(private studentservice: StudentService) { 
@@ -36,6 +37,7 @@ export class TodayclassesComponent implements OnInit {
             localStorage.setItem('LRN', lrn); // Store the actual LRN in localStorage
             this.lrn = lrn; // Store the LRN in the component's property
             this.getSubjects(); // Call getSubjects after retrieving the LRN
+            this.getPendingAssessments(lrn);
           } else {
             console.error('LRN not found in learner data');
           }
@@ -74,6 +76,18 @@ getSubjects() {
     };
 
     return date.toLocaleDateString(undefined, options); // Format the date string
+  }
+
+  getPendingAssessments(lrn: any) {
+    this.studentservice.getPendingAssessments(lrn).subscribe((result: any) => {
+      this.pendingassessments = result;
+      console.log(result);
+    })
+  }
+
+  getAssessmentID(aid: any, title: any){
+    localStorage.setItem('assessmentID', aid);
+    localStorage.setItem('assessmenttitle', title);
   }
 
 }

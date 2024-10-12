@@ -85,8 +85,13 @@ export class StudentService {
       return this.http.post(this.apiUrl + 'saveAssessmentsAnswer', body);
     }
     
-    
-    
+    getPendingAssessments(lrn: any): Observable<any> {
+      return this.http.get(`${this.apiUrl}getPendingAssessments?lrn=${lrn}`);
+    }
+  
+    updateLearnerPassword(pdata: any, lrn: any) {
+      return this.http.post(`${this.apiUrl}updateLearnerPassword/${lrn}`, pdata);
+    }
     
     
 }
