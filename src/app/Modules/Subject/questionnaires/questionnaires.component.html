@@ -83,6 +83,17 @@
             }
 
         </div>
-    </form>
+        <h5 class="text-center">or Upload a File</h5>
+        <mat-card-content>
+            <!-- <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer" (onKeyPress)="keyUpTiny($event, questions[itemno]?.question_id, lrn)" allowedEvents="onKeyPress"></editor> -->
+            <input type="file" id="file" formControlName="file" />
+            <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="uploadFile()">Upload</button></a>
 
+            <!-- <button mat-button type="button" (click)="uploadFile()">Upload File</button> -->
+        </mat-card-content>
+    </form>
+    <!-- <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file">
+        <button type="submit">Upload</button>
+    </form> -->
 </div> 

@@ -34,24 +34,27 @@ constructor(
 
   answerForm = new FormGroup({
     answer: new FormControl(''),
+    // file: new FormControl('')
+
   });
 
   ngOnInit(): void {
     this.assessmentID = localStorage.getItem('assessmentID');
-    this.getQuestions(this.assessmentID);
+    this.getQuestions(this.assessmentID, localStorage.getItem('LRN'));
     this.assessmentitle = localStorage.getItem('assessmenttitle');
     this.lrn = localStorage.getItem('LRN');
     this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
+    
 
     // this.getAnswers(this.questions[this.itemno]?.question_id);
   }
 
-  getQuestions(aid: any){
-    this.student.getQuestions(aid).subscribe((result: any)=>{
+  getQuestions(aid: any, lrn: any){
+    this.student.getQuestions(aid, lrn).subscribe((result: any)=>{
       this.questions=result;
       console.log(result);
     this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
-
+    console.log(this.lrn)
       // this.getAnswers(this.questions[this.itemno]?.question_id);
     })
   }
@@ -117,6 +120,9 @@ constructor(
       console.log(result);
       this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
     })
+  }
+  uploadFile(){
+    this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
   }
 
 
