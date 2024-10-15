@@ -40,9 +40,9 @@ constructor(
 
   ngOnInit(): void {
     this.assessmentID = localStorage.getItem('assessmentID');
-    this.getQuestions(this.assessmentID, localStorage.getItem('LRN'));
     this.assessmentitle = localStorage.getItem('assessmenttitle');
     this.lrn = localStorage.getItem('LRN');
+    this.getQuestions(this.assessmentID, this.lrn);
     this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
     
 

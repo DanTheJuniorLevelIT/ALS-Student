@@ -57,10 +57,10 @@ export class StudentService {
   }
   getAssessments(lessonID: any, slrn: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getAssessments?lessonID=${lessonID}&lrn=${slrn}`);
-}
+  }
 
-  getQuestions(assessmentID: any, lrn:any): Observable<any> {
-    return this.http.get(`${this.apiUrl}getQuestions?assessmentID=${assessmentID}&lrn=${lrn}`);
+  getQuestions(assessmentID: any, slrn: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getQuestions?assessmentID=${assessmentID}&lrn=${slrn}`);
   }
   getAnswers(questionID: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getAnswers?questionID=${questionID}`);
@@ -68,25 +68,39 @@ export class StudentService {
   getAssessmentProgress(lrn:any): Observable<any> {
     return this.http.get(`${this.apiUrl}getAssessmentProgress?lrn=${lrn}`);
   }
+
   saveAnswers(qid: any, slrn: any, answerValue: any): Observable<any> {
     const body = {
       qid: qid,
       slrn: slrn,
-        answerValue: answerValue
-      };
-      return this.http.post(`${this.apiUrl}saveAnswers`, body);
-    }
+      answerValue: answerValue
+    };
+    return this.http.post(`${this.apiUrl}saveAnswers`, body);
+  }
     
-    saveAssessmentsAnswer(assessmentID: any, lrn: any): Observable<any> {
-      const body = {
-        assessmentID: assessmentID,
-        lrn: lrn
-        };
-      return this.http.post(this.apiUrl + 'saveAssessmentsAnswer', body);
-    }
+  saveAssessmentsAnswer(assessmentID: any, lrn: any): Observable<any> {
+    const body = {
+      assessmentID: assessmentID,
+      lrn: lrn
+    };
+    return this.http.post(this.apiUrl + 'saveAssessmentsAnswer', body);
+  }
     
-    
-    
+  getPendingAssessments(lrn: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getPendingAssessments?lrn=${lrn}`);
+  }
+  
+  updateLearnerPassword(pdata: any, lrn: any) {
+    return this.http.post(`${this.apiUrl}updateLearnerPassword/${lrn}`, pdata);
+  }
+
+  uploadProfilePicture(formData:any) {
+    return this.http.post(`${this.apiUrl}updateProfilePicture`, formData);
+  }
+
+  getLearner(lrn: any) {
+    return this.http.get(`${this.apiUrl}getLearner/${lrn}`);
+  }
     
     
 }

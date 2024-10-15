@@ -45,37 +45,10 @@
       <div class="card">
           <div class="card-body-assessment">
             <div class="card-body-assessment-links">
-                  <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
-                <a href="#">Assessment 1</a>
-                <a href="#">Assessment 2</a>
-                <a href="#">Assessment 3</a>
-                <a href="#">Assessment 4</a>
-                <a href="#">Assessment 5</a>
-                <a href="#">Assessment 6</a>
-                <a href="#">Assessment 7</a>
-                <a href="#">Assessment 8</a>
-                <a href="#">Assessment 9</a>
-                <a href="#">Assessment 10</a>
-                <a href="#">Assessment 11</a>
-                <a href="#">Assessment 12</a>
-                <a href="#">Assessment 13</a>
-                <a href="#">Assessment 14</a>
-                <a href="#">Assessment 15</a>
-                <a href="#">Assessment 16</a>
-                <a href="#">Assessment 17</a>
-                <a href="#">Assessment 18</a>
-                <a href="#">Assessment 19</a>
-                <a href="#">Assessment 20</a>
-                <a href="#">Assessment 21</a>
-                <a href="#">Assessment 22</a>
-                <a href="#">Assessment 23</a>
-                <a href="#">Assessment 24</a>
-                <a href="#">Assessment 25</a>
-                <a href="#">Assessment 26</a>
-                <a href="#">Assessment 27</a>
-                <a href="#">Assessment 28</a>
-                <a href="#">Assessment 29</a>
-                <a href="#">Assessment 30</a>
+              <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
+              @for (item of pendingassessments; track $index) {
+              <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="border-bottom">{{item.title}}</a>
+              }
             </div>
           </div>
       </div>

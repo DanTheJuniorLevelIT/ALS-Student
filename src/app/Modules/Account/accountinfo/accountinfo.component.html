@@ -1,54 +1,6 @@
 <section class="py-5 bg-light">
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			<!-- <div class="col-lg-6 mb-5 mb-lg-0">
-				<div class="row d-flex justify-content-center align-items-center ">
-                    <div class="col-md-12 col-xl-4">
-              
-                      
-                        <div class="card-body text-center">
-                          <div class="">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                              class="rounded-circle img-fluid" style="width: 100px;" />
-                          </div>
-                          <h4 class="mb-2">Heaven D. Sencio</h4>
-                          <p class="text-muted mb-4">Programmer <span class="mx-2">|</span> <a
-                              href="#!">mdbootstrap.com</a></p>
-                          <div class="mb-4 pb-2">
-                            <a  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-floating">
-                              <i class="fab fa-facebook-f fa-lg"></i>
-                            </a>
-                            <a  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-floating">
-                              <i class="fab fa-twitter fa-lg"></i>
-                            </a>
-                            <a  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-floating">
-                              <i class="fab fa-skype fa-lg"></i>
-                            </a>
-                          </div>
-                          <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg">
-                            Message now
-                          </button>
-                          <div class="d-flex justify-content-between text-center mt-5 mb-2">
-                            <div>
-                              <p class="mb-2 h5">8471</p>
-                              <p class="text-muted mb-0">Wallets Balance</p>
-                            </div>
-                            <div class="px-3">
-                              <p class="mb-2 h5">8512</p>
-                              <p class="text-muted mb-0">Income amounts</p>
-                            </div>
-                            <div>
-                              <p class="mb-2 h5">4751</p>
-                              <p class="text-muted mb-0">Total Transactions</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-              
-                </div>
-                 
-            
-			</div> -->
             <div class="col-lg-6">
 				<div class="ps-lg-5">
 					<div class="card shadow-lg border border-light text-white text-left h-100">
@@ -56,31 +8,45 @@
 							<!-- <h2 class="pb-3 text-center">Take Web Design to the Next Level - Start Today!</h2> -->
 							<div class="card-body text-center">
                                 <div class="">
-                                  <img src="assets/profilepic.jpg"
-                                    class=" img-fluid" style="width: 170px; padding: 10px;" />
+                                  <!-- <img src="assets/profilepic.jpg"
+                                    class=" img-fluid" style="width: 170px; padding: 10px;" /> -->
+									<img [src]="profilePic"(error)="profilePic = 'assets/icon.jpg'"  style="width: 170px; padding: 10px;" >
                                 </div>
                                 
-                                
-                                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg">
-                                    Change Profile
-                                </button>
-                                <h4><strong>First Name:</strong></h4><h5><p>{{learner.firstname}}</p></h5>
-                                <h4><strong>Middle Name:</strong></h4><h5><p>{{learner.middlename}}</p></h5>
-                                <h4><strong>Last Name:</strong></h4><h5><p>{{learner.lastname}}</p></h5>
-                                <!-- <div class="d-flex justify-content-between text-center mt-5 mb-2">
-                                  <div>
-                                    <p class="mb-2 h5">8471</p>
-                                    <p class="text-muted mb-0">Wallets Balance</p>
-                                  </div>
-                                  <div class="px-3">
-                                    <p class="mb-2 h5">8512</p>
-                                    <p class="text-muted mb-0">Income amounts</p>
-                                  </div>
-                                  <div>
-                                    <p class="mb-2 h5">4751</p>
-                                    <p class="text-muted mb-0">Total Transactions</p>
-                                  </div>
-                                </div> -->
+
+								<!-- Upload Profile Picture Modal -->
+								<button class="button-8" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload Profile Picture:</button>
+								
+								<!-- Modal Content -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+									<form action="" method="post" (ngSubmit)="uploadProfilePicture()" enctype="multipart/form-data">
+									  <div class="modal-content">
+										<div class="modal-header">
+										  <h5 class="modal-title" id="exampleModalLabel">Upload Profie Picture</h5>
+										  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+												<input type="file" class="form-control" id="formFile" (change)="onFileSelect($event)">
+
+												          <!-- Progress Bar -->
+												@if (isUploading) {
+													<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+												}
+										</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Save changes</button>
+											</div>
+										</div>
+									</form>
+									</div>
+								  </div>
+
+
+                                <h5><strong>First Name:</strong></h5><h5><p>{{learner.firstname}}</p></h5>
+                                <h5><strong>Middle Name:</strong></h5><h5><p>{{learner.middlename}}</p></h5>
+                                <h5><strong>Last Name:</strong></h5><h5><p>{{learner.lastname}}</p></h5>
                               </div>
 						</div>
 					</div>
@@ -91,15 +57,15 @@
 					<div class="card shadow-lg border border-light text-white text-left h-100">
 						<div class="card-body bg-light text-dark p-4 p-xl-5">
 							<!-- <h2 class="pb-3 text-center">Take Web Design to the Next Level - Start Today!</h2> -->
-							<form>
+							<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" method="post">
 								<div class="mb-3">
-									<label class="form-label" for="name">Old Password</label> <input class="form-control" id="name" type="password">
+									<label class="form-label" for="name">Old Password</label> <input class="form-control" id="name" type="password" formControlName="oldpassword">
 								</div>
 								<div class="mb-3">
-									<label class="form-label" for="email">New Password</label> <input class="form-control" id="email" type="password">
+									<label class="form-label" for="email">New Password</label> <input class="form-control" id="email" type="password" formControlName="password">
 								</div>
 								<div class="mb-3">
-									<label class="form-label" for="phone">Confirm Password</label><input class="form-control" id="phone" type="password">
+									<label class="form-label" for="phone">Confirm Password</label><input class="form-control" id="phone" type="password" formControlName="password_confirmation">
 								</div><button class="btn btn-primary btn-lg" type="submit">Update</button>
 								<p class="mt-3 small fst-italic text-light">*Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 							</form>
