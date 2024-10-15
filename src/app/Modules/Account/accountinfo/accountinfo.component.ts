@@ -1,18 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../../student.service';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import bootstrap from '../../../../main.server';
+import { MatProgressBarModule} from '@angular/material/progress-bar'
+import { ProfileserviceService } from '../../../profileservice.service';
 
 @Component({
   selector: 'app-accountinfo',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule, MatProgressBarModule],
   templateUrl: './accountinfo.component.html',
   styleUrl: './accountinfo.component.css'
 })
 export class AccountinfoComponent implements OnInit{
   learner: any;
+  studentpic: any;
   lrn: any;
+  selectedFile: File | null = null;
+  profilePicOfStudent: { image?: string } = {}; // Ensure profilePicOfStudent is initialized
+  profilePic: any; // Ensure profilePicOfStudent is initialized
+  progress = 0;
+  isUploading = false;
+
 
   updateForm = new FormGroup({
     oldpassword: new FormControl(null),
@@ -21,12 +31,16 @@ export class AccountinfoComponent implements OnInit{
   })
   
 
-  constructor(private studentservice: StudentService) { 
+  constructor(private studentservice: StudentService, private profileservice: ProfileserviceService) { 
+    
   }
+
+
   ngOnInit(): void {
     const token = localStorage.getItem('authToken'); // Retrieve Token from localStorage
     this.lrn = localStorage.getItem('LRN');
     console.log(this.lrn);
+    this.getLearnerInfo(this.lrn);
     if (token) {
       this.studentservice.getLearnerByToken(token).subscribe({
         next: (data) => {
@@ -41,6 +55,50 @@ export class AccountinfoComponent implements OnInit{
     } else {
       console.error('No Token Found. User is not authenticated');
     }
+  }
+
+  onFileSelect(event:any) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
+
+  uploadProfilePicture() {
+    if(!this.selectedFile) {
+      alert('Please select a file first');
+      return;
+    }
+
+    const formData  = new FormData();
+    formData.append('profile_picture', this.selectedFile);
+    formData.append('lrn', this.lrn);
+
+    this.studentservice.uploadProfilePicture(formData).subscribe((result: any) => {
+      const newImageUrl = `http://localhost:8000/assets/profile_pictures/${result.image_name}`;
+      console.log(result);
+      this.isUploading = true;
+      this.progress = 20;
+
+      const interval = setInterval(() => {
+        if(this.progress < 100) {
+          this.progress += 20;
+        } else {
+          clearInterval(interval);
+          this.isUploading = false;
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Profile Picture Uploaded Successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.profileservice.updateProfilePic(newImageUrl);
+        }
+      }, 100);
+      // Update the learner's image path to point to the Laravel assets folder
+      // this.profilePicOfStudent.image = `http://localhost:8000/assets/profile_pictures/${result.image_name}`;
+      // console.log(this.profilePicOfStudent);
+      this.getLearnerInfo(this.lrn);
+    })
   }
 
 
@@ -96,6 +154,25 @@ export class AccountinfoComponent implements OnInit{
       });
     }
   }
+
+  getLearnerInfo(lrn: string): void {
+    this.studentservice.getLearner(lrn).subscribe(
+      (data: any) => {
+        this.learner = data.learner;
+        // Check if the learner has a profile picture, else use icon.jpg
+        if (data.image) {
+          this.profilePic = `http://localhost:8000/assets/profile_pictures/${data.image}`;
+        } else {
+          this.profilePic = 'assets/icon.jpg'; // Fallback to default icon
+        }
+      },
+      (error) => {
+        console.error('Error fetching learner data', error);
+      }
+    );
+  }
+  
+
   
   
 
