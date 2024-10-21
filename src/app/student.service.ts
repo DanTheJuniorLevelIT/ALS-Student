@@ -101,6 +101,14 @@ export class StudentService {
   getLearner(lrn: any) {
     return this.http.get(`${this.apiUrl}getLearner/${lrn}`);
   }
+  uploadFile(lrn: any, assessmentID: any, file: File): Observable<any>{
+    const formData = new FormData();
+    formData.append('lrn', lrn);
+    formData.append('assessmentid', assessmentID);
+    formData.append('file', file);
+
+    return this.http.post(`${this.apiUrl}uploadFile`, formData);
+  }
     
     
 }

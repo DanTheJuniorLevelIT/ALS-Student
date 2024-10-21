@@ -9,6 +9,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { Router, RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 @Component({
   selector: 'app-questionnaires',
@@ -26,6 +27,7 @@ export class QuestionnairesComponent implements OnInit{
   questionID = 1;
   value: any;
   answervalue: any;
+  selectedFile: File | null = null;
 constructor(
   private student: StudentService,
   private route: Router
@@ -121,8 +123,30 @@ constructor(
       this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
     })
   }
-  uploadFile(){
-    this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
+  onFileSelected(event: any){
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      console.log(this.selectedFile);
+    }
+  }
+  onUploadFile(){
+    this.lrn = localStorage.getItem('LRN');
+    this.assessmentID = localStorage.getItem('assessmentID');
+    if (this.selectedFile) {
+      this.student.uploadFile(this.lrn, this.assessmentID, this.selectedFile).subscribe(
+        (response: any) => {
+          console.log('File Uploaded Successfully:', response)
+          this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
+        },
+        (error: any) => {
+          console.error('Error Uploading File:', error);
+          alert('Error Uploading File');
+        }
+      );
+    }else{
+      alert('No file selected or AssessmentID and LRN is missing');
+    }
   }
 
 

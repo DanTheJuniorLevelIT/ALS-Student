@@ -3,7 +3,7 @@
 		<div class="row justify-content-center align-items-center">
             <div class="col-lg-6">
 				<div class="ps-lg-5">
-					<div class="card shadow-lg border border-light text-white text-left h-100">
+					<div class="card  text-white text-left h-100">
 						<div class="card-body bg-light text-dark p-4 p-xl-5">
 							<!-- <h2 class="pb-3 text-center">Take Web Design to the Next Level - Start Today!</h2> -->
 							<div class="card-body text-center">
@@ -44,9 +44,14 @@
 								  </div>
 
 
-                                <h5><strong>First Name:</strong></h5><h5><p>{{learner.firstname}}</p></h5>
-                                <h5><strong>Middle Name:</strong></h5><h5><p>{{learner.middlename}}</p></h5>
-                                <h5><strong>Last Name:</strong></h5><h5><p>{{learner.lastname}}</p></h5>
+								  <div class="row">
+									<div class="col-sm-6"><h5><strong>First Name:</strong></h5></div>
+									<div class="col-sm-6"><h5><p>{{learner.firstname}}</p></h5></div>
+									<div class="col-sm-6"><h5><strong>Middle Name:</strong></h5></div>
+									<div class="col-sm-6"><h5><p>{{learner.middlename}}</p></h5></div>
+									<div class="col-sm-6"><h5><strong>Last Name:</strong></h5></div>
+									<div class="col-sm-6"><h5><p>{{learner.lastname}}</p></h5></div>
+								  </div>
                               </div>
 						</div>
 					</div>
@@ -54,7 +59,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="ps-lg-5">
-					<div class="card shadow-lg border border-light text-white text-left h-100">
+					<div class="card  text-white text-left h-100">
 						<div class="card-body bg-light text-dark p-4 p-xl-5">
 							<!-- <h2 class="pb-3 text-center">Take Web Design to the Next Level - Start Today!</h2> -->
 							<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" method="post">
