@@ -6,11 +6,11 @@
             <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']" (click)="getLessons(item.modules_id, item.title)">
             <mat-card class="matcard">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-12 col-lg-9">
                         <mat-card-header class="matcardheader">Module {{$index + 1}}</mat-card-header>
                         <mat-card-content class="matcardcontent text-muted text-uppercase"> {{item.title}}</mat-card-content>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-lg-3">
                         <mat-card-content class="matcardcontent">{{item.formatted_date}}</mat-card-content>
                     </div>
                 </div>

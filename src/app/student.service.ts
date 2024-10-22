@@ -101,6 +101,16 @@ export class StudentService {
   getLearner(lrn: any) {
     return this.http.get(`${this.apiUrl}getLearner/${lrn}`);
   }
+
+  getDiscussions(lid: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getDiscussions?lessonid=${lid}`)
+  }
     
-    
+  viewDiscussionReplies(discussionid: any) {
+    return this.http.get(`${this.apiUrl}discussionReplies${discussionid}`);
+  }
+
+  sendDiscussionReplies(data: any) {
+    return this.http.post(`${this.apiUrl}discussionReply`, data);
+  }
 }

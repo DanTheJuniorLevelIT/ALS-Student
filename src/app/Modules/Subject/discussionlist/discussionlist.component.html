@@ -13,37 +13,27 @@
 <div class="container">
     <h1 class="titles">List of Discussions</h1>
     <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
-    <a [routerLink]="['/main/Subject/subjectmain/modules/discussion']">
-        <mat-card class="matcard">
-            <mat-card-header class="matcardheader">
-              <div class="col-10">
-                  Discussion 1
-              </div>
-              <div class="col-2">
-                  <p style="font-weight: 300; font-size: 15px;">March 11, 2025</p>
-              </div>
-              </mat-card-header>
-              <div class="row">
-                  <div class="col-11">
-                      <mat-card-content class="matcardcontent">
-                          Mga Teknik sa Epektibong Pakikinig: Pagpapahusay ng Iyong Kakayahan sa Komunikasyon
-                          <br>
-                      </mat-card-content>
-                  </div>
-              </div>
-          </mat-card>
-        </a>
-        <a [routerLink]="['#']">
-        <mat-card class="matcard">
-            <mat-card-header class="matcardheader">Discussion 2</mat-card-header>
-            <div class="row">
-                <div class="col-11">
-                    <mat-card-content class="matcardcontent">
-                        Ang Sining ng Malinaw at Maikling Pagsasalita
-                        <br>
-                    </mat-card-content>
+
+    @for (item of discussions; track $index) {
+        <a [routerLink]="['/main/Subject/subjectmain/modules/discussion']" (click)="getDiscussionID(item.discussionid, item.Discussion_Topic)">
+            <mat-card class="matcard">
+                <mat-card-header class="matcardheader">
+                <div class="col-10">
+                    Discussion 1
                 </div>
-            </div>
-        </mat-card>
-        </a>
+                <div class="col-2">
+                    <p style="font-weight: 300; font-size: 15px;">March 11, 2025</p>
+                </div>
+                </mat-card-header>
+                <div class="row">
+                    <div class="col-11">
+                        <mat-card-content class="matcardcontent">
+                            {{item.Discussion_Topic}}
+                            <br>
+                        </mat-card-content>
+                    </div>
+                </div>
+            </mat-card>
+            </a>
+    }
 </div>

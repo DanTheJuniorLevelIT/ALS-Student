@@ -133,33 +133,6 @@ div {
     color: black;
 }
 
-:host ::ng-deep .mat-mdc-text-field-wrapper {
-    width: 900px;
-    z-index: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: #dcdcdc;
-}
-
-:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    color:black;
-}
-
-:host ::ng-deep .mat-mdc-button:not(:disabled) {
-    color: rgb(26, 118, 146);
-}
-
-:host ::ng-deep .mdc-form-field>label {
-    margin-left: 0;
-    margin-right: auto;
-    padding-left: 4px;
-    padding-right: 0;
-    order: 0;
-    color: black;
-}
 
 :host ::ng-deep .mdc-radio__native-control {
     position: absolute;
@@ -168,6 +141,12 @@ div {
     opacity: 1;
     cursor: inherit;
     z-index: 1;
+}
+
+.titles {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 .matbuttons {
@@ -181,7 +160,7 @@ div {
     margin: 15px 0;
     align-items: flex-start;
 }
-  
+
 .example-radio-button {
     margin: 5px;
 }
@@ -220,7 +199,7 @@ div {
     vertical-align: middle;
     white-space: nowrap;
     margin-left: 5px;
-  }
+}
 
 
 .quiz-container {
@@ -263,4 +242,32 @@ h3 {
 .text-input:focus {
     border-color: #007bff;
     outline: none;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+    width: 900px;
+    z-index: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #dcdcdc;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color:black;
+}
+
+:host ::ng-deep .mat-mdc-button:not(:disabled) {
+    color: rgb(26, 118, 146);
+}
+
+:host ::ng-deep .mdc-form-field>label {
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 4px;
+    padding-right: 0;
+    order: 0;
+    color: black;
 }

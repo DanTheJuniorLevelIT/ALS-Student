@@ -1,4 +1,4 @@
-<section class="py-5 bg-light">
+<section class="py-5">
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
             <div class="col-lg-6">
@@ -10,7 +10,7 @@
                                 <div class="">
                                   <!-- <img src="assets/profilepic.jpg"
                                     class=" img-fluid" style="width: 170px; padding: 10px;" /> -->
-									<img [src]="profilePic"(error)="profilePic = 'assets/icon.jpg'"  style="width: 170px; padding: 10px;" >
+									<img [src]="profilePic"(error)="profilePic = 'assets/icon.jpg'"  style="width: 170px; height: 170px; object-fit:cover; border-radius:20px; padding: 10px;" >
                                 </div>
                                 
 
@@ -33,6 +33,9 @@
 												@if (isUploading) {
 													<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
 												}
+												@if (profilePic != null) {
+													<img [src]="profilePic" alt="" style="width: 200px; height: 200px; object-fit: cover; margin-top: 10px;">
+												}
 										</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -44,10 +47,27 @@
 								  </div>
 
 
-                                <h5><strong>First Name:</strong></h5><h5><p>{{learner.firstname}}</p></h5>
-                                <h5><strong>Middle Name:</strong></h5><h5><p>{{learner.middlename}}</p></h5>
-                                <h5><strong>Last Name:</strong></h5><h5><p>{{learner.lastname}}</p></h5>
-                              </div>
+								</div>
+								<div class="row mt-3">
+									<div class="col-sm-6">
+										<h5><strong>First Name:</strong></h5>
+									</div>
+									<div class="col-sm-6">
+										<h5><p>{{learner.firstname}}</p></h5>
+									</div>
+									<div class="col-sm-6">
+										<h5><strong>Middle Name:</strong></h5>
+									</div>
+									<div class="col-sm-6">
+										<h5><p>{{learner.middlename}}</p></h5>
+									</div>
+									<div class="col-sm-6">
+										<h5><strong>Last Name:</strong></h5>
+									</div>
+									<div class="col-sm-6">
+										<h5><p>{{learner.lastname}}</p></h5>
+									</div>
+								</div>
 						</div>
 					</div>
 				</div>

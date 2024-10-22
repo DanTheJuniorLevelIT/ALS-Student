@@ -31,3 +31,31 @@ a {
 .container .matcard .matcardcontent {
     color: black;
 }
+
+.matcard {
+    width: 100%; /* Ensures the mat-card takes full width of the column */
+    margin-bottom: 15px;
+    transition: all 0.3s ease; /* Smooth transition for responsiveness */
+  }
+  
+  @media (max-width: 768px) {
+    .matcard {
+      margin-bottom: 10px;
+    }
+  
+    .matcardheader {
+      font-size: 1.2rem; /* Adjust font size for small screens */
+    }
+  
+    .matcardcontent {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .matcard {
+      width: 100%; /* Take full width of column for larger screens */
+    }
+  }
+  
+  
