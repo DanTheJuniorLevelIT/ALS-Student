@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-lesson',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './lesson.component.html',
   styleUrl: './lesson.component.css'
 })
@@ -29,18 +30,18 @@ export class LessonComponent implements OnInit {
     this.admin_name = localStorage.getItem('admin_name');
     this.subname = localStorage.getItem('subname');
     this.getLessons(this.moduleID);
-    
+
     // // this.getModules(this.moduleID);
   }
 
   getLessons(moduleID: any) {
     this.studentservice.getLessons(moduleID).subscribe((result:any)=> {
     this.lessons = result;
+    console.log(this.lessons);
     })
   }
   getLessonID(lid:any) {
-    this.lessonID = localStorage.setItem('lessonid',lid);
-    
+    localStorage.setItem('lessonid',lid);
   }
 
   // // getModules(moduleID:any ) {

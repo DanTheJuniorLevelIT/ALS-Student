@@ -17,6 +17,9 @@ export class LearningmaterialsComponent implements OnInit {
   admin_name: any;
   subname: any;
   modulecount: any;
+  lrn: any;
+  progress: any;
+  pendingassessments: any;
 
 
   constructor (private studentservice: StudentService) {}
@@ -24,9 +27,11 @@ export class LearningmaterialsComponent implements OnInit {
   ngOnInit(): void {
       this.cid = localStorage.getItem('classID');
       this.admin_name = localStorage.getItem('admin_name');
+      this.lrn = localStorage.getItem('LRN');
       this.subname = localStorage.getItem('subname');
       console.log(this.cid);
       this.getModules(this.cid);
+      this.pendingassessments(this.lrn);
       this.modulecount = 1;
   }
 
@@ -40,5 +45,24 @@ export class LearningmaterialsComponent implements OnInit {
   getLessons(mid: any, title: any) {
     localStorage.setItem('moduleID', mid);
     localStorage.setItem('moduletitle', title);
+  }
+
+  checkProgress() {
+    this.studentservice.checkProgress(this.cid, this.lrn).subscribe((result: any) => {
+      this.progress = result;
+      console.log(result);
+    })
+  }
+
+  getPendingAssessments(lrn: any) {
+    this.studentservice.getPendingAssessments(lrn).subscribe((result: any) => {
+      this.pendingassessments = result;
+      console.log(result);
+    })
+  }
+
+  getAssessmentID(aid: any, title: any){
+    localStorage.setItem('assessmentID', aid);
+    localStorage.setItem('assessmenttitle', title);
   }
 }

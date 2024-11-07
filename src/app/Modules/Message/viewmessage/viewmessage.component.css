@@ -126,11 +126,11 @@ body {
     top: 200px; /* Adjust as necessary */
     right: 30px;
     cursor: pointer;
-    color: #c8242f;
+    color: #021c29;
 }
 
 .add-icon:hover {
-    color: #a81f27;
+    color: #377695;
 }
 
 .message-table {
@@ -145,7 +145,7 @@ body {
 }
 
 .message-table th {
-    background-color: #c8242f;
+    background-color: #1e3743;
     color: white;
 }
 
@@ -329,7 +329,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #c8242f;
+    background-color: #0F3041;
     color: #fff;
 }
 

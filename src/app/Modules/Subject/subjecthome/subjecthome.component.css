@@ -44,3 +44,31 @@ img {
     margin-bottom: 5px;
 }
 
+/* @media(min-width: 767px) {
+    #card {
+        margin: 10px;
+    }
+}
+
+@media(max-width: 766px) {
+    #card {
+        width: 1000px;
+        margin: 50px;
+    }
+}  */
+@media (max-width: 1000px) {
+    .card {
+      width: 100%; /* Set the card to take full width of the column */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .card {
+      width: 100%; /* Adjust for small screens */
+    }
+  }
+  
+  .card {
+    max-width: 100%; /* Ensure card does not exceed the column width */
+  }
+

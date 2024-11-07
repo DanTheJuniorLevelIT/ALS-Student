@@ -180,24 +180,30 @@ body {
   }
   
   .answer {
-    background-color: #ffffff;
-    padding: 8px;
-    border-radius: 4px;
-    margin-bottom: 8px;
-    width: 45%;
-  }
-  
-  .student-answer {
-    float: left;
-    clear: both;
-    background-color: #d1e7dd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 60%;
   }
   
   .teacher-answer {
+    background-color: #454444;
+    float: left;
+    clear: both;
+  }
+  
+  .student-answer {
+    background-color: #454444;
+    float: left;
+    clear: both;
+  }
+  
+  .current-user-answer {
+    background-color: #001797;
     float: right;
     clear: both;
-    background-color: #f8d7da;
   }
+  
   
   .answer-user {
     font-weight: bold;

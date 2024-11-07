@@ -21,33 +21,33 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
       const authToken = localStorage.getItem('authToken');
-      // this.lrn = localStorage.getItem('LRN');
+      this.lrn = localStorage.getItem('LRN');
       const token = localStorage.getItem('authToken'); // Retrieve Token from localStorage
-  
-      if (token) {
-        this.studentservice.getLearnerByToken(token).subscribe({
-          next: (data) => {
-            this.learner = data;
-            // Assuming the LRN is a property of the returned data
-            const lrn = data.lrn; // Adjust this based on the structure of your data
-            if (lrn) {
-              localStorage.setItem('LRN', lrn); // Store the actual LRN in localStorage
-              this.lrn = lrn; // Store the LRN in the component's property
-              this.getLearnerInfo(lrn);
-            } else {
-              console.error('LRN not found in learner data');
-            }
-          },
-          error: (err) => {
-            console.error('Error fetching learner data', err);
-          }
-        });
-      } else {
-        console.error('No Token Found. User is not authenticated');
-      }
+    
+      // if (token) {
+      //   this.studentservice.getLearnerByToken(token).subscribe({
+      //     next: (data) => {
+      //       this.learner = data;
+      //       // Assuming the LRN is a property of the returned data
+      //       const lrn = data.lrn; // Adjust this based on the structure of your data
+      //       if (lrn) {
+      //         localStorage.setItem('LRN', lrn); // Store the actual LRN in localStorage
+      //         this.lrn = lrn; // Store the LRN in the component's property
+              
+      //       } else {
+      //         console.error('LRN not found in learner data');
+      //       }
+      //     },
+      //     error: (err) => {
+      //       console.error('Error fetching learner data', err);
+      //     }
+      //   });
+      // } else {
+      //   console.error('No Token Found. User is not authenticated');
+      // }
 
 
-      // this.getLearnerInfo(this.lrn);
+      this.getLearnerInfo(this.lrn); //Get Learner Info through LRN
       this.tok = authToken;
       console.log(this.profilePic);
       this.profileservice.currentProfilePic.subscribe((newPicUrl) => {

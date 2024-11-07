@@ -17,8 +17,8 @@ export class ViewmessageComponent {
   currentDate = new Date();
 
   messages = [
-    { date: 'August 9, 2024', text: 'Can you please explain the homework question?', sender: 'John Doe' },
-    { date: 'August 10, 2024', text: 'Will the class start at the usual time tomorrow?', sender: 'Jane Smith' },
+    { date: 'August 9, 2024', text: 'Can you please explain the homework question?', sender: 'Mark Johnson' },
+    { date: 'August 10, 2024', text: 'Will the class start at the usual time tomorrow?', sender: 'Mark Johnson' },
     { date: 'August 11, 2024', text: 'I have submitted my assignment.', sender: 'Mark Johnson' }
   ];
   

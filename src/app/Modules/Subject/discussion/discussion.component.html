@@ -7,10 +7,10 @@
 
 
 <div class="container text-center justify-content-center border-bottom">
-  <h1>Module 1: Halika, Sama Ka Kaibigan</h1>
+  <h1>{{discussionTopic}}</h1>
   <!-- <h5>July 29, 2024</h5> -->
 </div>
-<div class="discussion-container">
+<!-- <div class="discussion-container">
     <div class="question-section">
       <div class="question-header">
         <div class="question-date">Jun 12, 2024</div>
@@ -32,5 +32,32 @@
         <textarea formControlName="answer" placeholder="Insert text here..."></textarea>
         <button type="submit">Reply</button>
       </form>
+    </div>
+  </div> -->
+
+  <div class="modules">
+    <div class="discussion-container">
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-date"></div>
+          <div class="question-text">{{discussionTopic}}</div>
+        </div>
+        <div class="answer-list">
+          <div *ngFor="let discussion of discussions"
+          [ngClass]="{'teacher-answer': discussion.role === 'teacher', 'student-answer': discussion.role === 'student' && !discussion.isCurrentUser, 'current-user-answer': discussion.isCurrentUser}"
+          class="answer">
+            <div class="answer-user" style="color: white;">{{discussion.user}}</div>
+            <div class="answer-date" style="color: rgb(155, 146, 146);">{{discussion.date | date:'medium'}}</div>
+            <div class="answer-text"><p [innerHTML]="transformText(discussion.answer)" style="color: white;"></p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="answer-form">
+        <form action="" [formGroup]="discussionForm" (ngSubmit)="submitAnswer()">
+          <textarea formControlName="answer" placeholder="Insert text here..."></textarea>
+          <button type="submit">Reply</button>
+        </form>
+      </div>
     </div>
   </div>

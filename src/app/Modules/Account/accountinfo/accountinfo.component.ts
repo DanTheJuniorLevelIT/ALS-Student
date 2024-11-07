@@ -60,6 +60,18 @@ export class AccountinfoComponent implements OnInit{
   onFileSelect(event:any) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        // Once the file is read, set the preview URL to 'profilePic'
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+            this.profilePic = e.target?.result; // This will set the profilePic to the file URL
+        };
+
+        reader.readAsDataURL(file); // Read file as data URL for preview
+    }
   }
 
   uploadProfilePicture() {

@@ -14,6 +14,10 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
   constructor(private studentservice: StudentService, private route: Router) {}
+
+  lrn:any;
+  learner: any;
+
   loginLearner = new FormGroup({
     email: new FormControl(null),
     password: new FormControl(null)
@@ -34,14 +38,43 @@ export class LoginComponent {
 
             //Navigate to the desired page
             if(token != null) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "You are now logged in!",
-                showConfirmButton: false,
-                timer: 1000
-              });
-              this.route.navigate(['/main/Home']);
+
+              if (token) {
+                this.studentservice.getLearnerByToken(token).subscribe({
+                  next: (data) => {
+                    this.learner = data;
+                    // Assuming the LRN is a property of the returned data
+                    const lrn = data.lrn; // Adjust this based on the structure of your data
+                    if (lrn) {
+                      localStorage.setItem('LRN', lrn); // Store the actual LRN in localStorage
+                      this.lrn = lrn; // Store the LRN in the component's property
+                      Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "You are now logged in!",
+                        showConfirmButton: false,
+                        timer: 1000
+                      });
+                      this.route.navigate(['/main/Home']);
+                    } else {
+                      Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "You are not enrolled yet! (LRN Needed)",
+                        showConfirmButton: false,
+                        timer: 5000
+                      });
+                      console.error('LRN not found in learner data');
+                    }
+                  },
+                  error: (err) => {
+                    console.error('Error fetching learner data', err);
+                  }
+                });
+              } else {
+                console.error('No Token Found. User is not authenticated');
+              }
+        
             }else{
               console.error('Invalid Login');
               alert('Invalid Login');

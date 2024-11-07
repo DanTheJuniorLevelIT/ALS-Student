@@ -91,3 +91,73 @@ h1 {
   .button-21:focus:not(:active) {
     box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
   }
+
+  .matcard {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.matcardheader {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.matcardcontent {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* For the date status (submitted or pending) */
+.text-success {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: rgba(2, 75, 2, 0.979);
+}
+
+.text-danger {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: rgb(130, 5, 5);
+}
+
+/* Styling for the checkboxes */
+.form-check-input {
+    width: 20px;
+    height: 20px;
+}
+
+/* Centered Titles and Headers */
+.titles {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+h5.text-muted {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.disabled-card {
+    pointer-events: none; /* Disables interaction */
+    opacity: 0.8; /*Makes the card look transparent */
+}
+  
+
+@media (max-width: 768px) {
+    .matcardheader {
+        font-size: 1rem;
+    }
+
+    .matcardcontent {
+        font-size: 0.9rem;
+    }
+
+    .text-success, .text-danger {
+        font-size: 0.85rem;
+    }
+}
