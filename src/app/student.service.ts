@@ -1,14 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
+  // private socket$: WebSocketSubject<any>;
   private apiUrl = 'http://localhost:8000/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // this.socket$ = webSocket('ws://')
+   }
 
   registerLearner(learnerData: any): Observable<any> {
     return this.http.post(this.apiUrl + 'registerLearner', learnerData);
@@ -107,10 +111,14 @@ export class StudentService {
   }
     
   viewDiscussionReplies(discussionid: any) {
-    return this.http.get(`${this.apiUrl}discussionReplies${discussionid}`);
+    return this.http.get(`${this.apiUrl}discussionReplies/${discussionid}`);
   }
 
   sendDiscussionReplies(data: any) {
     return this.http.post(`${this.apiUrl}discussionReply`, data);
+  }
+
+  checkProgress(cid: any, lrn: any) {
+    return this.http.get(`${this.apiUrl}checkProgress?cid=${cid}&lrn=${lrn}`);
   }
 }

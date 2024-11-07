@@ -44,11 +44,11 @@
         </div>
         <div class="answer-list">
           <div *ngFor="let discussion of discussions"
-          [ngClass]="{'student-answer': discussion.role === 'student', 'teacher--answer': discussion.role === 'teacher'}"
+          [ngClass]="{'teacher-answer': discussion.role === 'teacher', 'student-answer': discussion.role === 'student' && !discussion.isCurrentUser, 'current-user-answer': discussion.isCurrentUser}"
           class="answer">
-            <div class="answer-user"></div>
-            <div class="answer-date"></div>
-            <div class="answer-text"><p></p></div>
+            <div class="answer-user" style="color: white;">{{discussion.user}}</div>
+            <div class="answer-date" style="color: rgb(155, 146, 146);">{{discussion.date | date:'medium'}}</div>
+            <div class="answer-text"><p [innerHTML]="transformText(discussion.answer)" style="color: white;"></p></div>
           </div>
         </div>
       </div>

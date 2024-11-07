@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardHeader, MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-assessment',
   standalone: true,
-  imports: [RouterModule ,MatCardModule, MatCardHeader],
+  imports: [RouterModule ,MatCardModule, MatCardHeader, CommonModule],
   templateUrl: './assessment.component.html',
   styleUrl: './assessment.component.css'
 })
@@ -33,7 +34,14 @@ export class AssessmentComponent implements OnInit {
   }
   getAssessments(lid: any){
     this.student.getAssessments(lid, this.lrn).subscribe((result:any)=>{
+      const today = new Date();
       this.assessmentlist = result;
+
+      this.assessmentlist.forEach((assessment:any) => {
+        const dueDate = new Date(assessment.due_date);
+        assessment.isOpen = dueDate >= today ? true : false; //Close if due date has passed
+      });
+      
       console.log(result);
     })
   }

@@ -10,7 +10,7 @@
     @for (item of lessons; track $index) {
         <div class="row justify-content-center">
             <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
-            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
+            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']" (click)="getLessonID(item.lesson_id)"><button class="btn buttons w-100">DISCUSSION</button></a></div>
             <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']" (click)="getLessonID(item.lesson_id)"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
         </div>
 
@@ -38,7 +38,11 @@
                 {{item.lesson}}             
             </div>
             <div class="alert alert-primary mt-3" role="alert">
-                <a href="assets/{{item.file}}" download>{{item.file}}</a> 
+                <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
+                <a *ngFor="let media of item.media" 
+                href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
+                target="_blank" style="display: flex;"
+                download>{{ media.filename }}</a>
             </div>
         </div>
     }

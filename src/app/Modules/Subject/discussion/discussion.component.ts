@@ -18,6 +18,7 @@ export class DiscussionComponent implements OnInit {
   discussionTopic: any;
   discussions: any[] = [];
   discussionForm: FormGroup;
+  loggedInLRN: any;
 
   constructor(private studentservice: StudentService, private fb: FormBuilder) {
     this.discussionForm = this.fb.group({
@@ -27,8 +28,12 @@ export class DiscussionComponent implements OnInit {
 
   ngOnInit(): void {
       this.discussionTopic = localStorage.getItem('Discussion Topic');
-      this.discussionID = localStorage.getItem('discussionid');
-      
+      this.discussionID = localStorage.getItem('discussionID');
+      console.warn(this.discussionID);
+      this.loadDiscussions(this.discussionID);
+
+      // Get the current logged-in user's LRN from localStorage
+      this.loggedInLRN = localStorage.getItem('LRN');
   }
 
   transformText(text: string): string {
@@ -45,41 +50,30 @@ export class DiscussionComponent implements OnInit {
   loadDiscussions(discussionid: any) {
     this.studentservice.viewDiscussionReplies(discussionid).subscribe((result: any) => {
       const groupedDiscussions: any[] = [];
-
-      //Group by student-teacher pairs
-      let currentTeacherReply: { user: string; date: any; answer: any; role: any; } | null = null;
-
+  
       result.forEach((reply: any) => {
-        if (reply.adminID) { //Teacher Reply
-          if(currentTeacherReply) {
-            groupedDiscussions.push(currentTeacherReply); //Push previous teacher reply
-            currentTeacherReply = null;
-          }
-          currentTeacherReply = {
-            user: `${reply.teacher_firstname} ${reply.teacher_lastname}`, //Teacher's Full Name
-            date: reply.created_at,
-            answer: reply.reply,
-            role: 'teacher'
-          };
-        } else {
-          if(currentTeacherReply) {
-            groupedDiscussions.push(currentTeacherReply); //Push student reply  
-            currentTeacherReply = null; //Reset student reply
-          }
-          groupedDiscussions.push({
-            user: `${reply.student_firstname} ${reply.student_lastname}`, //Teacher's Full Name
-            date: reply.created_at,
-            answer: reply.reply,
-            role: 'student'
-          });
+        let role = 'student';
+        let user = `${reply.student_firstname} ${reply.student_lastname}`;
+  
+        // Check if it's a teacher's reply
+        if (reply.adminID) {
+          role = 'teacher';
+          user = `${reply.teacher_firstname} ${reply.teacher_lastname}`;
         }
+  
+        // Determine if the reply is from the current user (logged-in student)
+        const isCurrentUser = String(reply.lrn) === String(this.loggedInLRN);
+        console.log('Checking reply LRN:', reply.lrn, 'against logged-in LRN:', this.loggedInLRN, '-> isCurrentUser:', isCurrentUser);
+  
+        groupedDiscussions.push({
+          user,
+          date: reply.created_at,
+          answer: reply.reply,
+          role,
+          isCurrentUser
+        });
       });
-      //IF THERE IS A STUDENT TEACHER REPLY WITHOUT A TEACHER REPLY, ADD IT
-      
-      if(currentTeacherReply) {
-        groupedDiscussions.push(currentTeacherReply);
-      }
-
+  
       this.discussions = groupedDiscussions;
     });
   }

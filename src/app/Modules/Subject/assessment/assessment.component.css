@@ -142,6 +142,12 @@ h5.text-muted {
     margin-bottom: 25px;
 }
 
+.disabled-card {
+    pointer-events: none; /* Disables interaction */
+    opacity: 0.8; /*Makes the card look transparent */
+}
+  
+
 @media (max-width: 768px) {
     .matcardheader {
         font-size: 1rem;

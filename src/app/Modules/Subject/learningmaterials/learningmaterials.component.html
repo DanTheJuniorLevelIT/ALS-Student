@@ -1,6 +1,65 @@
 <div class="container">
-    <h1 class="titles">My Modules</h1>
-    <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
+    <div class="row">
+        <h1 class="titles">My Modules</h1>
+        <div class="col-md-7">            
+            <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
+        </div>
+        <div class="col-sm-5">
+            <!-- Button Trigger Modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="checkProgress()" style="margin-left: 50px;">
+                Check Your Progress
+            </button>
+
+            <!-- Notification Button -->
+                <button type="button" class="btn border border-dark" style="margin-left: 15px;" data-bs-toggle="modal" data-bs-target="#notificationModal" data-bs-placement="bottom" title="Notifications">
+                    <i class="fa-solid fa-bullhorn fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
+                </button>
+                
+            
+            <!-- Notification Modal -->
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            <!-- Progress Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Pending Assessments</h1>
+                      <h5 class="text-muted text-uppercase">{{subname}}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @for (item of progress; track $index) {
+                            <div class="border-bottom">
+                                {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal">{{item.title}}</a><br><br>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
     <!-- Retrieving Module -->
         @for (item of modules; track $index ) {
             <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']" (click)="getLessons(item.modules_id, item.title)">

@@ -24,9 +24,39 @@
 
 <!-- List of Assessments -->
 @for (item of assessmentlist; track $index) {
+  @if(item.isOpen == true) {
+      <div class="container">
+          <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)">
+              <mat-card class="matcard">
+                  <div class="row align-items-center">
+                      <div class="col-8">
+                          <mat-card-header class="matcardheader">
+                              Assessment {{$index + 1}}
+                          </mat-card-header>
+                      </div>
+                      <div class="col-4 text-right">
+                          @if (item.assessmentid == item.aid) {
+                              <p class="text-success"><strong>Date Submitted:</strong> {{item.submitted_date}}</p>
+                          } @else {
+                              <p class="text-danger"><strong>Until:</strong> {{item.formatted_date}}</p>
+                          }
+                      </div>
+                  </div>
+                  <div class="row align-items-center">
+                      <div class="col-11">
+                          <mat-card-content class="matcardcontent">{{item.title}}</mat-card-content>
+                      </div>
+                      <div class="col-1 text-center">
+                          <input class="form-check-input" type="checkbox" [checked]="item.assessmentid == item.aid">
+                      </div>
+                  </div>
+              </mat-card>
+          </a>
+      </div>
+  } @else if(item.isOpen == false) {
     <div class="container">
-        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)">
-            <mat-card class="matcard">
+        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" [class.disabled-card]="!item.isOpen">
+            <mat-card class="matcard" [ngClass]="{'disabled-card': !item.isOpen}">
                 <div class="row align-items-center">
                     <div class="col-8">
                         <mat-card-header class="matcardheader">
@@ -34,22 +64,24 @@
                         </mat-card-header>
                     </div>
                     <div class="col-4 text-right">
-                        @if (item.assessmentid == item.aid) {
+                        <!-- @if (item.assessmentid == item.aid) {
                             <p class="text-success"><strong>Date Submitted:</strong> {{item.submitted_date}}</p>
-                        } @else {
+                        } -->
+                        <!-- @else { -->
                             <p class="text-danger"><strong>Until:</strong> {{item.formatted_date}}</p>
-                        }
+                        <!-- }  -->
                     </div>
                 </div>
                 <div class="row align-items-center">
-                    <div class="col-11">
+                    <div class="col-8">
                         <mat-card-content class="matcardcontent">{{item.title}}</mat-card-content>
                     </div>
-                    <div class="col-1 text-center">
-                        <input class="form-check-input" type="checkbox" [checked]="item.assessmentid == item.aid">
+                    <div class="col-4">
+                        <p class="text-warning"><strong>Notice:</strong> This assessment's due date has passed. You can no longer submit answers.</p>
                     </div>
                 </div>
             </mat-card>
         </a>
     </div>
+  }
 }
