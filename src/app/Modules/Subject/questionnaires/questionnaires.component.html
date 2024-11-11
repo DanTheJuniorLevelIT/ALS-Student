@@ -8,33 +8,35 @@
       </nav>
 
       <div class="row">
-          <div class="col-sm-10">
-            <h1 class="titles">Assessment Page </h1>
-            
+        <!-- Left side: Assessment title -->
+        <div class="col-sm-6 d-flex flex-column justify-content-center">
+            <h1 class="titles">Assessment Page</h1>
+            <h5 class="text-muted text-uppercase">{{ assessmentitle }}</h5>
         </div>
-        <!-- @if() -->
-        <div class="col-sm-2">
-            <!-- Upload Profile Picture Modal -->
-            <button class="button btn btn-success" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload a File</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-10">
-            
-        </div>
-        <div class="col-sm-2" >
-                <div class=" text-right">
-                  <a 
-                  target="_blank"
-                  href="{{newFileUrl}}"
-                  >Uploaded File
-                </a>
+    
+        <!-- Right side: Upload button and file link -->
+        <div class="col-sm-6">
+            <div class="p-3 border rounded" style="background-color: #f8f9fa;">
+                <p class="mb-1">Or upload a file:</p>
+                <div class="d-flex flex-column align-items-start">
+                    <!-- Upload Button -->
+                    <button 
+                        class="button btn btn-success m-3" 
+                        role="button" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#exampleModal">
+                        Upload a File
+                    </button>
+                    
+                    <!-- Filename display with link -->
+                    <div *ngIf="Filename">
+                        <a target="_blank" [href]="Filelink" class="ms-3 mb-3">{{ Filename }}</a>
+                    </div>
                 </div>
-            
-        </div>
-
+            </div>
+        </div>        
     </div>
-    <h5 class="text-muted text-uppercase">{{assessmentitle}}</h5>
+    
 
     <!-- <div class="d-flex justify-content-end">
         <button class="button-3" role="button" (click)="onSelect('Identification')">Identification</button>
