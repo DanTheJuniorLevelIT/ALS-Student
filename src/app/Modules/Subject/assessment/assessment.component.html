@@ -41,6 +41,17 @@
                               <p class="text-danger"><strong>Until:</strong> {{item.formatted_date}}</p>
                           }
                       </div>
+                      <div class="col-8 text-right">
+                         
+                      </div>
+                      
+
+                          <div class="col-4 text-right">
+                            @if (item.assessmentid == item.aid) {
+                                <p class="text-success"><strong>Score:</strong> {{item.scores}} </p>
+                            }
+                          </div>
+                      
                   </div>
                   <div class="row align-items-center">
                       <div class="col-11">

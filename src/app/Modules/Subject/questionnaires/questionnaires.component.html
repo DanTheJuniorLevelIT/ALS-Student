@@ -7,7 +7,38 @@
         </ol>
       </nav>
 
-    <h1 class="titles">Assessment Page </h1>
+      <div class="row">
+          <div class="col-sm-8">
+            <h1 class="titles">Assessment Page </h1>
+            
+        </div>
+        <!-- @if() -->
+        <div class="col-sm-2">
+            <!-- Upload Profile Picture Modal -->
+            <button class="button btn btn-success" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload a File</button>
+        </div>
+        <div class="col-sm-2" >
+            <!-- Upload Profile Picture Modal -->
+           
+
+                <div class="col-4 text-right">
+                  <a 
+                  target="_blank"
+                  href="{{newFileUrl}}"
+                  >{{newFileUrl}}
+                </a>
+                </div>
+            
+           
+                <!-- <a 
+                href={{a.file}} 
+                target="_blank" 
+                rel="noopener noreferrer">
+                Download File
+              </a> -->
+            
+        </div>
+    </div>
     <h5 class="text-muted text-uppercase">{{assessmentitle}}</h5>
 
     <!-- <div class="d-flex justify-content-end">
@@ -84,13 +115,48 @@
             }
 
         </div>
-        <h5 class="text-center">or Upload a File</h5>
+        <!-- <h5 class="text-center">or Upload a File</h5> -->
+       
+								
+        <!-- Modal Content -->
+        
+
         <mat-card-content>
             <!-- <label for="file">File</label> -->
-            <input type="file" id="file" class="file-input" formControlName="file" (change)="onFileSelected($event)"/>
-            <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="onUploadFile()">Upload</button></a>
+            <!-- <input type="file" id="file" class="file-input" formControlName="file" (change)="onFileSelected($event)"/> -->
+            <!-- <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="onUploadFile()">Upload</button></a> -->
 
             <!-- <button mat-button type="button" (click)="uploadFile()">Upload File</button> -->
         </mat-card-content>
     </form>
 </div> 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <form action="" method="post" (ngSubmit)="uploadFile()" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                <!-- <input type="file" class="form-control" id="formFile" (change)="onFileSelect($event)"> -->
+                <input type="file" id="file" class="file-input" formControlName="file" (change)="onFileSelected($event)"/>
+
+
+                          <!-- Progress Bar -->
+                @if (isUploading) {
+                    <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+                }
+                @if (Filelink != null) {
+                    <img [src]="Filelink" alt="" style="width: 200px; height: 200px; object-fit: cover; margin-top: 10px;">
+                }
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </form>
+    </div>
+  </div>

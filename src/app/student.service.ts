@@ -101,23 +101,31 @@ export class StudentService {
   uploadProfilePicture(formData:any) {
     return this.http.post(`${this.apiUrl}updateProfilePicture`, formData);
   }
+  uploadFile(formData:any) {
+    return this.http.post(`${this.apiUrl}updateFile`, formData);
+  }
 
   getLearner(lrn: any) {
     return this.http.get(`${this.apiUrl}getLearner/${lrn}`);
   }
-<<<<<<< HEAD
-  uploadFile(lrn: any, assessmentID: any, file: File): Observable<any>{
-    const formData = new FormData();
-    formData.append('lrn', lrn);
-    formData.append('assessmentid', assessmentID);
-    formData.append('file', file);
+  getAnswerFile(lrn: any, aid:any) {
+    // return this.http.get(`${this.apiUrl}getAnswerFile/${lrn}`);
+    return this.http.get(`${this.apiUrl}getAnswerFile?aid=${aid}&lrn=${lrn}`)
+  }
+  // updateProfilePic(newPicUrl: string): void {
+  //   this.profilePicSource.next(newPicUrl);
+  // }
 
-    return this.http.post(`${this.apiUrl}uploadFile`, formData);
-=======
+  // uploadFile(lrn: any, assessmentID: any, file: File): Observable<any>{
+  //   const formData = new FormData();
+  //   formData.append('lrn', lrn);
+  //   formData.append('assessmentid', assessmentID);
+  //   formData.append('file', file);
+
+  //   return this.http.post(`${this.apiUrl}uploadFile`, formData);}
 
   getDiscussions(lid: any): Observable<any> {
     return this.http.get(`${this.apiUrl}getDiscussions?lessonid=${lid}`)
->>>>>>> baed83ef9b6ed1d4054d149b976829e039c3d2f1
   }
     
   viewDiscussionReplies(discussionid: any) {
@@ -130,5 +138,11 @@ export class StudentService {
 
   checkProgress(cid: any, lrn: any) {
     return this.http.get(`${this.apiUrl}checkProgress?cid=${cid}&lrn=${lrn}`);
+  }
+  getScore(aid: any, lrn: any) {
+    return this.http.get(`${this.apiUrl}getScore?aid=${aid}&lrn=${lrn}`);
+  }
+  getFile(aid: any, lrn: any) {
+    return this.http.get(`${this.apiUrl}getFile?aid=${aid}&lrn=${lrn}`);
   }
 }

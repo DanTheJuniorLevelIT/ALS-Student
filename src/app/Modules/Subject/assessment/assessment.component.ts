@@ -19,6 +19,8 @@ export class AssessmentComponent implements OnInit {
   assessmentlist: any;
   lrn: any;
   progress: any;
+  score: any;
+  aid: any;
 
   constructor(private student: StudentService) {}
 
@@ -27,9 +29,13 @@ export class AssessmentComponent implements OnInit {
     this.admin_name = localStorage.getItem('admin_name');
     this.lessonid = localStorage.getItem('lessonid');
     this.lrn = localStorage.getItem('LRN');
-    console.log(this.lessonid);
+    this.aid = localStorage.getItem('assessmentID');
+    // console.log(this.lessonid);
+    // console.log(this.aid);
+    // console.log(this.score);
     this.getAssessments(this.lessonid);
     // this.getAssessmentProgress(this.lrn);
+    this.getScore(this.aid, this.lrn);
 
   }
   getAssessments(lid: any){
@@ -44,6 +50,12 @@ export class AssessmentComponent implements OnInit {
       
       console.log(result);
     })
+  }
+  getScore(aid: any, lrn: any){
+    this.student.getScore(aid, lrn).subscribe((result:any)=>{
+      this.score = result;
+      console.log(this.score);
+    });
   }
   getAssessmentID(aid: any, title: any){
     localStorage.setItem('assessmentID', aid);

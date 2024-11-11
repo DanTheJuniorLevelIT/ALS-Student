@@ -3,7 +3,7 @@ import { StudentService } from '../../../student.service';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import bootstrap from '../../../../main.server';
-import { MatProgressBarModule} from '@angular/material/progress-bar'
+import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { ProfileserviceService } from '../../../profileservice.service';
 
 @Component({
@@ -173,7 +173,7 @@ export class AccountinfoComponent implements OnInit{
         this.learner = data.learner;
         // Check if the learner has a profile picture, else use icon.jpg
         if (data.image) {
-          this.profilePic = `http://localhost:8000/assets/profile_pictures/${data.image}`;
+          this.profilePic = `http://localhost:8000/assets/${data.image}`;
         } else {
           this.profilePic = 'assets/icon.jpg'; // Fallback to default icon
         }
