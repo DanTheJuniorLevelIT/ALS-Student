@@ -39,6 +39,7 @@ export class QuestionnairesComponent implements OnInit{
   learner: any;
   File: any;
   Filelink: any;
+  Filename: any;
   assessmentans: any;
   newFileUrl:any;
 
@@ -65,7 +66,6 @@ constructor(
     this.getLearnerFile(this.lrn,this.assessmentID);
     console.log(this.File);
     console.log(this.assessment);
-
     
 
     // this.getAnswers(this.questions[this.itemno]?.question_id);
@@ -73,6 +73,7 @@ constructor(
 
   getQuestions(aid: any, lrn: any){
     this.student.getQuestions(aid, lrn).subscribe((result: any)=>{
+      this.getLearnerFile(this.lrn, this.assessmentID);
       this.questions=result;
       console.log(result);
     this.answerForm.get('answer')?.setValue(this.questions[this.itemno]?.answer);
@@ -206,7 +207,7 @@ constructor(
                     timer: 1500
                 });
 
-                this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
+                // this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
                 // Handle the result as needed, e.g., update the UI or store the file path
                 // If you need to update a specific file path, you can do it here
                 // this.filePath = `http://localhost:8000/assets/files/${result.file}`;
@@ -234,7 +235,9 @@ getLearnerFile(lrn: any, aid: any): void {
           this.assessmentans = result.assessment;
 
           // Check if the learner has a file, else use icon.jpg
-          this.Filelink = `http://localhost:8000/storage/app/public/files/${result.file}`; // Updated to use the file path
+            this.Filelink = `http://localhost:8000/assets/files/${result.file}`; // Updated to use the file path
+            this.Filename = result.file;
+            this.Filename = this.Filelink.split('/').pop();
           // if (result.file) {
           // } else {
           //     this.Filelink = 'assets/icon.jpg'; // Fallback to default icon
