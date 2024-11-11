@@ -206,7 +206,7 @@ constructor(
                     timer: 1500
                 });
 
-                this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
+                // this.route.navigate(['/main/Subject/subjectmain/modules/assessmentfinish']);
                 // Handle the result as needed, e.g., update the UI or store the file path
                 // If you need to update a specific file path, you can do it here
                 // this.filePath = `http://localhost:8000/assets/files/${result.file}`;
@@ -225,7 +225,7 @@ constructor(
             showConfirmButton: true
         });
     });
-}
+  }
 
 getLearnerFile(lrn: any, aid: any): void {
   this.student.getAnswerFile(lrn, aid).subscribe(

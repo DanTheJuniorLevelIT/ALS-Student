@@ -8,7 +8,7 @@
       </nav>
 
       <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-10">
             <h1 class="titles">Assessment Page </h1>
             
         </div>
@@ -17,27 +17,22 @@
             <!-- Upload Profile Picture Modal -->
             <button class="button btn btn-success" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload a File</button>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            
+        </div>
         <div class="col-sm-2" >
-            <!-- Upload Profile Picture Modal -->
-           
-
-                <div class="col-4 text-right">
+                <div class=" text-right">
                   <a 
                   target="_blank"
                   href="{{newFileUrl}}"
-                  >{{newFileUrl}}
+                  >Uploaded File
                 </a>
                 </div>
             
-           
-                <!-- <a 
-                href={{a.file}} 
-                target="_blank" 
-                rel="noopener noreferrer">
-                Download File
-              </a> -->
-            
         </div>
+
     </div>
     <h5 class="text-muted text-uppercase">{{assessmentitle}}</h5>
 
@@ -54,6 +49,7 @@
             <div class="essay mt-5">
                 <mat-card class="quiz-container">
                     <mat-card-header>
+                        <!-- <h4>{{questions[itemno]?.question_id}}</h4> -->
                         <h4>{{questions[itemno]?.question}}</h4>
                     </mat-card-header>
                     <mat-card-content>
@@ -70,7 +66,7 @@
                     <mat-card-header>                
                     </mat-card-header>
                     <mat-card-content> 
-                         <h3>{{questions[itemno].question}}</h3>
+                         <h3>{{questions[itemno]?.question}}</h3>
                     </mat-card-content>
                         <mat-form-field>
                             <mat-label>Provide an answer</mat-label>
