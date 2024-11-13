@@ -18,10 +18,6 @@
 </div>
 
 
-
-
-
-
 <div class="container text-center justify-content-center border-bottom">
     <h1>{{modulename}}</h1>
     <h5 class="text-muted text-uppercase text-center">{{subname}} | {{admin_name}}</h5>
@@ -29,23 +25,70 @@
 </div>
 
 @for (item of lessons; track $index) {
-    @if (item.lesson_id == item.module_id) {
-        <div class="details">
-            <div class="lessontitle fw-bold">
-                {{item.topic_title}}
-            </div>
-            <div class="lessons lh-lg">
-                {{item.lesson}}             
-            </div>
-            <div class="alert alert-primary mt-3" role="alert">
-                <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
-                <a *ngFor="let media of item.media" 
-                href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
-                target="_blank" style="display: flex;"
-                download>{{ media.filename }}</a>
+        <div class="p-3 m-3 border border-dark">
+            <h4>Lesson {{$index + 1}}</h4>
+            <div class="details">
+                <div class="lessontitle fw-bold">
+                    {{item.topic_title}}
+                </div>
+                <div class="lessons lh-lg">
+                    {{item.lesson}}             
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="alert alert-primary mt-3" role="alert">
+                            <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
+                            <a *ngFor="let media of item.media" 
+                            href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
+                            target="_blank" style="display: flex;"
+                            download>{{ media.filename }}</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="m-2 border border-dark bg-white">
+                            <strong><h5 class="text-center mt-2">Assessments:</h5></strong>
+                            <mat-accordion>
+                                <mat-expansion-panel (opened)="getAssessments(item.lesson_id)">
+                                    <mat-expansion-panel-header>
+                                        <span>View Assessments</span>
+                                    </mat-expansion-panel-header>
+    
+                                    <!-- Assessments List -->
+                                    <!-- <ul *ngIf="assessmentlist && assessmentlist.length">
+                                        <li *ngFor="let assessment of assessmentlist">
+                                            {{assessment.title}} - Due: {{assessment.due_date | date}}
+                                        </li>
+                                    </ul>
+                                    <p *ngIf="!assessmentlist || assessmentlist.length === 0">
+                                        No assessments available for this lesson.
+                                    </p> -->
+                                    @if(assessmentlist && assessmentlist.length) {
+                                        <strong><p style="color: grey;">Open: </p></strong>
+                                        @for (item of assessmentlist; track $index) {
+                                            @if(item.isOpen == true) {
+                                                <ul>
+                                                    <li><a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)">{{item.title}} @if(item.assessmentid == item.aid) {<p style="color: green">(Finished)</p>}</a></li><br>
+                                                </ul>
+                                            }
+                                        }
+                                        <strong><p style="color: red">Closed(Overdue): </p></strong>
+                                        @for (item of assessmentlist; track $index) {
+                                            @if (item.isOpen == false) {
+                                                <ul>
+                                                    <li>{{item.title}}</li>
+                                                </ul>
+                                            }
+                                        }
+                                    } @else {
+                                        <p>No assessments available for this lesson.</p>
+                                    }
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    }
 }
 
 

@@ -47,7 +47,11 @@
             <div class="card-body-assessment-links">
               <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
               @for (item of pendingassessments; track $index) {
-              <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="border-bottom">{{item.title}}</a>
+                @if(item.isOpen == true) {
+                  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="border-bottom">{{item.title}}</a>
+                }@else if (item.isOpen == false) {
+                  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="border-bottom" style="pointer-events: none; opacity: 0.5; color: gray;">{{item.title}} <span class="text-danger">(Overdue)</span></a>
+                }
               }
             </div>
           </div>

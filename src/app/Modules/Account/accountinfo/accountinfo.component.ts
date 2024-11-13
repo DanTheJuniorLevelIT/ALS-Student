@@ -173,7 +173,8 @@ export class AccountinfoComponent implements OnInit{
         this.learner = data.learner;
         // Check if the learner has a profile picture, else use icon.jpg
         if (data.image) {
-          this.profilePic = `http://localhost:8000/assets/${data.image}`;
+          this.profilePic = `http://localhost:8000/assets/profile_pictures/${data.image}`;
+          console.log(data.image);
         } else {
           this.profilePic = 'assets/icon.jpg'; // Fallback to default icon
         }
