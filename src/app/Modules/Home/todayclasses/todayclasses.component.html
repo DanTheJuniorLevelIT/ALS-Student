@@ -4,60 +4,65 @@
   <div class="container" *ngIf="learner">
     <div class="row">
       <div class="col-8">      
-        <h1 class="greeting">Goodmorning {{learner.firstname}}</h1>
-        <h3>{{currentDayAndDate}}</h3>
+        <h1 class="greeting">{{ greeting }} {{ learner.firstname }}</h1>
+        <h3>{{ currentDayAndDate }}</h3>
       </div>
     </div>
-  </div>
+  </div>  
   
  
   <!-- Today's Classes -->
   <div class="col-8" id="card">
     <div class="row">
-      <div class="col-8">
-        <div class="row">
-        @for (item of subjects ; track $index) {
-          <div class="col-sm-6">
-            <a [routerLink]="['/main/Subject/subjectmain/modules']">
-              <div class="card" style="width: 12rem;">
-                <div class="image">
-                  <img src="assets/{{item.image}}" class="card-img-top border border-bottom" alt="...">
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{item.subject_name}}</h5>
-                  <div class="card-details">            
-                    <p class="card-text">{{item.schedule}}</p>
-                    <p class="card-text">{{item.admin_name}}</p>
-                  </div>
+      @for (item of subjects; track $index) {
+        <div class="col-sm-4 mb-3">
+          <a [routerLink]="['/main/Subject/subjectmain/modules']">
+            <div class="card" style="width: 100%;">
+              <div class="image">
+                <img src="/assets/{{item.image}}" class="card-img-top border border-bottom" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{item.subject_name}}</h5>
+                <div class="card-details">            
+                  <p class="card-text">{{item.schedule}}</p>
+                  <p class="card-text">{{item.admin_name}}</p>
                 </div>
               </div>
-            </a>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+  
+  <div class="col-4" id="pendingassessments">
+    <div class="overflow-scroll">
+      <div class="card" id="cardpendingassessments">
+        <div class="card-body-assessment">
+          <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
+          <div class="card-body-assessment-links">
+            @for (item of pendingassessments; track $index) {
+              @if(item.isOpen == 1) {
+                <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" 
+                   (click)="getAssessmentID(item.assessmentid, item.title)" 
+                   class="border-bottom">
+                  {{item.title}}
+                </a>
+              } @else if (item.isOpen == 0) {
+                <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" 
+                   (click)="getAssessmentID(item.assessmentid, item.title)" 
+                   class="border-bottom" 
+                   style="pointer-events: none; opacity: 0.5; color: gray;">
+                  {{item.title}} <span class="text-danger">(Overdue)</span>
+                </a>
+              }
+            }
           </div>
-        }
         </div>
       </div>
     </div>
   </div>
-
-
-  <div class="col-4" id="pendingassessments">
-    <div class="overflow-scroll">
-      <div class="card" id="cardpendingassessments">
-          <div class="card-body-assessment">
-            <div class="card-body-assessment-links">
-              <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
-              @for (item of pendingassessments; track $index) {
-                @if(item.isOpen == true) {
-                  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="border-bottom">{{item.title}}</a>
-                }@else if (item.isOpen == false) {
-                  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="border-bottom" style="pointer-events: none; opacity: 0.5; color: gray;">{{item.title}} <span class="text-danger">(Overdue)</span></a>
-                }
-              }
-            </div>
-          </div>
-      </div>
-    </div>
- </div>
+  
 </div>
   
 

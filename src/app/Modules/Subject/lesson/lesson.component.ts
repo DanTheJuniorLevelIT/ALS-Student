@@ -53,10 +53,10 @@ export class LessonComponent implements OnInit {
       const today = new Date();
       this.assessmentlist = result;
 
-      this.assessmentlist.forEach((assessment:any) => {
-        const dueDate = new Date(assessment.due_date);
-        assessment.isOpen = dueDate >= today ? true : false; //Close if due date has passed
-      });
+        // this.assessmentlist.forEach((assessment:any) => {
+        //   const dueDate = new Date(assessment.due_date);
+        //   assessment.isOpen = dueDate >= today ? true : false; 
+        // });
       
       console.log(result);
     })

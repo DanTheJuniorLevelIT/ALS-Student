@@ -6,7 +6,7 @@
 </nav>
 
 
-<div class="container mb-5">
+<!-- <div class="container mb-5">
     @for (item of lessons; track $index) {
         <div class="row justify-content-center">
             <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
@@ -15,7 +15,7 @@
         </div>
 
     }
-</div>
+</div> -->
 
 
 <div class="container text-center justify-content-center border-bottom">
@@ -25,7 +25,7 @@
 </div>
 
 @for (item of lessons; track $index) {
-        <div class="p-3 m-3 border border-dark">
+        <div class="p-3 m-3 border border-dark" style="background-color: rgb(200, 199, 199);">
             <h4>Lesson {{$index + 1}}</h4>
             <div class="details">
                 <div class="lessontitle fw-bold">
@@ -36,12 +36,19 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="alert alert-primary mt-3" role="alert">
-                            <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
-                            <a *ngFor="let media of item.media" 
-                            href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
-                            target="_blank" style="display: flex;"
-                            download>{{ media.filename }}</a>
+                        <div role="alert">
+                            <div class="alert alert-primary mt-3"> 
+                                <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
+                                <a *ngFor="let media of item.media" 
+                                href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
+                                target="_blank" style="display: flex;"
+                                download>{{ media.filename }}</a>
+                            </div>
+                            <a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']" (click)="getLessonID(item.lesson_id)">
+                                <button type="button" class="btn" style="background-color: #045076; color: white;">
+                                    View Your Discussions
+                                 </button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -65,17 +72,21 @@
                                     @if(assessmentlist && assessmentlist.length) {
                                         <strong><p style="color: grey;">Open: </p></strong>
                                         @for (item of assessmentlist; track $index) {
-                                            @if(item.isOpen == true) {
+                                            @if(item.isOpen == 1) {
                                                 <ul>
-                                                    <li><a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)">{{item.title}} @if(item.assessmentid == item.aid) {<p style="color: green">(Finished)</p>}</a></li><br>
+                                                    <li><a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex">{{item.title}} 
+                                                        @if(item.assessmentid == item.aid) {<p style="color: green">(Finished)</p>}
+                                                    </a></li>
                                                 </ul>
                                             }
                                         }
                                         <strong><p style="color: red">Closed(Overdue): </p></strong>
                                         @for (item of assessmentlist; track $index) {
-                                            @if (item.isOpen == false) {
+                                            @if (item.isOpen == 0) {
                                                 <ul>
-                                                    <li>{{item.title}}</li>
+                                                    <li><p style="opacity: 0.5; color: gray;">{{item.title}}</p>
+                                                        @if(item.assessmentid == item.aid) {<p style="color: green">(Finished)</p>}
+                                                    </li>
                                                 </ul>
                                             }
                                         }

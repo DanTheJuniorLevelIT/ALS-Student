@@ -19,9 +19,11 @@ export class TodayclassesComponent implements OnInit {
   lrn: any
   pendingassessments: any;
   currentDayAndDate: string; // Variable that will hold the current day and date
+  greeting: any;
 
   constructor(private studentservice: StudentService) { 
     this.currentDayAndDate = this.getCurrentDayAndDate(); //Initialize the current day and date 
+    this.greeting = this.getGreeting(); // Initialize the greeting
   }
 
   ngOnInit(): void {
@@ -53,7 +55,7 @@ export class TodayclassesComponent implements OnInit {
 
 getSubjects() {
     if (this.lrn) {
-      this.studentservice.getSubjectsToday(this.lrn).subscribe(
+      this.studentservice.getSubjects(this.lrn).subscribe(
         (data) => {
           this.subjects = data; // Store the retrieved subjects
         },
@@ -76,6 +78,17 @@ getSubjects() {
     };
 
     return date.toLocaleDateString(undefined, options); // Format the date string
+  }
+
+  getGreeting(): string {
+    const hour = new Date().getHours();
+    if (hour >= 1 && hour < 12) {
+      return 'Good morning';
+    } else if (hour >= 12 && hour < 18) {
+      return 'Good afternoon';
+    } else {
+      return 'Good evening';
+    }
   }
 
   getPendingAssessments(lrn: any) {

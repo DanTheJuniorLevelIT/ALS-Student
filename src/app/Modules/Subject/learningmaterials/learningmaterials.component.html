@@ -46,11 +46,11 @@
                     </div>
                     <div class="modal-body">
                         @for (item of progress; track $index) {
-                          @if(item.isOpen == true) {
+                          @if(item.isOpen == 1) {
                             <div class="border-bottom">
                                 {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal">{{item.title}}</a><br><br>
                             </div>
-                          }@else if(item.isOpen == false) {
+                          }@else if(item.isOpen == 0) {
                             <div class="border-bottom">
                               {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal" style="pointer-events: none; opacity: 0.5; color: gray">{{item.title}} <span class="text-danger">(Overdue)</span></a><br><br>
                             </div>
