@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
 import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-lesson',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, MatExpansionModule],
   templateUrl: './lesson.component.html',
   styleUrl: './lesson.component.css'
 })
@@ -19,6 +20,9 @@ export class LessonComponent implements OnInit {
   moduletitle: any
   admin_name: any
   subname: any
+  lrn: any
+  assessmentlist: any;
+  overdueHeaderShown: boolean = false;
 
   constructor(private studentservice: StudentService) {}
 
@@ -30,7 +34,7 @@ export class LessonComponent implements OnInit {
     this.admin_name = localStorage.getItem('admin_name');
     this.subname = localStorage.getItem('subname');
     this.getLessons(this.moduleID);
-
+    this.lrn = localStorage.getItem('LRN');
     // // this.getModules(this.moduleID);
   }
 
@@ -42,6 +46,25 @@ export class LessonComponent implements OnInit {
   }
   getLessonID(lid:any) {
     localStorage.setItem('lessonid',lid);
+  }
+
+  getAssessments(lid: any){
+    this.studentservice.getAssessments(lid, this.lrn).subscribe((result:any)=>{
+      const today = new Date();
+      this.assessmentlist = result;
+
+        // this.assessmentlist.forEach((assessment:any) => {
+        //   const dueDate = new Date(assessment.due_date);
+        //   assessment.isOpen = dueDate >= today ? true : false; 
+        // });
+      
+      console.log(result);
+    })
+  }
+
+  getAssessmentID(aid: any, title: any){
+    localStorage.setItem('assessmentID', aid);
+    localStorage.setItem('assessmenttitle', title);
   }
 
   // // getModules(moduleID:any ) {
