@@ -31,8 +31,8 @@ export class LessonComponent implements OnInit {
     this.moduletitle = localStorage.getItem('mtitle');
     console.log(this.moduleID);
     this.modulename = localStorage.getItem('moduletitle');
-    this.admin_name = localStorage.getItem('admin_name');
-    this.subname = localStorage.getItem('subname');
+    this.admin_name = localStorage.getItem('adminname');
+    this.subname = localStorage.getItem('sub_name');
     this.getLessons(this.moduleID);
     this.lrn = localStorage.getItem('LRN');
     // // this.getModules(this.moduleID);

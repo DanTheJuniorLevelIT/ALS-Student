@@ -61,7 +61,7 @@
                     </div>
     }
 
-    @else if (questions[itemno]?.type === "Identification") {
+    @else if (questions[itemno]?.type === "identification") {
             <div class="identification mt-5">
                 <mat-card class="questioncard">
                     <mat-card-header>                
@@ -76,7 +76,7 @@
                 </mat-card>
             </div>
     }
-    @else if (questions[itemno]?.type === "Multiple Choice" ||  questions[itemno]?.type === "True or False") {
+    @else if (questions[itemno]?.type === "multiple-choice") {
             <div class="multiplechoice mt-5">
                 <mat-card class="multiplechoicecard">
                     <mat-card-header>
@@ -91,6 +91,35 @@
                     @for (option of questions[itemno]?.options; track $index) {
                         <mat-radio-button class="example-radio-button" [value]="option.option_text" (change)="submitRadio(option.option_text, questions[itemno]?.question_id, lrn)">{{option.option_text}}</mat-radio-button>
                     }
+                  </mat-radio-group>
+                </mat-card> 
+            </div>
+    }
+
+    @else if (questions[itemno]?.type === "true-false") {
+            <div class="multiplechoice mt-5">
+                <mat-card class="multiplechoicecard">
+                    <mat-card-header>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h3>{{questions[itemno]?.question}}</h3>
+                    </mat-card-content>
+                    <mat-radio-group
+                     aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    formControlName="answer" [ngModel]="questions[itemno]?.user_answer">
+                        <!-- {{questions[itemno]?.user_answer}} -->
+                         @if(questions[itemno]?.user_answer == 'true') {
+                             <mat-radio-button class="example-radio-button" [value]="questions[itemno]?.user_answer" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
+                             <mat-radio-button class="example-radio-button" [value]="false" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
+                         }@else if (questions[itemno]?.user_answer == 'false') {
+                             <mat-radio-button class="example-radio-button" [value]="true" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
+                            <mat-radio-button class="example-radio-button" [value]="questions[itemno]?.user_answer" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
+                         } @else if (questions[itemno]?.user_answer == null) {
+                            <mat-radio-button class="example-radio-button" [value]="true" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
+                            <mat-radio-button class="example-radio-button" [value]="false" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
+                         }
+
                   </mat-radio-group>
                 </mat-card> 
             </div>

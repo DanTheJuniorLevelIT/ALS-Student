@@ -25,10 +25,10 @@ export class LearningmaterialsComponent implements OnInit {
   constructor (private studentservice: StudentService) {}
 
   ngOnInit(): void {
-      this.cid = localStorage.getItem('classID');
-      this.admin_name = localStorage.getItem('admin_name');
+      this.cid = localStorage.getItem('cid');
+      this.admin_name = localStorage.getItem('adminname');
       this.lrn = localStorage.getItem('LRN');
-      this.subname = localStorage.getItem('subname');
+      this.subname = localStorage.getItem('sub_name');
       console.log(this.cid);
       this.getModules(this.cid);
       this.pendingassessments(this.lrn);

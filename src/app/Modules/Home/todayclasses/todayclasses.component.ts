@@ -103,4 +103,11 @@ getSubjects() {
     localStorage.setItem('assessmenttitle', title);
   }
 
+  getClass(cid: any, adminname: any, sub_name: any) {
+    localStorage.setItem('cid', cid);
+    localStorage.setItem('adminname', adminname);
+    localStorage.setItem('sub_name', sub_name);
+    console.warn(cid);
+  }
+
 }
