@@ -226,7 +226,7 @@ constructor(
             showConfirmButton: true
         });
     });
-}
+  }
 
 getLearnerFile(lrn: any, aid: any): void {
   this.student.getAnswerFile(lrn, aid).subscribe(

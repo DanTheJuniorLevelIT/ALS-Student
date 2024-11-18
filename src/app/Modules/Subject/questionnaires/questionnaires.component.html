@@ -51,6 +51,7 @@
             <div class="essay mt-5">
                 <mat-card class="quiz-container">
                     <mat-card-header>
+                        <!-- <h4>{{questions[itemno]?.question_id}}</h4> -->
                         <h4>{{questions[itemno]?.question}}</h4>
                     </mat-card-header>
                     <mat-card-content>
@@ -67,7 +68,7 @@
                     <mat-card-header>                
                     </mat-card-header>
                     <mat-card-content> 
-                         <h3>{{questions[itemno].question}}</h3>
+                         <h3>{{questions[itemno]?.question}}</h3>
                     </mat-card-content>
                         <mat-form-field>
                             <mat-label>Provide an answer</mat-label>
