@@ -130,7 +130,7 @@
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     .top_navbar {
         background: #0F3041;
         height: 50px;

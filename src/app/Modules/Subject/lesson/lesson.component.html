@@ -79,7 +79,7 @@
                                                         <div style="display: grid;">
                                                             
                                                             <p style="color: green">
-                                                                (Finished)
+                                                                (Submitted)
                                                             </p>
                                                             <p>
                                                                 Score: {{item.scores}}
@@ -95,13 +95,10 @@
                                             @if (item.isOpen == 0) {
                                                 <ul>
                                                     <li><p style="opacity: 0.5; color: gray;">{{item.title}}</p>
-                                                    @if(lrn == item.slrn) 
-                                                    {
-                                                        <p style="color: green">(Finished)</p>
+                                                        @if(lrn == item.slrn) {<p style="color: green">(Submitted)</p>
                                                         <p>
                                                             Score: {{item.scores}}
-                                                        </p>
-                                                    }
+                                                        </p>}
                                                     </li>
                                                 </ul>
                                             }
