@@ -1,17 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket'; 
+import { catchError, Observable, throwError } from 'rxjs'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  // private socket$: WebSocketSubject<any>;
   private apiUrl = 'http://localhost:8000/api/';
 
   constructor(private http: HttpClient) {
-    // this.socket$ = webSocket('ws://')
    }
 
   registerLearner(learnerData: any): Observable<any> {
@@ -40,7 +37,7 @@ export class StudentService {
   getSubjects(lrn: string): Observable<any> {
     console.log("Get subjects called with LRN: " + lrn);
     
-    return this.http.get(`${this.apiUrl}getSubjects?lrn=${lrn}`);
+    return this.http.get(`${this.apiUrl}getSubjects/${lrn}`);
   }
   
   getSubjectsToday(lrn: string): Observable<any> {
@@ -144,5 +141,25 @@ export class StudentService {
   }
   getFile(aid: any, lrn: any) {
     return this.http.get(`${this.apiUrl}getFile?aid=${aid}&lrn=${lrn}`);
+  }
+  getAnnouncements(cid: any) {
+    return this.http.get(`${this.apiUrl}getAnnouncements?cid=${cid}`);
+  }
+
+  getMessages(id:any) {
+    // const headers = { 'Authorization': 'Bearer ' + this.token };
+    return this.http.get(`${this.apiUrl}messages/${id}`);
+  }
+
+  getAdmin(id: any) {
+    return this.http.get(`${this.apiUrl}admins/${id}`);
+  }
+
+  sendReply(data: any) {
+    return this.http.post(`${this.apiUrl}messages/reply`, data);
+  }
+
+  sendMessage(data: any) {
+    return this.http.post(`${this.apiUrl}messages/compose`, data);
   }
 }

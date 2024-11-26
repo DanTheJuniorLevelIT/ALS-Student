@@ -16,7 +16,7 @@
     <div class="row">
       @for (item of subjects; track $index) {
         <div class="col-sm-4 mb-3">
-          <a [routerLink]="['/main/Subject/subjectmain/modules']" (click)="getClass(item.classid, item.admin_name, item.subject_name)">
+          <a [routerLink]="['/main/Subject/subjectmain/modules']" (click)="getClass(item.subjectid, item.classid, item.admin_name, item.subject_name)">
             <div class="card" style="width: 100%;">
               <div class="image">
                 <img src="/assets/{{item.image}}" class="card-img-top border border-bottom" alt="...">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatCardModule} from '@angular/material/card';
 import { StudentService } from '../../../student.service';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ export class TodayclassesComponent implements OnInit {
   currentDayAndDate: string; // Variable that will hold the current day and date
   greeting: any;
 
-  constructor(private studentservice: StudentService) { 
+  constructor(private studentservice: StudentService, private route: Router) { 
     this.currentDayAndDate = this.getCurrentDayAndDate(); //Initialize the current day and date 
     this.greeting = this.getGreeting(); // Initialize the greeting
   }
@@ -103,11 +103,18 @@ getSubjects() {
     localStorage.setItem('assessmenttitle', title);
   }
 
-  getClass(cid: any, adminname: any, sub_name: any) {
+  getClass(subid: any, cid: any, adminname: any, sub_name: any,) {
+    localStorage.setItem('subjectid', subid);
     localStorage.setItem('cid', cid);
     localStorage.setItem('adminname', adminname);
     localStorage.setItem('sub_name', sub_name);
     console.warn(cid);
+    console.warn(subid);
+    this.navigateToModules(subid);
   }
+
+  navigateToModules(subid: any){
+    this.route.navigate(['/main/Subject/subjectmain/modules', subid]);
+  } 
 
 }

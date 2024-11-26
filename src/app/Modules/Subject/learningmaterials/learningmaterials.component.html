@@ -11,21 +11,47 @@
             </button>
 
             <!-- Notification Button -->
-                <button type="button" class="btn border border-dark" style="margin-left: 15px;" data-bs-toggle="modal" data-bs-target="#notificationModal" data-bs-placement="bottom" title="Notifications">
+                <button type="button" class="btn border border-dark" style="margin-left: 15px;" data-bs-toggle="modal" data-bs-target="#notificationModal" data-bs-placement="bottom" title="Notifications" (click)="getAnnouncements(cid)">
                     <i class="fa-solid fa-bullhorn fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
                 </button>
                 
             
-            <!-- Notification Modal -->
+            <!-- Announcements Modal -->
             <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Announcements</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      ...
+                      @if(announcements && announcements.length) {
+                          @for (item of announcements; track $index) {
+                          <mat-card class="mat-card mt-2" style="background-color: rgb(193, 230, 230);">
+                            <div class="row">
+                              <div class="col-sm-8">
+                                <mat-card-header>
+                                  <div class="d-flex flex-column">  <!-- Apply d-flex to the header content -->
+                                    <h4 style="font-weight: bold;">{{item.title}}</h4>
+                                    <p>{{item.instruction}}</p>
+                                    <p style="opacity: 0.5;">{{admin_name}}</p>
+                                  </div>
+                                </mat-card-header>
+                              </div>
+                              <div class="col-sm-4">
+                                <mat-card-content>
+                                  <div class="d-flex justify-content-end flex-column">
+                                    <p style="font-size: 12px;"><strong><span>Date Published:</span></strong> January 07, 2025</p>
+                                  </div>
+                                </mat-card-content>
+                              </div>
+                            </div>
+                          </mat-card>
+                        }
+                      }
+                      @else {
+                          <p>We haven't posted any announcements yet.</p>
+                      }
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

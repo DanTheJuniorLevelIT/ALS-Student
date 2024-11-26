@@ -13,6 +13,7 @@ import { StudentService } from '../../../student.service';
 export class LearningmaterialsComponent implements OnInit {
 
   cid: any;
+  subid: any
   modules: any;
   admin_name: any;
   subname: any;
@@ -20,16 +21,19 @@ export class LearningmaterialsComponent implements OnInit {
   lrn: any;
   progress: any;
   pendingassessments: any;
+  announcements: any;
 
 
   constructor (private studentservice: StudentService) {}
 
   ngOnInit(): void {
+      this.subid = localStorage.getItem('subjectid');
       this.cid = localStorage.getItem('cid');
       this.admin_name = localStorage.getItem('adminname');
       this.lrn = localStorage.getItem('LRN');
       this.subname = localStorage.getItem('sub_name');
       console.log(this.cid);
+      console.log(this.subid);
       this.getModules(this.cid);
       this.pendingassessments(this.lrn);
       this.modulecount = 1;
@@ -64,5 +68,13 @@ export class LearningmaterialsComponent implements OnInit {
   getAssessmentID(aid: any, title: any){
     localStorage.setItem('assessmentID', aid);
     localStorage.setItem('assessmenttitle', title);
+  }
+
+  getAnnouncements(cid: any) {
+    this.studentservice.getAnnouncements(cid).subscribe((result: any) => {
+      this.announcements = result;
+      console.log(cid);
+      console.log(result);
+    })
   }
 }
