@@ -75,7 +75,7 @@
                                             @if(item.isOpen == 1) {
                                                 <ul>
                                                     <li><a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex">{{item.title}} 
-                                                        @if(item.assessmentid == item.aid) {
+                                                        @if(lrn == item.slrn) {
                                                         <div style="display: grid;">
                                                             
                                                             <p style="color: green">
@@ -95,7 +95,13 @@
                                             @if (item.isOpen == 0) {
                                                 <ul>
                                                     <li><p style="opacity: 0.5; color: gray;">{{item.title}}</p>
-                                                        @if(item.assessmentid == item.aid) {<p style="color: green">(Finished)</p>}
+                                                    @if(lrn == item.slrn) 
+                                                    {
+                                                        <p style="color: green">(Finished)</p>
+                                                        <p>
+                                                            Score: {{item.scores}}
+                                                        </p>
+                                                    }
                                                     </li>
                                                 </ul>
                                             }

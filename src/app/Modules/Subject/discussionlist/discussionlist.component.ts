@@ -20,8 +20,8 @@ export class DiscussionlistComponent implements OnInit {
   constructor(private studentservice: StudentService) {}
 
   ngOnInit(): void {
-    this.subname = localStorage.getItem('subname');
-    this.admin_name = localStorage.getItem('admin_name');
+    this.subname = localStorage.getItem('sub_name');
+    this.admin_name = localStorage.getItem('adminname');
     this.lessonID = localStorage.getItem('lessonid');
     this.getDiscussions(this.lessonID);
   }

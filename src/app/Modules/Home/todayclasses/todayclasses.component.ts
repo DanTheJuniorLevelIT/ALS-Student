@@ -110,11 +110,11 @@ getSubjects() {
     localStorage.setItem('sub_name', sub_name);
     console.warn(cid);
     console.warn(subid);
-    this.navigateToModules(subid);
+    // this.navigateToModules(subid);
   }
 
-  navigateToModules(subid: any){
-    this.route.navigate(['/main/Subject/subjectmain/modules', subid]);
-  } 
+  // navigateToModules(subid: any){
+  //   this.route.navigate(['/main/Subject/subjectmain/modules', subid]);
+  // } 
 
 }
