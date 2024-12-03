@@ -23,6 +23,7 @@ export class LessonComponent implements OnInit {
   lrn: any
   assessmentlist: any;
   overdueHeaderShown: boolean = false;
+  isLoading = false;
 
   constructor(private studentservice: StudentService) {}
 
@@ -33,7 +34,7 @@ export class LessonComponent implements OnInit {
     this.modulename = localStorage.getItem('moduletitle');
     this.admin_name = localStorage.getItem('adminname');
     this.subname = localStorage.getItem('sub_name');
-    this.getLessons(this.moduleID);
+    this.spinner(this.moduleID);
     this.lrn = localStorage.getItem('LRN');
     // // this.getModules(this.moduleID);
   }
@@ -72,5 +73,13 @@ export class LessonComponent implements OnInit {
   // //   this.modulename = result;
   // //   })
   // // }
+
+  spinner(moduleID: any) {
+    this.isLoading = true;
+    this.getLessons(moduleID);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1500);
+  }
 
 }

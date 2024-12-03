@@ -43,6 +43,14 @@
           <div class="question-text">{{discussionTopic}}</div>
         </div>
         <div class="answer-list">
+          <!-- Spinner -->
+          @if(isLoading) {
+            <div class="d-flex justify-content-center align-items-center vh-100">
+              <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          }
           <div *ngFor="let discussion of discussions"
           [ngClass]="{'teacher-answer': discussion.role === 'teacher', 'student-answer': discussion.role === 'student' && !discussion.isCurrentUser, 'current-user-answer': discussion.isCurrentUser}"
           class="answer">

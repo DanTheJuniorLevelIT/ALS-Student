@@ -20,6 +20,7 @@ export class DiscussionComponent implements OnInit {
   discussionForm: FormGroup;
   loggedInLRN: any;
   private intervalId: any;
+  isLoading = true;
 
   constructor(private studentservice: StudentService, private fb: FormBuilder) {
     this.discussionForm = this.fb.group({
@@ -32,11 +33,7 @@ export class DiscussionComponent implements OnInit {
       this.discussionID = localStorage.getItem('discussionID');
       console.warn(this.discussionID);
       // this.loadDiscussions(this.discussionID);
-
-      //Set an interval to refresh discussions every 10 seconds
-      this.intervalId = setInterval(() => {
-        this.loadDiscussions(this.discussionID);
-      }, 10000); // 10000ms = 10 seconds
+      this.spinner(this.discussionID);
 
       // Get the current logged-in user's LRN from localStorage
       this.loggedInLRN = localStorage.getItem('LRN');
@@ -111,6 +108,13 @@ export class DiscussionComponent implements OnInit {
     })
   }
 
+  spinner(disID: any) {
+    this.isLoading = true;
+    this.loadDiscussions(disID);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1500);
+  }
 
 }
 

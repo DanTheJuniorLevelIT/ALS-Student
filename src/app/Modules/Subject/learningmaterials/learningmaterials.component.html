@@ -1,113 +1,161 @@
 <div class="container">
-    <div class="row">
-        <h1 class="titles">My Modules</h1>
-        <div class="col-md-7">            
-            <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
-        </div>
-        <div class="col-sm-5">
-            <!-- Button Trigger Modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="checkProgress()" style="margin-left: 50px;">
-                Check Your Progress
-            </button>
+  <div class="row">
+      <!-- Title Section -->
+      <div class="col-12 mb-3">
+          <h1 class="titles">My Modules</h1>
+      </div>
 
-            <!-- Notification Button -->
-                <button type="button" class="btn border border-dark" style="margin-left: 15px;" data-bs-toggle="modal" data-bs-target="#notificationModal" data-bs-placement="bottom" title="Notifications" (click)="getAnnouncements(cid)">
-                    <i class="fa-solid fa-bullhorn fa-bounce" style="--fa-bounce-start-scale-x: 1;--fa-bounce-start-scale-y: 1;--fa-bounce-jump-scale-x: 1;--fa-bounce-jump-scale-y: 1;--fa-bounce-land-scale-x: 1;--fa-bounce-land-scale-y: 1;--fa-bounce-rebound: 0;"></i>
-                </button>
-                
-            
-            <!-- Announcements Modal -->
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Announcements</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      @if(announcements && announcements.length) {
-                          @for (item of announcements; track $index) {
-                          <mat-card class="mat-card mt-2" style="background-color: rgb(193, 230, 230);">
-                            <div class="row">
-                              <div class="col-sm-8">
-                                <mat-card-header>
-                                  <div class="d-flex flex-column">  <!-- Apply d-flex to the header content -->
-                                    <h4 style="font-weight: bold;">{{item.title}}</h4>
-                                    <p>{{item.instruction}}</p>
-                                    <p style="opacity: 0.5;">{{admin_name}}</p>
-                                  </div>
-                                </mat-card-header>
-                              </div>
-                              <div class="col-sm-4">
-                                <mat-card-content>
-                                  <div class="d-flex justify-content-end flex-column">
-                                    <p style="font-size: 12px;"><strong><span>Date Published:</span></strong> January 07, 2025</p>
-                                  </div>
-                                </mat-card-content>
-                              </div>
-                            </div>
-                          </mat-card>
-                        }
-                      }
-                      @else {
-                          <p>We haven't posted any announcements yet.</p>
-                      }
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            <!-- Progress Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Pending Assessments</h1>
-                      <h5 class="text-muted text-uppercase">{{subname}}</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @for (item of progress; track $index) {
-                          @if(item.isOpen == 1) {
-                            <div class="border-bottom">
-                                {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal">{{item.title}}</a><br><br>
-                            </div>
-                          }@else if(item.isOpen == 0) {
-                            <div class="border-bottom">
-                              {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal" style="pointer-events: none; opacity: 0.5; color: gray">{{item.title}} <span class="text-danger">(Overdue)</span></a><br><br>
-                            </div>
-                          }
-                        }
+      <!-- Module Information and Buttons -->
+      <div class="col-md-7 col-sm-12 mb-3">
+          <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
+      </div>
+      <div class="col-md-5 col-sm-12 mb-3" *ngIf="!isLoading">
+          <div class="d-flex justify-content-center justify-content-md-end">
+              <!-- Check Your Progress Modal -->
+              <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="checkProgress()">
+                  Check Your Progress
+              </button>
 
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+              <!-- Notification Button -->
+              <button type="button" class="btn border border-dark" data-bs-toggle="modal" data-bs-target="#notificationModal" data-bs-placement="bottom" title="Notifications" (click)="getAnnouncements(cid)">
+                  <i class="fa-solid fa-bullhorn fa-bounce"></i>
+              </button>
+          </div>
+      </div>
+
+      <!-- Modules List -->
+      <div class="col-12" *ngIf="!isLoading">
+          @for (item of modules; track $index) {
+          <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']" (click)="getLessons(item.modules_id, item.title)">
+              <mat-card class="matcard mb-3">
+                  <div class="row align-items-center">
+                      <div class="col-12 col-lg-9">
+                          <mat-card-header class="matcardheader">Module {{$index + 1}}</mat-card-header>
+                          <mat-card-content class="matcardcontent text-muted text-uppercase">{{item.title}}</mat-card-content>
+                      </div>
+                      <div class="col-12 col-lg-3 text-end">
+                          <mat-card-content class="matcardcontent">{{item.formatted_date}}</mat-card-content>
+                      </div>
                   </div>
-                </div>
-              </div>
-        </div>
-    </div>
-    <!-- Retrieving Module -->
-        @for (item of modules; track $index ) {
-            <a [routerLink]="['/main/Subject/subjectmain/modules/lesson']" (click)="getLessons(item.modules_id, item.title)">
-            <mat-card class="matcard">
-                <div class="row">
-                    <div class="col-12 col-lg-9">
-                        <mat-card-header class="matcardheader">Module {{$index + 1}}</mat-card-header>
-                        <mat-card-content class="matcardcontent text-muted text-uppercase"> {{item.title}}</mat-card-content>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <mat-card-content class="matcardcontent">{{item.formatted_date}}</mat-card-content>
-                    </div>
-                </div>
-                <!-- <mat-card-content class="matcardcontent">{{item.description}}</mat-card-content> -->
-            </mat-card>
-            </a>
-        }
+              </mat-card>
+          </a>
+          }
+      </div>
+  </div>
 </div>
 
+
+<!-- Announcements Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Announcements</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          @if(announcements && announcements.length) {
+              @for (item of announcements; track $index) {
+              <mat-card class="mat-card mt-2" style="background-color: rgb(193, 230, 230);">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <mat-card-header>
+                      <div class="d-flex flex-column">  <!-- Apply d-flex to the header content -->
+                        <h4 style="font-weight: bold;">{{item.title}}</h4>
+                        <p>{{item.instruction}}</p>
+                        <p style="opacity: 0.5;">{{admin_name}}</p>
+                      </div>
+                    </mat-card-header>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-card-content>
+                      <div class="d-flex justify-content-end flex-column">
+                        <p style="font-size: 12px;"><strong><span>Date Published:</span></strong> {{item.formatted_date}}</p>
+                      </div>
+                    </mat-card-content>
+                  </div>
+                </div>
+              </mat-card>
+            }
+          }
+          @else {
+              <p>We haven't posted any announcements yet.</p>
+          }
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Progress Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-6">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">My Progress</h1>
+          </div>
+          <div class="col-6">
+            <h5 class="text-muted text-uppercase ">{{subname}}</h5>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          @for (item of progress; track $index) {
+            @if(item.isOpen == 1) {
+              <div class="border-bottom">
+                <div class="row">
+                  <div class="col-8 mt-3">
+                    {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal">{{item.title}}</a><br><br>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center align-items-center">
+                    @if (item.slrn == lrn) {
+                      <input type="checkbox" disabled checked style="transform: scale(1.5);">
+                    } @else {
+                      <input type="checkbox" disabled style="transform: scale(1.5);">
+                    }
+                  </div>
+                </div>
+              </div>
+            }@else if(item.isOpen == 0) {
+              <div class="border-bottom">
+                <div class="row">
+                  <div class="col-8 mt-3">
+                    {{$index + 1}}.  <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" data-bs-dismiss="modal" style="pointer-events: none; opacity: 0.5; color: gray">{{item.title}} <span class="text-danger">(Overdue)</span></a><br><br>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center align-items-center">
+                    @if (item.slrn == lrn) {
+                      <input type="checkbox" disabled checked style="transform: scale(1.5);">
+                    } @else {
+                      <input type="checkbox" disabled style="transform: scale(1.5);">
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          }
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Spinner -->
+@if(isLoading) {
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+}
+
+<!-- Router Outlet -->
 <router-outlet></router-outlet>

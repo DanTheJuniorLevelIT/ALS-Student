@@ -27,15 +27,18 @@
 										  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
+											<div class="mb-3">
 												<input type="file" class="form-control" id="formFile" (change)="onFileSelect($event)">
-
-												          <!-- Progress Bar -->
+												
+												<!-- Progress Bar -->
 												@if (isUploading) {
 													<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
 												}
 												@if (profilePic != null) {
 													<img [src]="profilePic" alt="" style="width: 200px; height: 200px; object-fit: cover; margin-top: 10px;">
 												}
+											</div>
+											<small class="text-muted">Supported file types: .png .jpeg</small>
 										</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -80,10 +83,10 @@
 							<!-- <h2 class="pb-3 text-center">Take Web Design to the Next Level - Start Today!</h2> -->
 							<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" method="post">
 								<div class="mb-3">
-									<label class="form-label" for="name">Old Password</label> <input class="form-control" id="name" type="password" formControlName="oldpassword">
+									<label class="form-label" for="password">Current Password</label> <input class="form-control" id="password" type="password" formControlName="oldpassword">
 								</div>
 								<div class="mb-3">
-									<label class="form-label" for="email">New Password</label> <input class="form-control" id="email" type="password" formControlName="password">
+									<label class="form-label" for="passwordconfirm">New Password</label> <input class="form-control" id="passwordconfirm" type="password" formControlName="password">
 								</div>
 								<div class="mb-3">
 									<label class="form-label" for="phone">Confirm Password</label><input class="form-control" id="phone" type="password" formControlName="password_confirmation">

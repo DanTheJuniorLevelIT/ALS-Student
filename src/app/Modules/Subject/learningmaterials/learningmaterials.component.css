@@ -17,7 +17,7 @@ a {
 }
 
 .container .matcard {
-    max-width: 900px;
+    /* max-width: 900px; */
     background-color:aliceblue;
     margin-bottom: 10px;
 }
@@ -38,24 +38,6 @@ a {
     transition: all 0.3s ease; /* Smooth transition for responsiveness */
   }
   
-  @media (max-width: 768px) {
-    .matcard {
-      margin-bottom: 10px;
-    }
-  
-    .matcardheader {
-      font-size: 1.2rem; /* Adjust font size for small screens */
-    }
-  
-    .matcardcontent {
-      font-size: 1rem;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .matcard {
-      width: 100%; /* Take full width of column for larger screens */
-    }
-  }
+
   
   

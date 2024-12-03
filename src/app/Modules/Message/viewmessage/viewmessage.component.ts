@@ -23,6 +23,7 @@ export class ViewmessageComponent implements OnInit {
   currentDate = new Date();
   messages: any;
   admin: any;
+  selectedmessageID: any;
   
   // Progress Bar
   isSending = false;
@@ -36,10 +37,11 @@ export class ViewmessageComponent implements OnInit {
 
   viewMessage(msg:any) {
     this.selectedMessage = msg;
+    this.selectedmessageID = msg.messageid;
     this.isModalOpen3 = true;
   }
 
-  sendReply(adminID: any)
+  sendReply(adminID: any, mid:any)
   {
     const lrn = localStorage.getItem('LRN');
 
@@ -47,7 +49,8 @@ export class ViewmessageComponent implements OnInit {
       const replyPayload = {
         adminID: adminID,
         messages: this.replyText,
-        lrn: localStorage.getItem('LRN') //Get sender LRN
+        lrn: localStorage.getItem('LRN'), //Get sender LRN
+        mid: mid
       };
       this.studentservice.sendReply(replyPayload).subscribe(
 

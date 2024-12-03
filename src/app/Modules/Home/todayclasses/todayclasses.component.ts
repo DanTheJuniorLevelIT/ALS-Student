@@ -20,6 +20,7 @@ export class TodayclassesComponent implements OnInit {
   pendingassessments: any;
   currentDayAndDate: string; // Variable that will hold the current day and date
   greeting: any;
+  isLoading = false;
 
   constructor(private studentservice: StudentService, private route: Router) { 
     this.currentDayAndDate = this.getCurrentDayAndDate(); //Initialize the current day and date 
@@ -27,37 +28,15 @@ export class TodayclassesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('authToken'); // Retrieve Token from localStorage
-  
-    if (token) {
-      this.studentservice.getLearnerByToken(token).subscribe({
-        next: (data) => {
-          this.learner = data;
-          // Assuming the LRN is a property of the returned data
-          const lrn = data.lrn; // Adjust this based on the structure of your data
-          if (lrn) {
-            localStorage.setItem('LRN', lrn); // Store the actual LRN in localStorage
-            this.lrn = lrn; // Store the LRN in the component's property
-            this.getSubjects(); // Call getSubjects after retrieving the LRN
-            this.getPendingAssessments(lrn);
-          } else {
-            console.error('LRN not found in learner data');
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching learner data', err);
-        }
-      });
-    } else {
-      console.error('No Token Found. User is not authenticated');
-    }
-}
+    this.spinner();
+  }
 
 getSubjects() {
     if (this.lrn) {
       this.studentservice.getSubjects(this.lrn).subscribe(
         (data) => {
           this.subjects = data; // Store the retrieved subjects
+          console.warn(this.subjects);
         },
         (error) => {
           console.error('Error fetching subjects', error);
@@ -116,5 +95,37 @@ getSubjects() {
   // navigateToModules(subid: any){
   //   this.route.navigate(['/main/Subject/subjectmain/modules', subid]);
   // } 
+
+  spinner() {
+    this.isLoading = true;
+    const token = localStorage.getItem('authToken'); // Retrieve Token from localStorage
+  
+    if (token) {
+      this.studentservice.getLearnerByToken(token).subscribe({
+        next: (data) => {
+          this.learner = data;
+          // Assuming the LRN is a property of the returned data
+          const lrn = data.lrn; // Adjust this based on the structure of your data
+          if (lrn) {
+            localStorage.setItem('LRN', lrn); // Store the actual LRN in localStorage
+            this.lrn = lrn; // Store the LRN in the component's property
+            this.getSubjects(); // Call getSubjects after retrieving the LRN
+            this.getPendingAssessments(lrn);
+          } else {
+            console.error('LRN not found in learner data');
+          }
+        },
+        error: (err) => {
+          console.error('Error fetching learner data', err);
+        }
+      });
+    } else {
+      console.error('No Token Found. User is not authenticated');
+    }
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1500);
+  }
 
 }
