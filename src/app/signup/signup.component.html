@@ -18,21 +18,36 @@
                                         <form (ngSubmit)="onSubmit()" [formGroup]="learnerForm" method="POST">
                                             <div class="row">
                                                 <div class="col-md-4 mb-2">
-                                                    <div class="form-outline">
-                                                        <input type="text" id="firstName" formControlName="firstname" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="firstName">First name</label>
-                                                    </div>
+                                                        <div class="form-outline">
+                                                            <input type="text" id="firstName" formControlName="firstname" class="form-control form-control-lg" />
+                                                            <label class="form-label" for="firstName">
+                                                                First Name
+                                                                <div *ngIf="learnerForm.get('firstname')?.touched && learnerForm.get('firstname')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                    <small *ngIf="learnerForm.get('firstname')?.errors?.['required']">Firstname is required.</small>
+                                                                </div> 
+                                                            </label>
+                                                        </div>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <div class="form-outline">
                                                         <input type="text" id="middleName" formControlName="middlename" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="middleName">Middle name</label>
+                                                        <label class="form-label" for="middleName">
+                                                            Middle Name
+                                                            <div *ngIf="learnerForm.get('middlename')?.touched && learnerForm.get('middlename')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('middlename')?.errors?.['required']">Middlename is required.</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <div class="form-outline">
                                                         <input type="text" id="lastName" formControlName="lastname" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="lastName">Last name</label>
+                                                        <label class="form-label" for="lastName">
+                                                            Last Name
+                                                            <div *ngIf="learnerForm.get('lastname')?.touched && learnerForm.get('lastname')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('lastname')?.errors?.['required']">Lastname is required.</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -41,19 +56,31 @@
                                                 <div class="col-md-4 mb-2">
                                                     <div class="form-outline">
                                                         <input type="text" id="extensions" formControlName="extension_name" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="extensions">Extensions</label>
+                                                        <label class="form-label" for="extensions">
+                                                            Extensions
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <div class="form-outline">
                                                         <input type="date" id="birthdate" formControlName="birthdate" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="birthdate">Birthdate</label>
+                                                        <label class="form-label" for="birthdate">
+                                                            Birthdate
+                                                            <div *ngIf="learnerForm.get('birthdate')?.touched && learnerForm.get('birthdate')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('birthdate')?.errors?.['required']">Birthdate is required.</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 mb-2">
                                                     <div class="form-outline">
                                                         <input type="text" id="birthPlace" formControlName="placeofbirth" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="birthPlace">Birth Place</label>
+                                                        <label class="form-label" for="birthPlace">
+                                                            Birth Place
+                                                            <div *ngIf="learnerForm.get('placeofbirth')?.touched && learnerForm.get('placeofbirth')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('placeofbirth')?.errors?.['required']">Birthplace is required</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +95,12 @@
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-outline mb-2">
                                                         <input type="text" id="lastSchool" formControlName="education" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="lastSchool">Last School Attended</label>
+                                                        <label class="form-label" for="lastSchool">
+                                                            Last School Attended
+                                                            <div *ngIf="learnerForm.get('education')?.touched && learnerForm.get('education')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('education')?.errors?.['required']">Last School Attended is required</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 
@@ -85,7 +117,12 @@
                                                         <option value="divorced">Divorced</option>
                                                         <option value="widowed">Widowed</option>
                                                     </select>
-                                                    <label class="form-label" for="emailId">Civil Status</label>
+                                                    <label class="form-label" for="emailId">
+                                                        Civil Status
+                                                        <div *ngIf="learnerForm.get('civil_status')?.touched && learnerForm.get('civil_status')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                            <small *ngIf="learnerForm.get('civil_status')?.errors?.['required']">Civil Status is required</small>
+                                                        </div> 
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -115,8 +152,13 @@
                                                                 value="male"
                                                                 required 
                                                             />
-                                                            <label class="form-check-label" for="maleGender">Male</label>
+                                                            <label class="form-check-label" for="maleGender">
+                                                                Male
+                                                            </label>
                                                         </div>
+                                                        <div *ngIf="learnerForm.get('gender')?.touched && learnerForm.get('gender')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                            <small *ngIf="learnerForm.get('gender')?.errors?.['required']">Gender is required</small>
+                                                        </div> 
                                                     </div>
                                                 </div>
 
@@ -125,27 +167,70 @@
 
                                             <div class="form-outline mb-2">
                                                 <input type="text" id="emailId" formControlName="email" class="form-control form-control-lg" />
-                                                <label class="form-label" for="emailId">Email ID</label>
+                                                <label class="form-label" for="emailId">
+                                                    Email ID
+                                                    <div *ngIf="learnerForm.get('email')?.touched && learnerForm.get('email')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                        <small *ngIf="learnerForm.get('email')?.errors?.['required']">Email is required</small>
+                                                        <small *ngIf="learnerForm.get('email')?.errors?.['email']">Invalid Email Format</small>
+                                                    </div> 
+                                                </label>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-outline mb-2">
-                                                        <input type="password" id="Password" formControlName="password" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="Password">Password</label>
+                                                        <div class="input-group">
+                                                            <input [type]="showPassword1 ? 'text' : 'password'" id="Password" formControlName="password" class="form-control form-control-lg" />
+                                                            <button 
+                                                            type="button"
+                                                            class="btn btn-outline-secondary input-group-text"
+                                                            (click)="togglePasswordVisibility1()"
+                                                            aria-label="Toggle password visibility"
+                                                            >
+                                                            <i [class]="showPassword1 ? 'fa-solid fa-eye' : 'fa-regular fa-eye'"></i>
+                                                            </button>
+                                                        </div>
+                                                        <label class="form-label" for="Password">
+                                                            Password
+                                                            <div *ngIf="learnerForm.get('password')?.touched && learnerForm.get('password')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('password')?.errors?.['required']">Password is required</small>
+                                                                <small *ngIf="learnerForm.get('password')?.errors?.['minlength']">Password must be at leat 8 characters.</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-outline mb-2">
-                                                        <input type="password" id="ConfirmPassword" formControlName="password_confirmation" class="form-control form-control-lg" />
-                                                        <label class="form-label" for="Confirmpassword">Confirm Password</label>
+                                                        <div class="input-group">
+                                                            <input [type]="showPassword2 ? 'text' : 'password'" id="ConfirmPassword" formControlName="password_confirmation" class="form-control form-control-lg" />
+                                                            <button 
+                                                            type="button"
+                                                            class="btn btn-outline-secondary input-group-text"
+                                                            (click)="togglePasswordVisibility2()"
+                                                            aria-label="Toggle password visibility"
+                                                            >
+                                                            <i [class]="showPassword2 ? 'fa-solid fa-eye' : 'fa-regular fa-eye'"></i>
+                                                            </button>
+                                                        </div>
+                                                        <label class="form-label" for="Confirmpassword">
+                                                            Confirm Password
+                                                            <div *ngIf="learnerForm.get('password_confirmation')?.touched && learnerForm.get('password_confirmation')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('password_confirmation')?.errors?.['required']">Password is required</small>
+                                                                <small *ngIf="learnerForm.get('password_confirmation')?.errors?.['minlength']">Password Confirmation must be at leat 8 characters.</small>
+                                                            </div> 
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="d-flex justify-content-end pt-3">
                                                 <button type="reset" class="btn btn-light btn-lg">Reset all</button>
                                                 <button type="submit" class="btn btn-success btn-lg ms-2">Submit</button>
+                                            </div>
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <div class="">
+                                                    <a href="/login" style="text-decoration: none;">Already have an account? Log In</a>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>

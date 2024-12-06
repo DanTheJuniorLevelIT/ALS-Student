@@ -103,6 +103,10 @@ body {
 
 
 
+.required input::after {
+  content: " * ";
+  color: red;
+}
 
 /* Make the container full-width on small screens */
 @media (max-width: 768px) {

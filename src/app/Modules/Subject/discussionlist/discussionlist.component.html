@@ -22,7 +22,7 @@
     <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
 
     @for (item of discussions; track $index) {
-        <a [routerLink]="['/main/Subject/subjectmain/modules/discussion']" (click)="getDiscussionID(item.discussionid, item.Discussion_Topic)">
+        <a [routerLink]="['/main/Subject/subjectmain/modules/discussion']" (click)="getDiscussionID(item.discussionid, item.Discussion_Topic)" *ngIf="!isLoading">
             <mat-card class="matcard">
                 <mat-card-header class="matcardheader">
                 <div class="col-10">
@@ -41,6 +41,15 @@
                     </div>
                 </div>
             </mat-card>
-            </a>
+        </a>
     }
 </div>
+
+<!-- Spinner -->
+@if(isLoading) {
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+}

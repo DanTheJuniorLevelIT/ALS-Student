@@ -69,61 +69,9 @@ img {
 
 
 /* Responsive Layout */
-/* Responsive Layout */
-@media (min-width: 1200px) {
-    /* Large screens: original layout */
-    .col-8 {
-      flex: 0 0 66.66667%;
-      max-width: 66.66667%;
-    }
-  
-    .col-4 {
-      flex: 0 0 33.33333%;
-      max-width: 33.33333%;
-    }
-  
-    #card .col-sm-4 {
-      flex: 0 0 33.33333%;
-      max-width: 33.33333%;
-    }
+@media (max-width: 990px) {
+  .card .card-image-top {
+    object-fit: cover;
   }
-  
-  @media (min-width: 768px) and (max-width: 1199px) {
-    /* Medium screens (tablets): 6 columns each */
-    .col-8,
-    .col-4 {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
-  
-    #card .col-sm-4 {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
-  }
-  
-  @media (max-width: 767px) {
-    /* Small screens (mobile): full width */
-    .col-8,
-    .col-4 {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-  
-    #card .col-sm-4 {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-  
-    .greeting h1, .greeting h3 {
-      font-size: 1.5rem; /* Adjust font size for mobile */
-    }
-  
-    /* Apply object-fit: cover to images on small screens */
-    .card .image img {
-      object-fit: contain;
-      width: 100%;
-      height: 200px; /* Adjust height as needed */
-    }
-  }
+}
   

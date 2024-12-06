@@ -7,6 +7,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class StudentService {
   private apiUrl = 'http://localhost:8000/api/';
+  // private apiUrl = 'http://192.168.3.24:8000/api/';
 
   constructor(private http: HttpClient) {
    }
@@ -161,5 +162,17 @@ export class StudentService {
 
   sendMessage(data: any) {
     return this.http.post(`${this.apiUrl}messages/compose`, data);
+  }
+
+  requestChangePassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}request-change-password`, {email})
+  }
+
+  getPasswordChangeRequestStatus(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}get-password-change-status`, { email });
+  }
+
+  changePassword(pdata: any, email: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}change-password/${email}`, pdata);
   }
 }

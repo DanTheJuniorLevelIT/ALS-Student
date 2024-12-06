@@ -104,9 +104,52 @@ div {
   outline: 0;
 }
 
+/* Styling for mat-card */
 .questioncard {
     background-color: #dcdcdc;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 10px;
 }
+
+/* General responsiveness for mat-form-field and mat-mdc wrapper */
+.mat-mdc-form-field,
+.mat-mdc-text-field-wrapper,
+.mdc-text-field,
+.mat-mdc-form-field-infix {
+    width: 100%; /* Ensures full width */
+    max-width: 900px; /* Optional: sets max width */
+    margin: 10px 0; /* Adds spacing around the form field */
+}
+
+/* Ensure the actual input field inside the form field is responsive */
+.mat-mdc-form-field-infix .mdc-text-field__input,
+.mat-mdc-form-field-infix input {
+    width: 100%; /* Input field should take up full width */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .mat-mdc-form-field,
+    .mat-mdc-text-field-wrapper,
+    .mdc-text-field,
+    .mat-mdc-form-field-infix {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .mat-mdc-form-field,
+    .mat-mdc-text-field-wrapper,
+    .mdc-text-field,
+    .mat-mdc-form-field-infix {
+        width: 100%;
+        max-width: 100%; /* Allow it to stretch on very small screens */
+    }
+}
+
+
+
 
 .essaycard {
     background-color: #dcdcdc;
@@ -124,13 +167,18 @@ div {
     width: 100%;
 }
 
-.formanswer mat-form-field {
+/* .formanswer mat-form-field {
     margin-top: 5px;
-    width: 100%;
-}
+    align-items: center;
+} */
 
-.formanswer mat-form-field mat-label {
+/* .formanswer .mat-form-field .mat-label {
     color: black;
+    width: 100px;
+} */
+
+.mat-form-field {
+    width: 100%;
 }
 
 

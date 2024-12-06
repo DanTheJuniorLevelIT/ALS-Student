@@ -1,189 +1,260 @@
 <div class="container">
     
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/main/Subject/subjectmain/modules/lesson">My Lessons</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Questionnaires</li>
-        </ol>
-      </nav>
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/main/Subject/subjectmain/modules/lesson">My Lessons</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Questionnaires</li>
+</ol>
+</nav>
 
-      <div class="row">
-        <!-- Left side: Assessment title -->
-        <div class="col-sm-6 d-flex flex-column justify-content-center">
-            <h1 class="titles">Assessment Page</h1>
-            <h5 class="text-muted text-uppercase">{{ assessmentitle }}</h5>
-        </div>
-    
-        <!-- Right side: Upload button and file link -->
-        <div class="col-sm-6">
-            <div class="p-3 border rounded" style="background-color: #f8f9fa;">
-                <p class="mb-1">Or upload a file:</p>
-                <div class="d-flex flex-column align-items-start">
-                    <!-- Upload Button -->
-                    <button 
-                        class="button btn btn-success m-3" 
-                        role="button" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#exampleModal">
-                        Upload a File
-                    </button>
-                    
-                    <!-- Filename display with link -->
-                    <div *ngIf="Filename">
+<!-- Use col-md-6, col-lg-6 for medium and large screens -->
+<div class="row">
+    <!-- Left side: Assessment title -->
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6 d-flex flex-column justify-content-center">
+        <h1 class="titles">Assessment Page</h1>
+        <h5 class="text-muted text-uppercase">{{ assessmentitle }}</h5>
+    </div>
+
+    <!-- Right side: Upload button and file link -->
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="p-3 border rounded" style="background-color: #f8f9fa;">
+            <p class="mb-1">Or upload a file:</p>
+            <div class="d-flex flex-column align-items-start">
+                <!-- Upload Button -->
+                <button 
+                    class="button btn btn-success m-3" 
+                    role="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModal">
+                    Upload a File
+                </button>
+                
+                <!-- Filename display with link -->
+                <div *ngIf="Filename">
+                    @if(assessmentans.file == null) {
+                        <p style="margin-left: 17px;">No files uploaded yet.</p>
+                    } @else {
                         <a target="_blank" [href]="Filelink" class="ms-3 mb-3">{{ Filename }}</a>
-                    </div>
+                    }
                 </div>
             </div>
-        </div>        
-    </div>
-    
+        </div>
+    </div>        
+</div>
 
-    <!-- <div class="d-flex justify-content-end">
-        <button class="button-3" role="button" (click)="onSelect('Identification')">Identification</button>
-        <button class="button-3" role="button" (click)="onSelect('Essay')">Essay Type</button>
-        <button class="button-3" role="button" (click)="onSelect('TrueOrFalse/MultipleChoice')">True or False</button>
-    </div>
-      -->
 
-     
-    <form [formGroup]="answerForm" (ngSubmit)="onSubmit(itemno, lrn)" method="post">
-    @if (questions[itemno]?.type === "Essay") {
-            <div class="essay mt-5">
-                <mat-card class="quiz-container">
+<!-- Form Area -->
+<form [formGroup]="answerForm" (ngSubmit)="onSubmit(itemno, lrn)" method="post">
+@if (questions[itemno]?.type === "Essay") {
+        <div class="essay mt-5">
+            <mat-card class="quiz-container">
+                @if(isLoading) {
+                    <div class="d-flex justify-content-center align-items-center vh-100">
+                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  }
+                <div *ngIf="!isLoading">
                     <mat-card-header>
                         <!-- <h4>{{questions[itemno]?.question_id}}</h4> -->
                         <h4>{{questions[itemno]?.question}}</h4>
                     </mat-card-header>
-                    <mat-card-content>
-                        
-                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer"  [ngModel]="questions[itemno]?.user_answer" (onKeyPress)="keyUpTiny($event, questions[itemno]?.question_id, lrn)" allowedEvents="onKeyPress"></editor>
-                    </mat-card-content> 
-                         </mat-card> 
-                    </div>
-    }
-
-    @else if (questions[itemno]?.type === "identification") {
-            <div class="identification mt-5">
-                <mat-card class="questioncard">
-                    <mat-card-header>                
-                    </mat-card-header>
                     <mat-card-content> 
-                         <h3>{{questions[itemno]?.question}}</h3>
+                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer"  [ngModel]="answer"></editor>
+                    </mat-card-content> 
+                </div>
+            </mat-card> 
+                </div>
+                <!-- (onKeyPress)="keyUpTiny($event, questions[itemno]?.question_id, lrn)" allowedEvents="onKeyPress" -->
+}
+
+@else if (questions[itemno]?.type === "identification") {
+        <div class="identification mt-5">
+            <mat-card class="questioncard">
+                <mat-card-header>                
+                </mat-card-header>
+                @if(isLoading) {
+                    <div class="d-flex justify-content-center align-items-center vh-100">
+                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                }
+                <div *ngIf="!isLoading">
+                    <mat-card-content> 
+                            <h3>{{questions[itemno]?.question}}</h3> 
                     </mat-card-content>
-                        <mat-form-field>
-                            <mat-label>Provide an answer</mat-label>
-                            <input matInput formControlName="answer"  [ngModel]="questions[itemno]?.user_answer" (blur)="keyUpFunction(questions[itemno]?.question_id, lrn)">
-                        </mat-form-field>
-                </mat-card>
-            </div>
-    }
-    @else if (questions[itemno]?.type === "multiple-choice") {
-            <div class="multiplechoice mt-5">
-                <mat-card class="multiplechoicecard">
-                    <mat-card-header>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <h3>{{questions[itemno]?.question}}</h3>
-                    </mat-card-content>
-                    <mat-radio-group
-                     aria-labelledby="example-radio-group-label"
-                    class="example-radio-group"
-                    formControlName="answer"  [ngModel]="questions[itemno]?.user_answer">
-                    @for (option of questions[itemno]?.options; track $index) {
-                        <mat-radio-button class="example-radio-button" [value]="option.option_text" (change)="submitRadio(option.option_text, questions[itemno]?.question_id, lrn)">{{option.option_text}}</mat-radio-button>
-                    }
-                  </mat-radio-group>
-                </mat-card> 
-            </div>
-    }
-
-    @else if (questions[itemno]?.type === "true-false") {
-            <div class="multiplechoice mt-5">
-                <mat-card class="multiplechoicecard">
-                    <mat-card-header>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <h3>{{questions[itemno]?.question}}</h3>
-                    </mat-card-content>
-                    <mat-radio-group
-                     aria-labelledby="example-radio-group-label"
-                    class="example-radio-group"
-                    formControlName="answer" [ngModel]="questions[itemno]?.user_answer">
-                        <!-- {{questions[itemno]?.user_answer}} -->
-                         @if(questions[itemno]?.user_answer == 'true') {
-                             <mat-radio-button class="example-radio-button" [value]="questions[itemno]?.user_answer" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
-                             <mat-radio-button class="example-radio-button" [value]="false" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
-                         }@else if (questions[itemno]?.user_answer == 'false') {
-                             <mat-radio-button class="example-radio-button" [value]="true" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
-                            <mat-radio-button class="example-radio-button" [value]="questions[itemno]?.user_answer" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
-                         } @else if (questions[itemno]?.user_answer == null) {
-                            <mat-radio-button class="example-radio-button" [value]="true" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
-                            <mat-radio-button class="example-radio-button" [value]="false" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
-                         }
-
-                  </mat-radio-group>
-                </mat-card> 
-            </div>
-    }
-        
-        @if (itemno == questions.length-1) {
-            <div class="d-flex justify-content-end m-3">
-                <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="submitAs()">Submit</button></a>
-            </div>
-        }
-
-
-        <div class="matbuttons">
-            @if (itemno != questions.length-questions.length) {
-                <button mat-button color="accent" (click)="prev(-1)" type="button">Prev</button>
-            }
-            @if (itemno != questions.length-1) {
-                <button mat-button color="accent" (click)="next(1)" type="button">Next</button>
-            }
-
+                    <mat-form-field>
+                        <mat-label>Provide an answer</mat-label>
+                        <input matInput formControlName="answer"  [ngModel]="answer">
+                        <!-- (blur)="keyUpFunction(questions[itemno]?.question_id, lrn)" -->
+                    </mat-form-field>
+                </div>
+            </mat-card>
         </div>
-        <!-- <h5 class="text-center">or Upload a File</h5> -->
-       
-								
-        <!-- Modal Content -->
-        
+}
+@else if (questions[itemno]?.type === "multiple-choice") {
+        <div class="multiplechoice mt-5">
+            <mat-card class="multiplechoicecard">
+                @if(isLoading) {
+                    <div class="d-flex justify-content-center align-items-center vh-100">
+                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                }
+                <div *ngIf="!isLoading">
+                    <mat-card-header>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h3>{{questions[itemno]?.question}}</h3>
+                    </mat-card-content>
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    formControlName="answer"  [ngModel]="answer">
+                    @for (option of questions[itemno]?.options; track $index) {
+                        <mat-radio-button class="example-radio-button" [value]="option.option_text">{{option.option_text}}</mat-radio-button>
+                        <!-- (change)="submitRadio(option.option_text, questions[itemno]?.question_id, lrn)" -->
+                    }
+                    </mat-radio-group>
+                </div>
+            </mat-card> 
+        </div>
+}
 
-        <mat-card-content>
-            <!-- <label for="file">File</label> -->
-            <!-- <input type="file" id="file" class="file-input" formControlName="file" (change)="onFileSelected($event)"/> -->
-            <!-- <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="onUploadFile()">Upload</button></a> -->
+@else if (questions[itemno]?.type === "true-false") {
+        <div class="multiplechoice mt-5">
+            <mat-card class="multiplechoicecard">
+                @if(isLoading) {
+                    <div class="d-flex justify-content-center align-items-center vh-100">
+                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                }
+                <div *ngIf="!isLoading">
+                    <mat-card-header>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h3>{{questions[itemno]?.question}}</h3>
+                    </mat-card-content>
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    formControlName="answer" [ngModel]="answer">
+                        <!-- {{questions[itemno]?.user_answer}} -->
+                            <!-- @if(questions[itemno]?.user_answer == 'true') {
+                                <mat-radio-button class="example-radio-button" [value]="questions[itemno]?.user_answer" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
+                                <mat-radio-button class="example-radio-button" [value]="false" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
+                            }@else if (questions[itemno]?.user_answer == 'false') {
+                                <mat-radio-button class="example-radio-button" [value]="true" (change)="submitRadio('true', questions[itemno]?.question_id, lrn)">True</mat-radio-button>
+                            <mat-radio-button class="example-radio-button" [value]="questions[itemno]?.user_answer" (change)="submitRadio('false', questions[itemno]?.question_id, lrn)">False</mat-radio-button>
+                            } @else if (questions[itemno]?.user_answer == null) {
+                        } -->
+                        <mat-radio-button class="example-radio-button" [value]="'true'">True</mat-radio-button>
+                        <mat-radio-button class="example-radio-button" [value]="'false'">False</mat-radio-button>
+                        <!-- (change)="submitRadio('true', questions[itemno]?.question_id, lrn)" -->
+                        <!-- (change)="submitRadio('false', questions[itemno]?.question_id, lrn)" -->
+                    </mat-radio-group>
+                </div>
+            </mat-card> 
+        </div>
+}
+    
+@if (itemno == questions.length-1) {
+    <div class="d-flex justify-content-end m-3">
+        <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="saveAndSubmit(questions[itemno]?.question_id, lrn)">Submit</button></a>
+        <!-- (click)="submitAs() -->
+    </div>
+}
 
-            <!-- <button mat-button type="button" (click)="uploadFile()">Upload File</button> -->
-        </mat-card-content>
-    </form>
+
+<div class="matbuttons">
+    @if (itemno != questions.length-questions.length) {
+        <button mat-button color="accent" (click)="prev(-1)" type="button">Prev</button>
+    }
+    @if (itemno != questions.length-1) {
+        <button mat-button color="accent" (click)="next(1)" type="button">Next</button>
+    }
+</div>
+    <!-- <h5 class="text-center">or Upload a File</h5> -->
+    
+                            
+    <!-- Modal Content -->
+    
+
+    <mat-card-content>
+        <!-- <label for="file">File</label> -->
+        <!-- <input type="file" id="file" class="file-input" formControlName="file" (change)="onFileSelected($event)"/> -->
+        <!-- <a [routerLink]="['#']"><button class="submitbutton justify-content-end" type="submit" (click)="onUploadFile()">Upload</button></a> -->
+
+        <!-- <button mat-button type="button" (click)="uploadFile()">Upload File</button> -->
+    </mat-card-content>
+</form>
 </div> 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-    <form action="" method="post" (ngSubmit)="uploadFile()" enctype="multipart/form-data">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-                <!-- <input type="file" class="form-control" id="formFile" (change)="onFileSelect($event)"> -->
-                <input type="file" id="file" class="file-input" formControlName="file" (change)="onFileSelected($event)"/>
-
-
-                          <!-- Progress Bar -->
-                @if (isUploading) {
-                    <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-                }
-                @if (Filelink != null) {
-                    <img [src]="Filelink" alt="" style="width: 200px; height: 200px; object-fit: cover; margin-top: 10px;">
-                }
-        </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+      <form action="" method="post" (ngSubmit)="uploadFile()" enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-between align-items-center">
+            <!-- Header aligned properly -->
+            <h5 class="modal-title mb-0" id="exampleModalLabel">Upload File</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <!-- File input with supported file type notice -->
+              <input
+                type="file"
+                id="file"
+                class="form-control"
+                formControlName="file"
+                (change)="onFileSelected($event)"
+              />
+              <small class="text-muted">Supported file types: .pdf .docx .png .jpeg</small>
             </div>
+  
+            <!-- Progress Bar -->
+            <div *ngIf="isUploading">
+              <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+            </div>
+  
+            <!-- Display uploaded file preview -->
+            <div *ngIf="Filelink" class="d-flex justify-content-center align-items-center mt-3">
+                <!-- Check if no file is uploaded -->
+                <p *ngIf="!assessmentans?.file" class="text-muted">No files uploaded yet.</p>
+                
+                <!-- File link with border, alignment, and center positioning -->
+                <div *ngIf="assessmentans?.file" class="border rounded p-3 text-center">
+                  <a 
+                    target="_blank" 
+                    [href]="Filelink" 
+                    class="text-primary text-decoration-none"
+                  >
+                    {{ Filename }}
+                  </a>
+                </div>
+              </div>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+              Save changes
+            </button>
+          </div>
         </div>
-    </form>
+      </form>
     </div>
-  </div>
+</div>
+  

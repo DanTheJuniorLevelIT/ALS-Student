@@ -5,19 +5,6 @@
     </ol>
 </nav>
 
-
-<!-- <div class="container mb-5">
-    @for (item of lessons; track $index) {
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
-            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']" (click)="getLessonID(item.lesson_id)"><button class="btn buttons w-100">DISCUSSION</button></a></div>
-            <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']" (click)="getLessonID(item.lesson_id)"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
-        </div>
-
-    }
-</div> -->
-
-
 <div class="container text-center justify-content-center border-bottom">
     <h1>{{modulename}}</h1>
     <h5 class="text-muted text-uppercase text-center">{{subname}} | {{admin_name}}</h5>
@@ -25,59 +12,127 @@
 </div>
 
 @for (item of lessons; track $index) {
-        <div class="p-3 m-3 border border-dark" style="background-color: rgb(200, 199, 199);">
-            <h4>Lesson {{$index + 1}}</h4>
-            <div class="details">
-                <div class="lessontitle fw-bold">
-                    {{item.topic_title}}
-                </div>
-                <div class="lessons lh-lg">
-                    {{item.lesson}}             
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div role="alert">
-                            <div class="alert alert-primary mt-3"> 
-                                <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
-                                <a *ngFor="let media of item.media" 
-                                href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
-                                target="_blank" style="display: flex;"
-                                download>{{ media.filename }}</a>
-                            </div>
-                            <a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']" (click)="getLessonID(item.lesson_id)">
-                                <button type="button" class="btn" style="background-color: #045076; color: white;">
-                                    View Your Discussions
-                                 </button>
-                            </a>
-                        </div>
+<div class="p-3 m-3 border border-dark" style="background-color: rgb(200, 199, 199);" *ngIf="!isLoading">
+    <h4>Lesson {{$index + 1}}</h4>
+    <div class="details">
+        <div class="lessontitle fw-bold">
+            {{item.topic_title}}
+        </div>
+        <div class="lessons lh-lg">
+            {{item.lesson}}             
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div role="alert">
+                    <div class="alert alert-primary mt-2"> 
+                        <a href="http://localhost:8000/storage/lesson_file/{{item.file}}" target="_blank" download>{{item.file}}</a><br>
+                        <a *ngFor="let media of item.media" 
+                        href="http://localhost:8000/storage/lesson_file/{{ media.filename }}" 
+                        target="_blank" style="display: flex;"
+                        download>{{ media.filename }}</a>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="m-2 border border-dark bg-white">
-                            <strong><h5 class="text-center mt-2">Assessments:</h5></strong>
-                            <mat-accordion>
-                                <mat-expansion-panel (opened)="getAssessments(item.lesson_id)">
-                                    <mat-expansion-panel-header>
-                                        <span>View Assessments</span>
-                                    </mat-expansion-panel-header>
-    
-                                    <!-- Assessments List -->
-                                    <!-- <ul *ngIf="assessmentlist && assessmentlist.length">
-                                        <li *ngFor="let assessment of assessmentlist">
-                                            {{assessment.title}} - Due: {{assessment.due_date | date}}
-                                        </li>
-                                    </ul>
-                                    <p *ngIf="!assessmentlist || assessmentlist.length === 0">
-                                        No assessments available for this lesson.
-                                    </p> -->
-                                    @if(assessmentlist && assessmentlist.length) {
-                                        <strong><p style="color: grey;">Open: </p></strong>
-                                        @for (item of assessmentlist; track $index) {
-                                            @if(item.isOpen == 1) {
+                    <a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']" (click)="getLessonID(item.lesson_id)">
+                        <button type="button" class="btn" style="background-color: #045076; color: white;">
+                            View Your Discussions
+                            </button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="border rounded-3 bg-white mt-2">
+                    <!-- <strong><h5 class="text-center mt-2">Assessments:</h5></strong> -->
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="getAssessments(item.lesson_id)">
+                            <mat-expansion-panel-header>
+                                <strong>View Assessments&nbsp;</strong>
+                                <span 
+                                    class="badge bg-primary text-light px-2 py-1" 
+                                    style="cursor: pointer; transition: transform 0.2s, background-color 0.2s;"
+                                >
+                                    Click to expand
+                                </span>
+                            </mat-expansion-panel-header>
+                            @if (assessmentlist && assessmentlist.length) {
+                                @for (item of assessmentlist; track $index) {
+                                    @if(item.isOpen == 1) {
+                                        <div class="row border-bottom mt-2">
+                                            <div class="col-10 ">
+                                                <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex"><p class="fw-bolder" style="font-size: 15px;">{{item.title}}</p> 
+                                                </a>
+                                                <small class="d-flex align-items-start"><strong><p class="text-danger">Due Date: </p></strong><span>{{item.due_date}}</span></small>
+                                                @if(lrn === item.slrn) {
+                                                    <small class="d-flex align-items-start"><strong><p class="text-success">Date Submitted: </p></strong><span>{{item.formatted_date}}</span></small>
+                                                    @if (item.scores == null) {
+                                                        <small class="d-flex align-items-start"><strong><p>Score: </p></strong><span>Not graded yet</span></small>
+                                                    } @else {
+                                                        <small class="d-flex align-items-start"><strong><p>Score: </p></strong><span>{{item.scores}}</span></small>
+                                                    }
+                                                }
+                                            </div>
+                                            <div class="col-2 d-flex justify-content-end">                                                
+                                                @if(lrn == item.slrn) {
+                                                    <input type="checkbox" disabled checked style="transform: scale(1.5);">
+                                                } @else {
+                                                    <input type="checkbox" disabled style="transform: scale(1.5);">
+                                                }
+                                            </div>
+                                        </div>
+                                    } @else if(item.isOpen == 0) {
+                                        <div class="row border-bottom mt-2">
+                                            <div class="col-10 ">
+                                                <p class="fw-bolder" style="font-size:15px;">{{item.title}}</p>
+                                                <small class="d-flex align-items-start"><strong><p class="text-danger">Due Date: </p></strong><span>{{item.due_date}}</span></small>
+                                                @if(lrn === item.slrn) {
+                                                    <small class="d-flex align-items-start"><strong><p class="text-success">Date Submitted: </p></strong><span>{{item.formatted_date}}</span></small>
+                                                    @if (item.scores == null) {
+                                                        <small class="d-flex align-items-start"><strong><p>Score: </p></strong><span>Not graded yet</span></small>
+                                                    } @else {
+                                                        <small class="d-flex align-items-start"><strong><p>Score: </p></strong><span>{{item.scores}}</span></small>
+                                                    }
+                                                }
+                                            </div>
+                                            <div class="col-2 d-flex justify-content-end">
+                                                @if(lrn == item.slrn) {
+                                                    <input type="checkbox" disabled checked style="transform: scale(1.5);">
+                                                } @else {
+                                                    <input type="checkbox" disabled style="transform: scale(1.5);">
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            } @else {
+                                <p>No assessments available for this lesson.</p>
+                            }
+                            <!-- Assessments List -->
+                            <!-- @if(assessmentlist && assessmentlist.length) {
+                                <strong><p style="color: grey;">Open: </p></strong>
+                                @for (item of assessmentlist; track $index) {
+                                    @if(item.isOpen == 1) {
+                                        @if(lrn == item.slrn) {
+                                            @if(item.scores == null) {                                                
                                                 <ul>
-                                                    <li><a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex">{{item.title}} 
-                                                        @if(lrn == item.slrn) {
+                                                    <li class="border-bottom">
+                                                        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex" >{{item.title}} 
+                                                        </a>
+                                                        
                                                         <div style="display: grid;">
-                                                            
+                                                            <p style="color: green">
+                                                                (Submitted)
+                                                            </p>
+                                                            <p>
+                                                                Not graded yet.
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            } @else {
+                                                <ul>
+                                                    <li class="border-bottom">
+                                                        <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex" style="pointer-events: none; color: gray;">{{item.title}} 
+                                                        </a>
+                                                        
+                                                        <div style="display: grid;">
                                                             <p style="color: green">
                                                                 (Submitted)
                                                             </p>
@@ -85,34 +140,79 @@
                                                                 Score: {{item.scores}}
                                                             </p>
                                                         </div>
-                                                        }
-                                                    </a></li>
+                                                    </li>
                                                 </ul>
+
                                             }
+                                        } @else {
+                                            <ul>
+                                                <li class="border-bottom">
+                                                    <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" (click)="getAssessmentID(item.assessmentid, item.title)" class="d-flex" >{{item.title}} 
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         }
-                                        <strong><p style="color: red">Closed(Overdue): </p></strong>
-                                        @for (item of assessmentlist; track $index) {
-                                            @if (item.isOpen == 0) {
+                                    }
+                                }
+                                <strong><p style="color: red">Closed(Overdue): </p></strong>
+                                @for (item of assessmentlist; track $index) {
+                                    @if (item.isOpen == 0) {
+                                        @if(lrn == item.slrn) 
+                                        {
+                                            @if(item.scores == null) {
                                                 <ul>
-                                                    <li><p style="opacity: 0.5; color: gray;">{{item.title}}</p>
-                                                        @if(lrn == item.slrn) {<p style="color: green">(Submitted)</p>
-                                                        <p>
-                                                            Score: {{item.scores}}
-                                                        </p>}
+                                                    <li class="border-bottom" style="opacity: 0.5;">
+                                                        <p style="color: gray;">{{item.title}}</p>
+                                                        
+                                                        <div style="display: grid;">
+                                                                <p style="color: green;">(Submitted)</p>
+                                                                <p>
+                                                                    Not graded yet.  
+                                                                </p> 
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            } @else if(item.scores != null) {
+                                                <ul>
+                                                    <li class="border-bottom" style="opacity: 0.5;">
+                                                        <p style="color: gray;">{{item.title}}</p>
+                                                        <div style="display: grid;">
+                                                                <p style="color: green;">(Submitted)</p>
+                                                                <p>
+                                                                   Score: {{item.scores}}
+                                                                </p> 
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            } @else {
+                                                <ul>
+                                                    <li class="border-bottom" style="opacity: 0.5;">
+                                                        <p style="color: gray;">{{item.title}}</p>
                                                     </li>
                                                 </ul>
                                             }
                                         }
-                                    } @else {
-                                        <p>No assessments available for this lesson.</p>
                                     }
-                                </mat-expansion-panel>
-                            </mat-accordion>
-                        </div>
-                    </div>
+                                }
+                            } @else {
+                                <p>No assessments available for this lesson.</p>
+                            } -->
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Spinner -->
+@if(isLoading) {
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+}
 }
 
 

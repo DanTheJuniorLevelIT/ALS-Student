@@ -7,10 +7,14 @@ import { messageRoute } from './Modules/Message/message.routes';
 import { accountRoute } from './Modules/Account/account.routes';
 import { SignupComponent } from './signup/signup.component';
 import { authGuardGuard } from './auth-guard.guard';
+import { RequestChangePasswordComponent } from './request-change-password/request-change-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
+    {path: 'requestchange', component: RequestChangePasswordComponent},
+    {path: 'change-password/:email', component: ChangePasswordComponent},
     {path: 'main', component: MainComponent, canActivate: [authGuardGuard], //Protect main route
         children: [
             {

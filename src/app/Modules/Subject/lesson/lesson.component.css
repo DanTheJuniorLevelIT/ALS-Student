@@ -57,3 +57,11 @@ h1 {
   .button-21:focus:not(:active) {
     box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
   }
+
+small p {
+  font-size: 10px;
+}
+
+span {
+  font-size: 10px;
+}

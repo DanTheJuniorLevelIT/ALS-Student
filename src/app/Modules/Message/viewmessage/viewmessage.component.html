@@ -12,9 +12,9 @@
         <table class="message-table">
             <thead>
             <tr>
-                <th>Date</th>
+                <!-- <th>Teacher Name</th> -->
                 <th>Message</th>
-                <th>Sender</th>
+                <th>Date</th>
             </tr>
             </thead>
             <div class="loader-container" *ngIf="isLoading">
@@ -22,9 +22,9 @@
             </div>
             <tbody *ngIf="!isLoading">
                 <tr *ngFor="let msg of messages" (click)="viewMessage(msg)">
-                    <td>{{ msg.created_at | date:'medium' }}</td>
-                    <td>{{ msg.messages }}</td>
-                    <td>{{ msg.sender_name || (msg.lastname + ', ' + msg.firstname) }}</td> <!-- Use sender_name -->
+                    <!-- <td>{{ (msg.lastname + ', ' + msg.firstname) }}</td> Use sender_name -->
+                    <td>{{msg.sender_name}}: {{ msg.messages }}</td>
+                    <td>{{ msg.updated_at | date:'medium' }}</td>
                 </tr>
             </tbody>
         </table>          
@@ -43,7 +43,7 @@
                     <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
                 }
 
-                <button (click)="sendReply(selectedMessage?.adminID)">Send</button>
+                <button (click)="sendReply(selectedMessage?.adminID, selectedmessageID)">Send</button>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
 
             <div class="form-actions">
                 <button type="button" class="btn btn-primary" (click)="sendMessage()">Send</button>
-                <button type="button" class="btn btn-secondary" (click)="closeModal2()">Discard</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModal2()">Cancel</button>
             </div>
         </form>
     </div>
