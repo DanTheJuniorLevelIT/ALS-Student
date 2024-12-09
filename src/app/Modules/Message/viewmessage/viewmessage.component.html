@@ -43,7 +43,7 @@
                     <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
                 }
 
-                <button (click)="sendReply(selectedMessage?.adminID, selectedmessageID)">Send</button>
+                <button (click)="sendReply(selectedMessage?.adminID, selectedmessageID)" [disabled]="isSubmitting" class="btn btn-primary">Send</button>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="form-actions">
-                <button type="button" class="btn btn-primary" (click)="sendMessage()">Send</button>
+                <button type="button" class="btn btn-primary" (click)="sendMessage()" [disabled]="isSubmitting">Send</button>
                 <button type="button" class="btn btn-secondary" (click)="closeModal2()">Cancel</button>
             </div>
         </form>

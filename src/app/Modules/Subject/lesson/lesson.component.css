@@ -65,3 +65,33 @@ small p {
 span {
   font-size: 10px;
 }
+
+@media (max-width: 577px) {
+  .badge {
+    height: 20px;
+    justify-items: center;
+  }
+  .accordion-title {
+    font-size: 12px;
+  }
+
+  #accordionheader {
+    justify-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: smaller;
+  }
+
+  /* .lessontitle {
+    font-weight: lighter;
+  } */
+   h1 {
+    font-weight: bolder;
+   }
+
+   #lessontitle {
+    font-weight: lighter;
+   }
+}

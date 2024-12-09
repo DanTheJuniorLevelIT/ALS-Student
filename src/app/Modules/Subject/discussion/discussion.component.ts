@@ -110,10 +110,12 @@ export class DiscussionComponent implements OnInit {
 
   spinner(disID: any) {
     this.isLoading = true;
-    this.loadDiscussions(disID);
+    this.intervalId = setInterval(() => {
+      this.loadDiscussions(disID);
+    }, 5000)
     setTimeout(() => {
       this.isLoading = false;
-    }, 1500);
+    }, 5000);
   }
 
 }

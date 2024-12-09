@@ -1,45 +1,34 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/main/Subject/subjectmain/modules/lesson">My Lessons</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Discussions Lists</li>
+        <li class="breadcrumb-item">
+            <a href="/main/Subject/subjectmain/modules/lesson">My Lessons</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Discussions Lists</li>
     </ol>
 </nav>
 
-<!-- Navigation Bars for Lessons, Discussions and Assessments -->
-
-<!-- <div class="container mb-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/lesson']"><button class="btn buttons w-100">LESSON</button></a></div>
-        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/discussionlist']"><button class="btn buttons w-100">DISCUSSION</button></a></div>
-        <div class="col-12 col-md-3 mb-2"><a [routerLink]="['/main/Subject/subjectmain/modules/assessment']"><button class="btn buttons w-100">ASSESSMENT</button></a></div>
-    </div>
-</div> -->
-
-
 <!-- List of Discussions -->
 <div class="container">
-    <h1 class="titles">List of Discussions</h1>
-    <h5 class="text-muted text-uppercase">{{subname}} | {{admin_name}}</h5>
+    <h1 class="titles text-center">List of Discussions</h1>
+    <h5 class="text-muted text-uppercase text-center">{{subname}} | {{admin_name}}</h5>
 
     @for (item of discussions; track $index) {
-        <a [routerLink]="['/main/Subject/subjectmain/modules/discussion']" (click)="getDiscussionID(item.discussionid, item.Discussion_Topic)" *ngIf="!isLoading">
-            <mat-card class="matcard">
-                <mat-card-header class="matcardheader">
-                <div class="col-10">
-                    Discussion {{$index + 1}}
-                </div>
-                <div class="col-2">
-                    <p style="font-weight: 300; font-size: 15px;">{{item.date_created}}</p>
-                </div>
-                </mat-card-header>
-                <div class="row">
-                    <div class="col-11">
-                        <mat-card-content class="matcardcontent">
-                            {{item.Discussion_Topic}}
-                            <br>
-                        </mat-card-content>
+        <a [routerLink]="['/main/Subject/subjectmain/modules/discussion']" 
+           (click)="getDiscussionID(item.discussionid, item.Discussion_Topic)" 
+           *ngIf="!isLoading" 
+           class="text-decoration-none">
+            <mat-card class="matcard mb-3">
+                <mat-card-header class="d-flex justify-content-between align-items-center">
+                    <div class="col">
+                        <strong>Discussion {{$index + 1}}</strong>
                     </div>
-                </div>
+                    <div class="col-auto">
+                        <p class="text-muted" style="font-size: 0.9rem;">{{item.date_created}}</p>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{item.Discussion_Topic}}</p>
+                </mat-card-content>
             </mat-card>
         </a>
     }
@@ -48,8 +37,8 @@
 <!-- Spinner -->
 @if(isLoading) {
     <div class="d-flex justify-content-center align-items-center vh-100">
-      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+        <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
 }

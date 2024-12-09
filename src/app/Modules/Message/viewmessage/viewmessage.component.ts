@@ -24,6 +24,7 @@ export class ViewmessageComponent implements OnInit {
   messages: any;
   admin: any;
   selectedmessageID: any;
+  isSubmitting: boolean = false;
   
   // Progress Bar
   isSending = false;
@@ -43,6 +44,7 @@ export class ViewmessageComponent implements OnInit {
 
   sendReply(adminID: any, mid:any)
   {
+    this.isSubmitting = true;
     const lrn = localStorage.getItem('LRN');
 
     if (this.replyText.trim()) {
@@ -53,7 +55,6 @@ export class ViewmessageComponent implements OnInit {
         mid: mid
       };
       this.studentservice.sendReply(replyPayload).subscribe(
-
         response => {
           this.isSending = true;
           this.progress = 20;
@@ -75,9 +76,11 @@ export class ViewmessageComponent implements OnInit {
               this.replyText = ''; //Clear the reply box
             }
           }, 100)
+          this.isSubmitting = false;
           this.loadMessage(lrn); //Reload Messages to shwo the updated one
         },
         error => {
+          this.isSubmitting = false;
           console.error('Error sending reply:', error);
           alert('Failed to send reply.');
         }
@@ -144,6 +147,7 @@ export class ViewmessageComponent implements OnInit {
   }
 
   sendMessage() {
+    this.isSubmitting = true;
     const lrn = localStorage.getItem('LRN');
     const recipient = (document.getElementById('recipient') as HTMLSelectElement).value;
     const messageText = (document.getElementById('message') as HTMLTextAreaElement).value;
@@ -187,6 +191,7 @@ export class ViewmessageComponent implements OnInit {
             });
             this.closeModal2();
             (document.getElementById('message') as HTMLTextAreaElement).value = '';
+            this.isSubmitting = false;
           }
         }, 100)
         this.loadMessage(lrn);

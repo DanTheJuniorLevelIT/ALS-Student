@@ -50,22 +50,29 @@
             <mat-card class="quiz-container">
                 @if(isLoading) {
                     <div class="d-flex justify-content-center align-items-center vh-100">
-                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                      <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
                   }
                 <div *ngIf="!isLoading">
-                    <mat-card-header>
-                        <!-- <h4>{{questions[itemno]?.question_id}}</h4> -->
-                        <h4>{{questions[itemno]?.question}}</h4>
-                    </mat-card-header>
-                    <mat-card-content> 
-                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer"  [ngModel]="answer"></editor>
+                      <mat-card-content> 
+                      <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-10">
+                          <h3>{{questions[itemno]?.question}}</h3>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-2 justify-content-end d-flex">
+                          <small class="text-gray fw-bold">{{questions[itemno]?.points}} point/s</small>
+                        </div>
+                      </div>
                     </mat-card-content> 
+                      <div class="m-4">
+                        <editor apiKey="ieevi9uq0rss4i3img4c28x9l1vrn8usa5zyuf65wwxpqid1" [init]="{plugins:'list link image table code help wordcount'}" formControlName="answer"  [ngModel]="answer"></editor>
+                        <textarea name="" id="essaytextarea" formControlName="answer" [ngModel]="answer" style="height: 200px; width:100%; display:none;"></textarea>
+                      </div>
                 </div>
             </mat-card> 
-                </div>
+          </div>
                 <!-- (onKeyPress)="keyUpTiny($event, questions[itemno]?.question_id, lrn)" allowedEvents="onKeyPress" -->
 }
 
@@ -76,16 +83,23 @@
                 </mat-card-header>
                 @if(isLoading) {
                     <div class="d-flex justify-content-center align-items-center vh-100">
-                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                      <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
                 }
                 <div *ngIf="!isLoading">
                     <mat-card-content> 
-                            <h3>{{questions[itemno]?.question}}</h3> 
+                      <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-10">
+                          <h3>{{questions[itemno]?.question}}</h3>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-2 justify-content-end d-flex">
+                          <small class="text-gray fw-bold">{{questions[itemno]?.points}} point/s</small>
+                        </div>
+                      </div>
                     </mat-card-content>
-                    <mat-form-field>
+                    <mat-form-field class="matformfield">
                         <mat-label>Provide an answer</mat-label>
                         <input matInput formControlName="answer"  [ngModel]="answer">
                         <!-- (blur)="keyUpFunction(questions[itemno]?.question_id, lrn)" -->
@@ -99,7 +113,7 @@
             <mat-card class="multiplechoicecard">
                 @if(isLoading) {
                     <div class="d-flex justify-content-center align-items-center vh-100">
-                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                      <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
@@ -108,7 +122,14 @@
                     <mat-card-header>
                     </mat-card-header>
                     <mat-card-content>
-                        <h3>{{questions[itemno]?.question}}</h3>
+                      <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-10">
+                          <h3>{{questions[itemno]?.question}}</h3>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-2 justify-content-end d-flex">
+                          <small class="text-gray fw-bold">{{questions[itemno]?.points}} point/s</small>
+                        </div>
+                      </div>
                     </mat-card-content>
                     <mat-radio-group
                         aria-labelledby="example-radio-group-label"
@@ -129,7 +150,7 @@
             <mat-card class="multiplechoicecard">
                 @if(isLoading) {
                     <div class="d-flex justify-content-center align-items-center vh-100">
-                      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+                      <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
@@ -138,7 +159,16 @@
                     <mat-card-header>
                     </mat-card-header>
                     <mat-card-content>
-                        <h3>{{questions[itemno]?.question}}</h3>
+                      <div class="row">
+                        <div class="col-sm-6 col-md-8 col-lg-10">
+                          <h3>{{questions[itemno]?.question}}</h3>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-2 justify-content-end d-flex">
+                          <small class="text-gray fw-bold">{{questions[itemno]?.points}} point/s</small>
+                        </div>
+                        <div class="col-2 justify-content-end">
+                        </div>
+                      </div>
                     </mat-card-content>
                     <mat-radio-group
                         aria-labelledby="example-radio-group-label"
