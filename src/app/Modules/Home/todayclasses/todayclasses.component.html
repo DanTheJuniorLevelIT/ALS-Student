@@ -4,7 +4,7 @@
     <!-- Greeting Section -->
     <div class="container" *ngIf="learner">     
           <h1 class="greeting">{{ greeting }} {{ learner.firstname }}</h1>
-          <h3>{{ currentDayAndDate }}</h3>
+          <h3 class="curdate">{{ currentDayAndDate }}</h3>
     </div>  
     
   
@@ -33,7 +33,7 @@
     </div>
     
     <div class="col-lg-4 col-md-12 col-sm-12" id="pendingassessments" *ngIf="!isLoading">
-      <div class="overflow-scroll">
+      <div class="scrollable-right">
         <div class="card w-100" id="cardpendingassessments">
           <div class="card-body-assessment">
             <h5 class="m-3 fw-bold sticky-title">Pending Assessments</h5>
@@ -43,14 +43,14 @@
                   <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" 
                     (click)="getAssessmentID(item.assessmentid, item.title)" 
                     class="border-bottom">
-                    {{item.title}}
+                    {{item.title}} @if(item.isDateDue == 0) {<span class="text-danger">(Overdue)</span>}
                   </a>
                 } @else if (item.isOpen == 0) {
                   <a [routerLink]="['/main/Subject/subjectmain/modules/questionnaires']" 
                     (click)="getAssessmentID(item.assessmentid, item.title)" 
                     class="border-bottom" 
                     style="pointer-events: none; opacity: 0.5; color: gray;">
-                    {{item.title}} <span class="text-danger">(Overdue)</span>
+                    {{item.title}} @if(item.isDateDue == 0) {<span class="text-danger">(Overdue)</span>}
                   </a>
                 }
               }
@@ -60,11 +60,12 @@
       </div>
     </div>
     
+    
   </div>
 
   @if(isLoading) {
     <div class="d-flex justify-content-center align-items-center vh-100">
-      <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
+      <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>

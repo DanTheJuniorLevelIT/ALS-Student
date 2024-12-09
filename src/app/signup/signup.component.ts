@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     placeofbirth: new FormControl(null, [Validators.required]),
     birthdate: new FormControl(null, [Validators.required]),
     // Address: new FormControl(null),
-    education: new FormControl(null, [Validators.required]),
+    last_education: new FormControl(null, [Validators.required]),
     gender: new FormControl(null, [Validators.required]),
     civil_status: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required, Validators.email]),

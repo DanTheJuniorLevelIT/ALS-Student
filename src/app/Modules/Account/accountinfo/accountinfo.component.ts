@@ -5,11 +5,12 @@ import Swal from 'sweetalert2';
 import bootstrap from '../../../../main.server';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { ProfileserviceService } from '../../../profileservice.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-accountinfo',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, MatProgressBarModule],
+  imports: [ReactiveFormsModule, FormsModule, MatProgressBarModule, CommonModule],
   templateUrl: './accountinfo.component.html',
   styleUrl: './accountinfo.component.css'
 })
@@ -22,7 +23,7 @@ export class AccountinfoComponent implements OnInit{
   profilePic: any; // Ensure profilePicOfStudent is initialized
   progress = 0;
   isUploading = false;
-
+  isLoading = false;
 
   updateForm = new FormGroup({
     oldpassword: new FormControl(null),
@@ -55,6 +56,8 @@ export class AccountinfoComponent implements OnInit{
     } else {
       console.error('No Token Found. User is not authenticated');
     }
+
+    this.spinner();
   }
 
   onFileSelect(event:any) {
@@ -185,7 +188,13 @@ export class AccountinfoComponent implements OnInit{
     );
   }
   
-
+  spinner() {
+    this.isLoading = true;
+    this.getLearnerInfo(this.lrn);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1500);
+  }
   
   
 

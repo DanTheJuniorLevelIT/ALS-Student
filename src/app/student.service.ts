@@ -7,7 +7,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class StudentService {
   private apiUrl = 'http://localhost:8000/api/';
-  // private apiUrl = 'http://192.168.3.24:8000/api/';
+  // private apiUrl = 'http://192.168.1.138:8000/api/';
 
   constructor(private http: HttpClient) {
    }
@@ -174,5 +174,13 @@ export class StudentService {
 
   changePassword(pdata: any, email: any): Observable<any> {
     return this.http.post(`${this.apiUrl}change-password/${email}`, pdata);
+  }
+
+  getResultAnalysis(aid: any, lrn: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getResultAnalysis?aid=${aid}&lrn=${lrn}`);
+  }
+
+  getmoduleID(aid: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}getmoduleID?aid=${aid}`);
   }
 }

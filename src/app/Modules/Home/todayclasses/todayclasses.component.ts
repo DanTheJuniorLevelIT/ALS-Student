@@ -86,9 +86,7 @@ getSubjects() {
     localStorage.setItem('subjectid', subid);
     localStorage.setItem('cid', cid);
     localStorage.setItem('adminname', adminname);
-    localStorage.setItem('sub_name', sub_name);
-    console.warn(cid);
-    console.warn(subid);
+    localStorage.setItem('sub_name', sub_name);;
     // this.navigateToModules(subid);
   }
 

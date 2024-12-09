@@ -112,43 +112,10 @@ div {
     margin: 10px;
 }
 
-/* General responsiveness for mat-form-field and mat-mdc wrapper */
-.mat-mdc-form-field,
-.mat-mdc-text-field-wrapper,
-.mdc-text-field,
-.mat-mdc-form-field-infix {
-    width: 100%; /* Ensures full width */
-    max-width: 900px; /* Optional: sets max width */
-    margin: 10px 0; /* Adds spacing around the form field */
+.matformfield {
+    width: 100%;
+    justify-content: center;
 }
-
-/* Ensure the actual input field inside the form field is responsive */
-.mat-mdc-form-field-infix .mdc-text-field__input,
-.mat-mdc-form-field-infix input {
-    width: 100%; /* Input field should take up full width */
-}
-
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-    .mat-mdc-form-field,
-    .mat-mdc-text-field-wrapper,
-    .mdc-text-field,
-    .mat-mdc-form-field-infix {
-        width: 100%; /* Full width on smaller screens */
-    }
-}
-
-@media (max-width: 576px) {
-    .mat-mdc-form-field,
-    .mat-mdc-text-field-wrapper,
-    .mdc-text-field,
-    .mat-mdc-form-field-infix {
-        width: 100%;
-        max-width: 100%; /* Allow it to stretch on very small screens */
-    }
-}
-
-
 
 
 .essaycard {
@@ -166,21 +133,6 @@ div {
 .formanswer {
     width: 100%;
 }
-
-/* .formanswer mat-form-field {
-    margin-top: 5px;
-    align-items: center;
-} */
-
-/* .formanswer .mat-form-field .mat-label {
-    color: black;
-    width: 100px;
-} */
-
-.mat-form-field {
-    width: 100%;
-}
-
 
 :host ::ng-deep .mdc-radio__native-control {
     position: absolute;
@@ -291,12 +243,12 @@ h3 {
     outline: none;
 }
 
-:host ::ng-deep .mat-mdc-text-field-wrapper {
-    width: 900px;
+/* :host ::ng-deep .mat-mdc-text-field-wrapper {
     z-index: 0;
     margin-left: auto;
     margin-right: auto;
-}
+    align-self: center;
+} */
 
 :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #dcdcdc;
@@ -346,20 +298,36 @@ h3 {
     touch-action: manipulation;
     vertical-align: baseline;
     white-space: nowrap;
-  }
-  
-  .button-8:hover,
-  .button-8:focus {
+}
+
+.button-8:hover,
+.button-8:focus {
     background-color: #b3d3ea;
     color: #2c5777;
-  }
-  
+}
+
   .button-8:focus {
     box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
-  }
-  
-  .button-8:active {
+}
+
+.button-8:active {
     background-color: #a0c7e4;
     box-shadow: none;
     color: #2c5777;
-  }
+}
+
+
+/* Responsiveness for Angular Material Form Field */
+@media (max-width: 768px) {
+    .matformfield {
+        width: 100%;
+    }
+    #essaytextarea {
+        width: 100%;
+        display: block !important;
+    }
+
+    editor {
+        display: none  !important;
+    }
+}

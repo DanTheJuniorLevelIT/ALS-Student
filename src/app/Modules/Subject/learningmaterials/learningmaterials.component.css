@@ -37,6 +37,17 @@ a {
     margin-bottom: 15px;
     transition: all 0.3s ease; /* Smooth transition for responsiveness */
   }
+
+@media (max-width: 370px) {
+    .titles {
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+    #subname {
+        font-size: 18px;
+    }
+}
   
 
   

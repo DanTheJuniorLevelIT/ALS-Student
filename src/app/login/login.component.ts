@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { StudentService } from '../student.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 
 @Component({
@@ -27,71 +28,53 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginLearner.valid) {
-      this.studentservice.loginLearner(this.loginLearner.value).subscribe(
-        (response: any) => {
-          console.log('Response:', response);
-  
+      this.studentservice.loginLearner(this.loginLearner.value).subscribe({
+        next: (response: any ) => {
           const token = response.token;
           console.log('Token:', token);
-  
           localStorage.setItem('authToken', token);
-  
-          if (token) {
-            this.studentservice.getLearnerByToken(token).subscribe({
-              next: (data) => {
-                this.learner = data;
-                const lrn = data.lrn; // Adjust based on your API response structure
-                if (lrn) {
-                  localStorage.setItem('LRN', lrn);
-                  this.lrn = lrn;
-                  Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "You are now logged in!",
-                    showConfirmButton: false,
-                    timer: 1000
-                  });
-                  this.route.navigate(['/main/Home']);
-                } else {
-                  Swal.fire({
-                    position: "center",
-                    icon: "warning",
-                    title: "You are not enrolled yet! (LRN Needed)",
-                    showConfirmButton: false,
-                    timer: 5000
-                  });
-                  console.error('LRN not found in learner data');
+          console.log('Login Successful', response)
+          
+          this.studentservice.getLearnerByToken(token).subscribe({
+                next: (data) => {
+                  this.learner = data;
+                  const lrn = data.lrn; // Adjust based on your API response structure
+                  if (lrn) {
+                    localStorage.setItem('LRN', lrn);
+                    this.lrn = lrn;
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "You are now logged in!",
+                      showConfirmButton: false,
+                      timer: 1000
+                    });
+                    this.route.navigate(['/main/Home']);
+                  }
                 }
-              },
-              error: (err) => {
-                console.error('Error fetching learner data', err);
-              }
-            });
-          } else {
-            console.error('No Token Found. User is not authenticated');
-          }
+          })
         },
-        (error) => {
-          if (error.status === 401) {
+        error: (error) => {
+          console.error('Login', error);
+          if(error === 'Bad Request') {
             Swal.fire({
               position: "center",
               icon: "warning",
-              title: error.error.message,
+              title: "You are not enrolled yet! (LRN Needed)",
               showConfirmButton: false,
-              timer: 3000
+              timer: 1000
             });
-          } else {
+          } else if(error === 'Unauthorized') {
             Swal.fire({
               position: "center",
               icon: "warning",
-              title: "The provided credentials are incorrect",
+              title: "The Provided Credentials are incorrect",
               showConfirmButton: false,
-              timer: 3000
+              timer: 1000
             });
           }
-          console.error('Error logging in', error);
         }
-      );
+      })
     } else {
       Object.keys(this.loginLearner.controls).forEach((control) => {
         this.loginLearner.get(control)?.markAsTouched();
@@ -100,6 +83,7 @@ export class LoginComponent {
       return;
     }
   }
+  
   
 
   togglePasswordVisibility(): void {

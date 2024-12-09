@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -21,11 +21,11 @@ export class LessonComponent implements OnInit {
   admin_name: any
   subname: any
   lrn: any
-  assessmentlist: any;
+  assessmentlist: { [lessonId: string]: any [] } = {};
   overdueHeaderShown: boolean = false;
   isLoading = false;
 
-  constructor(private studentservice: StudentService) {}
+  constructor(private studentservice: StudentService, private route: Router) {}
 
   ngOnInit(): void {
     this.moduleID = localStorage.getItem('moduleID');
@@ -52,7 +52,7 @@ export class LessonComponent implements OnInit {
   getAssessments(lid: any){
     this.studentservice.getAssessments(lid, this.lrn).subscribe((result:any)=>{
       const today = new Date();
-      this.assessmentlist = result;
+      this.assessmentlist[lid] = result;
 
         // this.assessmentlist.forEach((assessment:any) => {
         //   const dueDate = new Date(assessment.due_date);
@@ -66,6 +66,13 @@ export class LessonComponent implements OnInit {
   getAssessmentID(aid: any, title: any){
     localStorage.setItem('assessmentID', aid);
     localStorage.setItem('assessmenttitle', title);
+  }
+
+  proceedToResultAnalysis(aid: any) {
+    localStorage.setItem('pickedAssessmentID', aid);
+    // const path = ['subjectmain', 'modules', 'lesson', 'result-analysis', aid];
+    // console.log('Navigating to:', path);
+    // this.route.navigate(path).catch(err => console.error('Navigation error:', err));  
   }
 
   // // getModules(moduleID:any ) {

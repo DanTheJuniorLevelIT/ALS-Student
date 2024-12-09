@@ -44,6 +44,7 @@ export class QuestionnairesComponent implements OnInit{
   newFileUrl:any;
   isLoading = false;
   answer: any;
+  mid:any;
 
 
 constructor(
@@ -67,6 +68,7 @@ constructor(
     this.getLearnerFile(this.lrn,this.assessmentID);
     console.log(this.File);
     console.log(this.assessment);
+    this.getmoduleID(this.assessmentID);
     
 
     // this.getAnswers(this.questions[this.itemno]?.question_id);
@@ -319,6 +321,23 @@ getFile(aid: any, lrn:any){
   //     console.log(result);
   //   });
   // }
+
+getmoduleID(aid: any) {
+  this.student.getmoduleID(aid).subscribe((result: any) => {
+    console.log(result);
+    this.mid = result;
+    const moduleID = this.mid[0].mid;
+    const moduleTitle = this.mid[0].title;
+    const adminname = this.mid[0].admin_name;
+    const subname = this.mid[0].subname;
+    const cid = this.mid[0].classid;
+    localStorage.setItem('moduleID', moduleID);
+    localStorage.setItem('moduletitle', moduleTitle);
+    localStorage.setItem('adminname', adminname);
+    localStorage.setItem('sub_name', subname);
+    localStorage.setItem('cid', cid);
+  })
+}
 
 spinner(aid: any, lrn: any) {
   this.isLoading = true;

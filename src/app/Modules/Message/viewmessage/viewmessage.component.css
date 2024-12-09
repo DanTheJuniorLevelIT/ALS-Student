@@ -269,6 +269,12 @@
   background-color: #a81f27;
 }
 
+.btn-primary:disabled {
+  background-color: #d6d6d6;
+  color: #a1a1a1;
+  cursor: not-allowed;
+}
+
 /* Media query for responsiveness */
 @media (max-width: 768px) {
   .wrapper {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardHeader, MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { StudentService } from '../../../student.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-learningmaterials',
@@ -23,12 +23,14 @@ export class LearningmaterialsComponent implements OnInit {
   progress: any;
   pendingassessments: any;
   announcements: any;
-
+  today: string = '';
   // Loaders
   isLoading = false;
 
 
-  constructor (private studentservice: StudentService) {}
+  constructor (private studentservice: StudentService) {
+    this.today = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+  }
 
   ngOnInit(): void {
       this.subid = localStorage.getItem('subjectid');
@@ -89,5 +91,12 @@ export class LearningmaterialsComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
     }, 1500);
+  }
+
+  isModuleOpen(moduleDate:any): boolean {
+    const moduleDateParsed = new Date(moduleDate)
+    const todayParse = new Date(this.today);
+
+    return moduleDateParsed <= todayParse;
   }
 }

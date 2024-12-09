@@ -56,9 +56,17 @@ img {
     height: auto;
 }
 
-.overflow-scroll {
+/* .overflow-scroll {
     height: 350px;
-}
+    overflow-y: auto;
+    overflow-x: hidden;
+} */
+.scrollable-right {
+    max-height: 400px; /* Adjust to your desired height */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    overflow-x: hidden; /* Disable horizontal scrolling */
+  }
+  
 
 .sticky-title {
     position: sticky;
@@ -70,8 +78,23 @@ img {
 
 /* Responsive Layout */
 @media (max-width: 990px) {
-  .card .card-image-top {
-    object-fit: cover;
+    .card .card-img-top {
+      object-fit: cover;
+      width: 100%; /* Ensure the image fills the width of the card */
+      height: auto; /* Maintain the aspect ratio */
+      max-height: 200px; /* Optional: Limit height for consistency */
+    }
   }
+
+@media (max-width: 370px) {
+    .greeting {
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+    .curdate {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
 }
   

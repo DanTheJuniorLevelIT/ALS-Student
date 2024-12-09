@@ -1,0 +1,32 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/main/Subject/subjectmain/modules/lesson">My Lessons</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Results</li>
+    </ol>
+</nav>
+
+<div class="table-responsive">
+    <div class="align-content-center">
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th>Question Type</th>
+                    <th>Question</th>
+                    <th>Key Answer</th>
+                    <th>Your Answer</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for (item of result; track $index) {
+                <tr>
+                    <td>{{item.question_type}}</td>
+                    <td>{{item.question}}</td>
+                    <td>{{item.key_answer}}</td>
+                    <td>{{item.answer}}</td>
+                    <!-- <td *ngIf="$index === 0" [attr.rowspan]="result.length">{{ score }}</td> -->
+                </tr>
+            }   
+                </tbody>
+        </table>
+    </div>
+</div>

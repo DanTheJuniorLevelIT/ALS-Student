@@ -6,10 +6,10 @@
                       <div class="row g-0">
                           <div class="col-xl-4 d-none d-xl-block">
                               <img
-                                  src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                  src="assets/poster.jpg"
                                   alt="Sample photo"
                                   class="img-fluid"
-                                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 700px;"
+                                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 100%;"
                               />
                           </div>
                                 <div class="col-xl-8">
@@ -94,11 +94,11 @@
                                                 </div> -->
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-outline mb-2">
-                                                        <input type="text" id="lastSchool" formControlName="education" class="form-control form-control-lg" />
+                                                        <input type="text" id="lastSchool" formControlName="last_education" class="form-control form-control-lg" />
                                                         <label class="form-label" for="lastSchool">
                                                             Last School Attended
-                                                            <div *ngIf="learnerForm.get('education')?.touched && learnerForm.get('education')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
-                                                                <small *ngIf="learnerForm.get('education')?.errors?.['required']">Last School Attended is required</small>
+                                                            <div *ngIf="learnerForm.get('last_education')?.touched && learnerForm.get('education')?.invalid" class="text-danger d-flex justify-content-end align-items-end">
+                                                                <small *ngIf="learnerForm.get('last_education')?.errors?.['required']">Last School Attended is required</small>
                                                             </div> 
                                                         </label>
                                                     </div>
